@@ -1,0 +1,67 @@
+/* YAQIXIN site-wide visual polish for product and category pages. */
+:root{
+  --yx-ink:#11151d;
+  --yx-muted:#66717f;
+  --yx-paper:#f8f6f1;
+  --yx-line:#e4ded5;
+  --yx-copper:#b87342;
+}
+
+body{background:var(--yx-paper);color:var(--yx-ink)}
+.topbar{background:var(--yx-ink);color:#d9b48b;letter-spacing:.12em}
+.nav{height:82px;display:grid;grid-template-columns:auto minmax(0,1fr) minmax(220px,320px) auto;align-items:center;gap:24px;background:rgba(250,248,244,.97);border-bottom:1px solid var(--yx-line);box-shadow:0 10px 34px rgba(17,21,29,.06)}
+.brand{gap:0;min-width:160px}
+.brand img,.brand small{display:none!important}
+.brand strong{font-family:Georgia,"Times New Roman",serif;color:var(--yx-ink);font-size:30px;font-weight:700;line-height:1;letter-spacing:.08em}
+.menu{justify-content:center;gap:24px;color:#1f2937;font-size:13.5px;font-weight:750}
+.menu>a,.product-trigger{position:relative}
+.menu>a:hover,.product-trigger:hover{color:var(--yx-copper)}
+.btn.navy{background:var(--yx-ink);border-radius:8px;min-height:44px;padding:0 20px;box-shadow:none}
+.btn.copper{background:var(--yx-copper);box-shadow:0 14px 30px rgba(184,115,66,.18)}
+
+.site-search{justify-self:end;display:flex;align-items:center;width:min(100%,320px);height:38px;border:1px solid #ded8d0;border-radius:999px;background:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}
+.site-search input{height:100%;min-width:0;flex:1;border:0!important;background:transparent!important;padding:0 12px 0 17px!important;font-size:13px;color:#172337;box-shadow:none!important}
+.site-search input:focus{outline:0}
+.site-search input::placeholder{color:#8b94a0}
+.site-search button{position:relative;width:40px;height:36px;margin:0!important;border:0;background:transparent;cursor:pointer}
+.site-search button:before{content:"";position:absolute;left:12px;top:10px;width:11px;height:11px;border:2px solid #172337;border-radius:50%}
+.site-search button:after{content:"";position:absolute;left:24px;top:23px;width:9px;height:2px;background:#172337;transform:rotate(45deg);transform-origin:left center;border-radius:999px}
+.site-search span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.hero{background:linear-gradient(180deg,#fbfaf7 0%,#fff 100%);padding-top:58px}
+.hero-copy h1,.catalog-toolbar h1,.section h2,.guide-head h2{letter-spacing:0;color:var(--yx-ink)}
+.hero-copy h1{font-size:clamp(34px,4vw,52px)}
+.lead,.hero-copy p,.card p,.faq p,.guide-head p,.buyer-detail p,.catalog-group-heading p,.listing-meta{color:var(--yx-muted)}
+.hero-copy>.lead,.catalog-group-heading p,.guide-head p{max-width:760px;line-height:1.62}
+.catalog-group-heading p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hero-pills span,.catalog-badges span,.subcategory-strip a,.subcategory-strip span{letter-spacing:0;border-color:#e2d6ca;background:#fffaf5;color:#83502f}
+.catalog-page{background:#f6f4ef}
+.catalog-shell{max-width:1240px;gap:22px;padding-top:28px}
+.category-sidebar,.catalog-toolbar,.catalog-group-heading,.listing-card,.buyer-guide,.contact-card,.form-card,.card,.faq{border-color:var(--yx-line);box-shadow:0 12px 34px rgba(17,21,29,.05)}
+.sidebar-title{border-top-color:var(--yx-ink);color:var(--yx-ink)}
+.sidebar-list a.active,.sidebar-list a:hover{background:#fff8f0;color:#9b5a32}
+.catalog-toolbar{padding:24px;background:#fff}
+.catalog-products{gap:18px}
+.listing-card{border-radius:8px}
+.listing-copy h2{font-size:15px;line-height:1.34}
+.listing-meta{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.listing-actions a{border-radius:8px}
+.buyer-guide-grid,.faq-grid{gap:14px}
+.buyer-note,.keyword-map{display:none}
+.seo-copy p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+@media(max-width:980px){
+  .nav{grid-template-columns:auto minmax(180px,1fr) auto;gap:14px}
+  .menu{display:none}
+  .site-search{justify-self:stretch;width:100%}
+  .nav>.btn.navy{display:none}
+}
+
+@media(max-width:640px){
+  .nav{grid-template-columns:auto minmax(0,1fr);height:auto;min-height:68px;padding:12px 16px}
+  .brand{min-width:0}
+  .brand strong{font-size:23px}
+  .site-search{height:36px}
+  .site-search input{font-size:12px;padding-left:14px!important}
+  .hero,.section{padding-left:18px;padding-right:18px}
+}

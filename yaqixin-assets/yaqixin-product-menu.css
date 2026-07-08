@@ -1,0 +1,22 @@
+.product-menu{position:relative;display:inline-flex;align-items:center}
+.product-menu button,.product-menu a{font:inherit}
+.product-trigger{display:inline-flex;align-items:center;gap:6px;border:0;background:transparent;color:inherit;font-weight:850;cursor:pointer;padding:28px 0}
+.product-trigger::after,.product-subitem.has-children>a::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;opacity:.75}
+.product-trigger::after{transform:rotate(45deg);margin-top:-3px}
+.product-subitem.has-children>a::after{transform:rotate(-45deg)}
+.product-panel,.product-subpanel{position:absolute;z-index:80;display:none;min-width:238px;border:1px solid #e4dbd1;border-radius:0 0 8px 8px;background:#fff;box-shadow:0 24px 60px rgba(16,21,31,.16);padding:10px 0;color:#1c2c42}
+.product-panel{left:0;top:100%}
+.product-menu:hover>.product-panel,.product-menu:focus-within>.product-panel,.product-subitem:hover>.product-subpanel,.product-subitem:focus-within>.product-subpanel{display:block}
+.product-list{list-style:none;margin:0;padding:0}
+.product-subitem{position:relative;margin:0}
+.product-subitem>a,.product-subitem>span{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:38px;padding:0 18px;color:#2d3748;font-size:14px;font-weight:600;white-space:nowrap}
+.product-subitem>a:hover,.product-subitem>a:focus,.product-subitem:hover>a{background:#f5f7fb;color:#c8783a}
+.product-subpanel{left:100%;top:-10px;border-radius:0 8px 8px 8px}
+.product-leaf a{justify-content:flex-start}
+.product-muted{color:#667085!important;font-size:13px!important}
+.product-section-label{display:block;padding:8px 18px 6px;color:#9f5727;font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+@media(max-width:900px){.product-menu{display:none}}
+.whatsapp-choice,.contact-buttons{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.whatsapp-choice .btn,.contact-buttons .btn{margin-top:0}.email-muted{color:#667085;font-size:13px;line-height:1.6}.email-muted a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:640px){.whatsapp-choice .btn,.contact-buttons .btn{width:100%}}
+
+.required,.field-required{display:none!important}

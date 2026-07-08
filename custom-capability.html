@@ -1,0 +1,419 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Custom Fabric & Packaging Solutions | YAQIXIN</title>
+  <meta name="description" content="YAQIXIN supports custom fabric and packaging solutions for wholesale apparel buyers, including flocking, sequin embroidery, digital printing, pattern development, roll packing, carton marks, SGS supplier proof and export-ready preparation.">
+  <link rel="icon" type="image/png" href="yaqixin-assets/favicon.png">
+  <link rel="stylesheet" href="yaqixin-assets/yaqixin-info-pages.css">
+  <style>
+    .customize-page .menu a.is-active{color:var(--yx-copper-dark)}
+    .customize-page .page-hero{padding-top:58px;padding-bottom:46px}
+    .customize-page .hero-layout{grid-template-columns:minmax(0,1.05fr) minmax(420px,.95fr)}
+    .customize-page .hero-visual{position:relative;min-height:560px;align-self:stretch;padding:18px;border:1px solid var(--yx-line);border-radius:10px;background:linear-gradient(135deg,#11151d 0%,#222936 48%,#fffdfa 48%,#fffdfa 100%);box-shadow:0 28px 80px rgba(17,21,29,.11);overflow:hidden}
+    .customize-page .hero-visual:before{content:"";position:absolute;left:18px;top:18px;width:84px;height:6px;border-radius:999px;background:#ff6a00;z-index:2}
+    .customize-page .poster-board{position:relative;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(230px,.82fr);grid-template-rows:1fr auto;gap:14px;height:100%;min-height:520px}
+    .customize-page .poster-media{position:relative;margin:0;border-radius:10px;overflow:hidden;background:#eee8df;box-shadow:0 18px 44px rgba(17,21,29,.17)}
+    .customize-page .poster-media img{width:100%;height:100%;object-fit:cover}
+    .customize-page .poster-main{grid-row:1/3}
+    .customize-page .poster-accent{min-height:238px}
+    .customize-page .poster-panel{display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(255,255,255,.16);border-radius:10px;background:linear-gradient(145deg,#11151d,#242936);color:#fff;padding:22px;box-shadow:0 20px 46px rgba(17,21,29,.2)}
+    .customize-page .poster-panel small{color:#f2bf88;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+    .customize-page .poster-panel b{display:block;margin-top:10px;font-size:28px;line-height:1.04}
+    .customize-page .poster-panel span{display:block;margin-top:12px;color:rgba(255,255,255,.74);font-size:13px;line-height:1.55}
+    .customize-page .poster-routes{grid-column:1/3;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .customize-page .poster-routes span{display:flex;align-items:center;min-height:48px;border:1px solid rgba(255,255,255,.22);border-radius:8px;background:rgba(255,255,255,.9);color:#11151d;padding:10px 12px;font-size:11px;font-weight:900;line-height:1.25;text-transform:uppercase;letter-spacing:.05em}
+    .customize-page .hero-actions .btn.copper{background:#ff6a00}
+    .customize-anchor{border-top:1px solid var(--yx-line);border-bottom:1px solid var(--yx-line);background:#fffdfa}
+    .customize-anchor .wrap{display:flex;gap:8px;overflow:auto;padding:12px 38px;scrollbar-width:none}
+    .customize-anchor .wrap::-webkit-scrollbar{display:none}
+    .customize-anchor a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;border:1px solid #dfd6cc;border-radius:999px;background:#fff;color:#243043;padding:0 14px;font-size:12px;font-weight:850;white-space:nowrap}
+    .customize-anchor a:hover{border-color:#caa17d;color:var(--yx-copper-dark)}
+    .customize-page #packaging{padding-top:56px;padding-bottom:56px}
+    .customize-page #packaging .panel{padding:30px}
+    .capability-split{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:22px;align-items:center}
+    .packaging-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}
+    .packaging-facts .fact-card{padding:14px}
+    .packaging-facts .fact-card b{font-size:15px}
+    .packing-showcase{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);grid-template-rows:repeat(2,minmax(0,170px));gap:12px}
+    .packing-card{position:relative;margin:0;min-height:0;border-radius:8px;overflow:hidden;background:#e8dfd5;box-shadow:var(--yx-shadow)}
+    .packing-card.feature{grid-row:1/3;min-height:0}
+    .packing-card img{width:100%;height:100%;object-fit:cover}
+    .packing-card span{position:absolute;left:16px;right:16px;bottom:16px;border-radius:8px;background:rgba(17,21,29,.76);color:#fff;padding:12px 14px;font-size:13px;font-weight:850;line-height:1.35;backdrop-filter:blur(10px)}
+    .brief-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:22px}
+    .brief-item{border:1px solid var(--yx-line);border-radius:8px;background:#fff;padding:18px;box-shadow:0 12px 32px rgba(17,21,29,.045)}
+    .brief-item b{display:block;color:var(--yx-navy);font-size:16px;line-height:1.2}
+    .brief-item span{display:block;margin-top:8px;color:var(--yx-muted);font-size:13px;line-height:1.5}
+    .process-rail.process-six{grid-template-columns:repeat(6,minmax(0,1fr))}
+    .process-rail.process-six .process-step{min-height:210px}
+    .certificate-band{display:grid;grid-template-columns:minmax(260px,.38fr) minmax(0,1fr);gap:28px;align-items:center}
+    .certificate-band figure{margin:0;border:1px solid var(--yx-line);border-radius:8px;background:#fff;padding:12px;box-shadow:var(--yx-shadow)}
+    .certificate-band img{width:100%;border:1px solid #eee7df;border-radius:6px;background:#fff}
+    .certificate-band .panel{padding:38px}
+    .capability-proof{display:grid;grid-template-columns:1.05fr .76fr 1.18fr;gap:14px;margin-top:24px}
+    .capability-proof .fact-card{display:flex;min-height:112px;flex-direction:column;justify-content:center;background:#fff}
+    .mobile-certificate-preview{display:none}
+    @media(max-width:1180px){
+      .customize-page .hero-layout,.capability-split,.certificate-band{grid-template-columns:1fr}
+      .process-rail.process-six,.brief-grid,.capability-proof{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .packing-card.feature{grid-row:auto}
+    }
+    @media(max-width:760px){
+      .customize-page .announcement{padding:10px 18px;font-size:10px;line-height:1.45;letter-spacing:.11em}
+      .customize-page .nav{gap:12px;padding-top:14px;padding-bottom:12px}
+      .customize-page .brand strong{font-size:26px}
+      .customize-page .menu{gap:14px;flex-wrap:nowrap;font-size:13px}
+      .customize-anchor .wrap{padding:10px 20px}
+      .customize-anchor{display:none}
+      .customize-page .page-hero{padding-top:34px;padding-bottom:28px}
+      .customize-page .page-hero h1{font-size:34px;line-height:1.05}
+      .customize-page .page-hero .lead{font-size:15px;line-height:1.62}
+      .customize-page .hero-actions,.customize-page .hero-visual{display:none}
+      .mobile-certificate-preview{display:block;padding:20px 20px 30px;background:linear-gradient(180deg,#f4efe8 0%,#fffdfa 100%)}
+      .mobile-certificate-preview figure{max-width:188px;margin:0 auto;border:1px solid var(--yx-line);border-radius:8px;background:#fff;padding:10px;box-shadow:0 16px 40px rgba(17,21,29,.08)}
+      .mobile-certificate-preview img{width:100%;border:1px solid #eee7df;border-radius:6px;background:#fff}
+      .customize-page .section{padding-top:42px;padding-bottom:42px}
+      .customize-page .section h2{font-size:30px;line-height:1.08}
+      .customize-page .section-head{gap:10px}
+      .customize-page .section-head p:not(.eyebrow){display:block;margin-top:12px;font-size:13px;line-height:1.55}
+      .customize-page .service-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:row;gap:10px;overflow:visible;overscroll-behavior:auto;scroll-snap-type:none;padding:0;margin:0}
+      .customize-page .service-card{scroll-snap-align:none}
+      .customize-page .service-media{grid-template-columns:1fr 1fr;gap:4px;padding:4px;aspect-ratio:1.08/1}
+      .customize-page .service-media img:nth-child(2){display:block}
+      .customize-page .service-body{padding:12px}
+      .customize-page .service-body small{font-size:8px;letter-spacing:.12em}
+      .customize-page .service-body h3{font-size:16px;line-height:1.12}
+      .customize-page .service-body p{display:block;margin-top:7px;font-size:11.5px;line-height:1.45;overflow:visible}
+      .customize-page .service-body .tag-row{display:none}
+      .customize-page #packaging{padding-top:42px;padding-bottom:42px}
+      .customize-page #packaging .panel{padding:22px}
+      .customize-page #packaging .panel p{font-size:14px;line-height:1.58}
+      .customize-page #packaging .pill-row{display:none}
+      .customize-page .packing-card:not(.feature),.customize-page .packaging-facts{display:grid}
+      .packing-showcase,.capability-proof,.packaging-facts{grid-template-columns:1fr}
+      .customize-page .packing-showcase{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+      .packing-showcase{grid-template-rows:auto}
+      .packing-card{min-height:150px}
+      .packing-card.feature{grid-column:1/3;min-height:210px}
+      .customize-page #workflow{display:block}
+      .customize-page #brief{display:none}
+      .customize-page .process-rail.process-six{display:grid;grid-auto-flow:column;grid-auto-columns:230px;grid-template-columns:none;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:0 20px 8px;margin:0 -20px}
+      .customize-page #workflow .process-step{min-height:190px;padding:18px;scroll-snap-align:start}
+      .customize-page #workflow .process-step:nth-child(n+4){display:block}
+      .customize-page #certificate{display:none}
+      .capability-proof .fact-card{min-height:auto;padding:14px}
+      .customize-page #faq{display:none}
+      .quote-strip{padding-top:38px;padding-bottom:38px}
+      .quote-strip h2{font-size:28px;line-height:1.1}
+      .quote-strip p{display:block;font-size:14px;line-height:1.58}
+      .quote-strip .btn{width:100%;justify-content:center}
+    }
+    .mobile-action-bar,.mobile-category-layer{display:none}
+    @media(max-width:760px){
+      body.customize-page{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+      body.customize-page.mobile-category-open{overflow:hidden}
+      .customize-page .announcement{min-height:42px;text-align:center}
+      .customize-page .nav{height:auto;min-height:74px;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;padding:10px 12px;gap:10px}
+      .customize-page .brand{min-width:0}
+      .customize-page .brand strong{font-size:22px;letter-spacing:.08em;white-space:nowrap}
+      .customize-page .menu{display:none}
+      .customize-page .nav-tools{justify-self:stretch;justify-content:flex-end;width:100%;min-width:0;gap:7px}
+      .customize-page .nav-tools .site-search{display:flex;flex:0 1 clamp(132px,38vw,170px);max-width:170px;min-width:0;height:36px}
+      .customize-page .nav-tools .site-search input{font-size:12px;padding-left:13px}
+      .customize-page .nav-tools .site-search input::placeholder{color:#8d95a1}
+      .customize-page .language-trigger{height:36px;min-width:74px;padding:0 9px;font-size:11px}
+      .customize-page .language-mark{width:22px;height:22px}
+      .customize-page .footer{background:#090f18;color:rgba(255,255,255,.72);padding:20px 20px 22px;border-top:none}
+      .customize-page .footer-inner{display:grid;gap:8px;align-items:start}
+      .customize-page .footer strong{color:#fff;font-size:13px;letter-spacing:.12em}
+      .customize-page .footer span{color:rgba(255,255,255,.72);line-height:1.45}
+      .customize-page .footer-inner>div{font-size:13px;line-height:1.45}
+      .customize-page .whatsapp{display:none!important}
+      .mobile-action-bar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;grid-template-columns:76px minmax(0,1fr) minmax(0,1fr);gap:8px;padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:rgba(255,252,248,.96);border-top:1px solid var(--yx-line);box-shadow:0 -12px 34px rgba(16,21,31,.12);backdrop-filter:blur(14px);overflow:visible}
+      .mobile-action-bar a,.mobile-action-bar button{min-width:0;min-height:48px;border-radius:999px;display:flex;align-items:center;justify-content:center;padding:0 8px;font:inherit;font-size:13px;font-weight:900;white-space:nowrap}
+      .mobile-action-bar button{border:0;margin:0;cursor:pointer}
+      .mobile-action-bar .categories{flex-direction:column;gap:4px;border-radius:12px;background:transparent;color:#10151f}
+      .mobile-action-bar .cat-icon{position:relative;width:28px;height:18px;display:block}
+      .mobile-action-bar .cat-icon:before,.mobile-action-bar .cat-icon:after,.mobile-action-bar .cat-icon span{content:"";position:absolute;left:0;right:0;height:3px;border-radius:999px;background:#10151f}
+      .mobile-action-bar .cat-icon:before{top:0}
+      .mobile-action-bar .cat-icon span{top:7px}
+      .mobile-action-bar .cat-icon:after{bottom:0}
+      .mobile-action-bar .cat-label{font-size:11px;line-height:1}
+      .mobile-action-bar .chat{background:#10151f;color:#fff}
+      .mobile-action-bar .quote{background:var(--yx-copper);color:#fff}
+      .mobile-category-layer{position:fixed;inset:0;z-index:120;display:block;pointer-events:none}
+      .mobile-category-layer[hidden]{display:none!important}
+      .mobile-category-layer.is-open{pointer-events:auto}
+      .mobile-category-backdrop{position:absolute;inset:0;background:rgba(5,7,11,.34);opacity:0;transition:opacity .22s ease}
+      .mobile-category-layer.is-open .mobile-category-backdrop{opacity:1}
+      .mobile-category-sheet{position:absolute;left:10px;right:10px;bottom:calc(82px + env(safe-area-inset-bottom));max-height:min(70svh,580px);overflow:auto;padding:10px 14px 16px;border:1px solid rgba(228,219,209,.9);border-radius:22px 22px 16px 16px;background:#fff;color:#10151f;box-shadow:0 -18px 58px rgba(16,21,31,.22);transform:translateY(18px);opacity:0;transition:transform .22s ease,opacity .22s ease;-webkit-overflow-scrolling:touch}
+      .mobile-category-layer.is-open .mobile-category-sheet{transform:translateY(0);opacity:1}
+      .mobile-category-handle{width:42px;height:4px;margin:2px auto 12px;border-radius:999px;background:#d9d5cf}
+      .mobile-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 2px 12px;border-bottom:1px solid var(--yx-line)}
+      .mobile-category-head strong{display:block;color:var(--yx-navy);font-size:18px;line-height:1.1}
+      .mobile-category-head span{display:block;margin-top:4px;color:#747d8a;font-size:12px;line-height:1.35}
+      .mobile-category-close{min-width:62px;min-height:36px;border:0;border-radius:999px;background:#f0f0ef;color:#10151f;font:inherit;font-size:12px;font-weight:900}
+      .mobile-nav-main{display:grid;padding-top:8px}
+      .mobile-nav-row{display:block;padding:18px 2px;border-bottom:1px solid var(--yx-line);color:#10151f;font-size:15px;font-weight:900}
+      .mobile-nav-group{border-bottom:1px solid var(--yx-line)}
+      .mobile-nav-group>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 2px;color:#10151f;font-size:15px;font-weight:900;cursor:pointer}
+      .mobile-nav-group>summary::-webkit-details-marker,.mobile-nav-subgroup>summary::-webkit-details-marker{display:none}
+      .mobile-nav-group>summary:after,.mobile-nav-subgroup>summary:after{content:"";width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .18s ease;flex:0 0 auto}
+      .mobile-nav-group[open]>summary:after,.mobile-nav-subgroup[open]>summary:after{transform:rotate(225deg)}
+      .mobile-nav-sub{display:grid;gap:0;padding:0 0 12px 14px}
+      .mobile-nav-sub a{display:block;padding:11px 2px;color:#4f5968;font-size:14px;font-weight:760}
+      .mobile-nav-sub a:first-child{color:#10151f}
+      .mobile-nav-subgroup{border-top:1px solid rgba(16,21,31,.06)}
+      .mobile-nav-subgroup>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 2px;color:#233044;font-size:14px;font-weight:850;cursor:pointer}
+      .mobile-nav-depth{display:grid;gap:0;padding:0 0 8px 12px}
+    }
+    @media(max-width:360px){
+      .customize-page .brand strong{font-size:20px}
+      .mobile-action-bar{grid-template-columns:70px minmax(0,1fr) minmax(0,1fr);gap:7px}
+      .mobile-action-bar a,.mobile-action-bar button{font-size:12px}
+    }
+    @media(max-width:760px){
+      .customize-page .mobile-action-bar{grid-template-columns:74px minmax(0,1fr) minmax(0,1fr);gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.98);border-top:1px solid rgba(16,21,31,.1);box-shadow:0 -8px 24px rgba(16,21,31,.08)}
+      .customize-page .mobile-action-bar a,.customize-page .mobile-action-bar button{min-height:52px;padding:0 12px;font-size:15px;font-weight:800}
+      .customize-page .mobile-action-bar .categories{gap:5px;color:#202124}
+      .customize-page .mobile-action-bar .cat-icon{width:28px;height:19px}
+      .customize-page .mobile-action-bar .cat-icon:before,.customize-page .mobile-action-bar .cat-icon:after,.customize-page .mobile-action-bar .cat-icon span{height:2.5px;background:#202124}
+      .customize-page .mobile-action-bar .cat-label{font-size:13px;font-weight:700;line-height:1.05}
+      .customize-page .mobile-action-bar .chat{border:1.5px solid rgba(32,33,36,.62);background:#fff;color:#10151f}
+      .customize-page .mobile-action-bar .quote{border:1px solid #ff6500;background:#ff6500;color:#fff;font-weight:850;box-shadow:0 8px 18px rgba(255,101,0,.18)}
+    }
+    @media(max-width:360px){
+      .customize-page .mobile-action-bar{grid-template-columns:66px minmax(0,1fr) minmax(0,1fr);gap:8px;padding-left:8px;padding-right:8px}
+      .customize-page .mobile-action-bar a,.customize-page .mobile-action-bar button{min-height:50px;padding:0 8px;font-size:13px}
+      .customize-page .mobile-action-bar .cat-label{font-size:12px}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Custom Fabric And Packaging Solutions",
+    "provider":{"@type":"Organization","name":"Guangzhou Yaqixin Textile Co., Ltd."},
+    "areaServed":"Worldwide",
+    "serviceType":"Custom fabric development, custom packaging support, roll packing, carton marks, sampling and export-ready fabric order preparation",
+    "url":"custom-capability.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Can YAQIXIN customize fabric from buyer artwork?","acceptedAnswer":{"@type":"Answer","text":"Yes. Buyers can send artwork, reference pictures, target color, base fabric, width, quantity and application so YAQIXIN can suggest a suitable custom route such as flocking, sequin embroidery, digital printing or pattern development."}},
+      {"@type":"Question","name":"Can packaging be customized for fabric orders?","acceptedAnswer":{"@type":"Answer","text":"Packaging details such as roll packing, polybag protection, carton marks, buyer labels and export carton preparation can be discussed together with quotation and shipment planning."}},
+      {"@type":"Question","name":"What should buyers send for a custom fabric and packaging quote?","acceptedAnswer":{"@type":"Answer","text":"Buyers should send fabric type, artwork or reference image, target color, GSM or width, quantity, target market, packing requirement and delivery date for a more accurate route recommendation."}},
+      {"@type":"Question","name":"Can buyers review supplier proof before starting an inquiry?","acceptedAnswer":{"@type":"Answer","text":"Yes. YAQIXIN shows SGS supplier assessment information, factory capacity, showroom proof and shipment preparation photos to help overseas buyers review supplier confidence before an inquiry."}}
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="yaqixin-assets/yaqixin-language-switcher.css">
+  <script defer src="yaqixin-assets/yaqixin-language-switcher.js"></script>
+</head>
+<body class="customize-page">
+  <div class="announcement">Custom fabric / packaging support / SGS supplier proof / export-ready order planning</div>
+  <nav class="nav">
+    <a class="brand" href="index.html"><strong>YAQIXIN</strong></a>
+    <div class="menu" id="menu">
+      <a href="index.html">Home</a>
+      <a href="all-products.html">Products</a>
+      <a class="is-active" href="custom-capability.html">Customize</a>
+      <a href="index.html#inquiry">Inquiry</a>
+    </div>
+    <form class="site-search" id="site-search" role="search" aria-label="Search YAQIXIN products"><input id="site-search-input" name="q" type="search" placeholder="Search fabrics" autocomplete="off"><button type="submit" aria-label="Search products"><span>Search</span></button></form>
+  </nav>
+
+  <main>
+    <section class="page-hero" id="top">
+      <div class="hero-layout">
+        <div>
+          <p class="eyebrow">Customize capability</p>
+          <h1>Custom Fabric & Packaging Solutions.</h1>
+          <p class="lead">A focused route for overseas apparel buyers who need custom fabric development, practical sampling, roll packing, carton marks, certificate visibility and export-ready order preparation from one Guangzhou textile supplier.</p>
+          <div class="hero-actions"><a class="btn copper" href="index.html#inquiry">Start Custom Inquiry</a><a class="btn ghost" href="#custom-cases">View Custom Cases</a></div>
+        </div>
+        <div class="hero-visual">
+          <div class="poster-board">
+            <figure class="poster-media poster-main"><img src="yaqixin-assets/custom-cases/custom-sequin-floral-panel.webp" alt="Custom sequin embroidery fabric panel for apparel development"></figure>
+            <figure class="poster-media poster-accent"><img src="yaqixin-assets/custom-cases/custom-digital-print-roll.webp" alt="Digital print custom fabric roll for buyer artwork development"></figure>
+            <div class="poster-panel"><small>Custom fabric program</small><b>Buyer artwork to sample-ready fabric.</b><span>Flocking, sequin embroidery, digital print and pattern development can be discussed before bulk order.</span></div>
+            <div class="poster-routes"><span>01 Artwork review</span><span>02 Base fabric match</span><span>03 Sample direction</span><span>04 Bulk confirmation</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-certificate-preview" aria-label="SGS supplier certificate">
+      <figure>
+        <a href="yaqixin-assets/certifications/sgs-gold-plus-supplier-assessment-2026.webp" target="_blank" rel="noopener"><img src="yaqixin-assets/certifications/sgs-gold-plus-supplier-assessment-2026.webp" alt="SGS Gold Plus Supplier Assessment Certificate for Guangzhou Yaqixin Textile Co., Ltd."></a>
+      </figure>
+    </section>
+
+    <div class="customize-anchor" aria-label="Customize page navigation">
+      <div class="wrap">
+        <a href="#custom-cases">Custom Cases</a>
+        <a href="#packaging">Packaging</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#brief">Buyer Brief</a>
+        <a href="#certificate">Certificate</a>
+        <a href="#faq">FAQ</a>
+        <a href="index.html#inquiry">Contact</a>
+      </div>
+    </div>
+
+    <section class="section soft" id="custom-cases">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">Custom cases</p><h2>Four custom routes buyers can discuss first.</h2></div><p>Use these examples as conversation starters. The final process depends on base fabric, artwork complexity, color target, quantity, application and delivery window.</p></div>
+        <div class="service-grid">
+          <article class="service-card"><div class="service-media"><img src="yaqixin-assets/custom-cases/custom-flocking-bat-purple.webp" alt="Custom flocking fabric purple motif"><img src="yaqixin-assets/custom-cases/custom-flocking-colorways.webp" alt="Custom flocking colorway development"></div><div class="service-body"><small>Route 01</small><h3>Custom Flocking</h3><p>Raised velvet effects and buyer colorways for seasonal apparel programs.</p><div class="tag-row"><span>Flocking</span><span>Colorway</span></div></div></article>
+          <article class="service-card"><div class="service-media"><img src="yaqixin-assets/custom-cases/custom-sequin-floral-panel.webp" alt="Custom sequin embroidery floral panel"><img src="yaqixin-assets/custom-cases/custom-sequin-texture-closeup.webp" alt="Custom sequin texture close up"></div><div class="service-body"><small>Route 02</small><h3>Sequin Embroidery</h3><p>Shine density, layout and base fabric can be matched for fashion use.</p><div class="tag-row"><span>Sequin</span><span>Embroidery</span></div></div></article>
+          <article class="service-card"><div class="service-media"><img src="yaqixin-assets/custom-cases/custom-digital-print-roll.webp" alt="Digital print custom fabric roll"><img src="yaqixin-assets/custom-cases/custom-digital-print-closeup.webp" alt="Digital print custom fabric close up"></div><div class="service-body"><small>Route 03</small><h3>Digital Printing</h3><p>Artwork-led print direction, color checking and sample discussion.</p><div class="tag-row"><span>Print</span><span>Artwork</span></div></div></article>
+          <article class="service-card"><div class="service-media"><img src="yaqixin-assets/custom-cases/custom-tribal-ethnic-panel-blue-orange.webp" alt="Ethnic pattern custom fabric panel"><img src="yaqixin-assets/custom-cases/custom-tribal-design-to-wear.webp" alt="Ethnic pattern custom fabric design reference"></div><div class="service-body"><small>Route 04</small><h3>Pattern Development</h3><p>Pattern placement and color coordination for wholesale collections.</p><div class="tag-row"><span>Pattern</span><span>Wholesale</span></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="packaging">
+      <div class="wrap capability-split">
+        <div class="panel">
+          <p class="eyebrow">Packaging customization</p>
+          <h2>Packaging can be planned together with the custom fabric order.</h2>
+          <p>For B2B buyers, the order does not end at a fabric sample. YAQIXIN can discuss roll packing, polybag protection, carton marks, buyer labels, export cartons and destination-market requirements before the quotation is finalized.</p>
+          <div class="pill-row"><span>Roll packing</span><span>Polybag</span><span>Carton marks</span><span>Buyer label</span><span>Export carton</span></div>
+          <div class="fact-grid packaging-facts">
+            <div class="fact-card"><small>Roll packing</small><b>Bundle and yardage-ready rolls</b></div>
+            <div class="fact-card"><small>Protection</small><b>Polybag and wrapped fabric</b></div>
+            <div class="fact-card"><small>Marks</small><b>Carton label and buyer note</b></div>
+          </div>
+        </div>
+        <div class="packing-showcase">
+          <figure class="packing-card feature"><img src="yaqixin-assets/fabric-roll-packaging.webp" alt="Fabric rolls packed for wholesale shipment"><span>Roll packing and bundle preparation</span></figure>
+          <figure class="packing-card"><img src="yaqixin-assets/shipment-polybag-rolls.webp" alt="Polybag protected fabric rolls"><span>Polybag protection</span></figure>
+          <figure class="packing-card"><img src="yaqixin-assets/shipment-export-cartons-clean.webp" alt="Export cartons with buyer labels for fabric shipment"><span>Carton marks and buyer labels</span></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="workflow">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">Workflow</p><h2>From buyer idea to delivery-ready order.</h2></div><p>The section should make the process feel clear before the buyer sends artwork, samples or order requirements.</p></div>
+        <div class="process-rail process-six">
+          <div class="process-step"><small>01</small><h3>Brief intake</h3><p>Receive reference picture, artwork, color target, fabric type, width and application.</p></div>
+          <div class="process-step"><small>02</small><h3>Route match</h3><p>Recommend flocking, sequin embroidery, digital print or pattern development route.</p></div>
+          <div class="process-step"><small>03</small><h3>Sample plan</h3><p>Align sample direction, MOQ reference, price logic and expected production timing.</p></div>
+          <div class="process-step"><small>04</small><h3>Bulk order</h3><p>Confirm fabric base, color, quantity, production notes and buyer approval route.</p></div>
+          <div class="process-step"><small>05</small><h3>Packing</h3><p>Discuss roll packing, polybag, carton marks, labels and receiving requirements.</p></div>
+          <div class="process-step"><small>06</small><h3>Export prep</h3><p>Coordinate shipment readiness, destination market and quotation document needs.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="brief">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">What buyers should send</p><h2>A better first message creates a faster quotation path.</h2></div><p>This block can guide buyers who are not sure what to prepare for custom fabric or packaging discussions.</p></div>
+        <div class="brief-grid">
+          <div class="brief-item"><b>Artwork or reference</b><span>Upload pattern file, picture, fabric swatch photo or style reference.</span></div>
+          <div class="brief-item"><b>Fabric base</b><span>Share category, width, GSM, stretch, handfeel or end-use requirement.</span></div>
+          <div class="brief-item"><b>Color target</b><span>Send Pantone, color card, sample photo or market color direction.</span></div>
+          <div class="brief-item"><b>Quantity and MOQ</b><span>Provide target meters, yards, pieces or expected first order size.</span></div>
+          <div class="brief-item"><b>Application</b><span>Mention dresses, dancewear, party apparel, costumes, bags or other use.</span></div>
+          <div class="brief-item"><b>Packing requirement</b><span>Tell us roll length, polybag, carton marks, label or receiving needs.</span></div>
+          <div class="brief-item"><b>Delivery target</b><span>Share timing, destination market and urgent sample expectations.</span></div>
+          <div class="brief-item"><b>Document needs</b><span>Ask for certificate image, quotation details or packing confirmation.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="certificate">
+      <div class="wrap certificate-band">
+        <figure>
+          <a href="yaqixin-assets/certifications/sgs-gold-plus-supplier-assessment-2026.webp" target="_blank" rel="noopener"><img src="yaqixin-assets/certifications/sgs-gold-plus-supplier-assessment-2026.webp" alt="SGS Gold Plus Supplier Assessment Certificate for Guangzhou Yaqixin Textile Co., Ltd."></a>
+        </figure>
+        <div class="panel">
+          <p class="eyebrow">Supplier proof</p>
+          <h2>SGS assessment supports the first buyer trust check.</h2>
+          <p>Certification does not replace sample confirmation, but it gives overseas buyers a clearer supplier identity before they share artwork, target colors, custom packaging requirements or bulk order details.</p>
+          <div class="capability-proof">
+            <div class="fact-card"><small>Certificate</small><b>Gold Plus Supplier Assessment</b></div>
+            <div class="fact-card"><small>Assessed by</small><b>SGS</b></div>
+            <div class="fact-card"><small>Company</small><b>Guangzhou Yaqixin Textile Co., Ltd.</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">FAQ</p><h2>Common questions before a custom order.</h2></div><p>Short answers for buyers searching for custom fabric supplier, custom printed fabric, packaging support and verified fabric manufacturer information.</p></div>
+        <div class="faq-grid">
+          <article class="faq-card"><h3>Can YAQIXIN develop fabric from my artwork?</h3><p>Yes. Send artwork, reference pictures, target color, base fabric, quantity and usage. The team will suggest a practical process and sample route.</p></article>
+          <article class="faq-card"><h3>Can packaging be customized?</h3><p>Yes. Roll packing, polybag protection, carton marks, buyer labels and export carton details can be discussed with quotation and shipment planning.</p></article>
+          <article class="faq-card"><h3>Can I confirm samples before bulk order?</h3><p>Yes. For custom work, sample direction and approval details should be aligned before bulk order confirmation.</p></article>
+          <article class="faq-card"><h3>What MOQ should I expect?</h3><p>MOQ depends on fabric base, process, artwork complexity and order route. Send quantity targets early so the team can check realistic options.</p></article>
+          <article class="faq-card"><h3>Can I review certificate first?</h3><p>Yes. The SGS supplier assessment image is available on this page before you start a detailed custom inquiry.</p></article>
+          <article class="faq-card"><h3>Where should I send details?</h3><p>Use the main inquiry form or WhatsApp route. Include artwork, fabric type, packing needs and delivery target for a faster reply.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-strip">
+      <div class="quote-inner"><div><h2>Have artwork, reference pictures or packaging requirements?</h2><p>Send fabric type, color target, width, quantity, application, packing request and delivery target. YAQIXIN will reply with a suitable custom process, MOQ logic and export preparation route.</p></div><a class="btn copper" href="index.html#inquiry">Start Custom Inquiry</a></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="footer-inner"><div><strong>YAQIXIN TEXTILES</strong><span>Guangzhou wholesale fabric manufacturer for global apparel sourcing.</span></div><div>WhatsApp: +86 18125117673 / +86 13632259091<br>Email for quotation documents: 378080571@qq.com</div></div></footer>
+  <a class="whatsapp" href="index.html#inquiry" aria-label="Choose a YAQIXIN WhatsApp contact"><img src="yaqixin-assets/whatsapp-floating.webp" alt="WhatsApp"></a>
+  <div class="mobile-action-bar" aria-label="Mobile quick actions"><button class="categories" id="mobileCategoriesBtn" type="button" aria-label="Open mobile navigation" aria-controls="mobileCategorySheet" aria-expanded="false"><span class="cat-icon" aria-hidden="true"><span></span></span><span class="cat-label">Menu</span></button><a class="chat" href="index.html#inquiry">WhatsApp</a><a class="quote" href="index.html#inquiry">Get Sample</a></div>
+  <div class="mobile-category-layer" id="mobileCategoryLayer" hidden><div class="mobile-category-backdrop" data-close-category></div><section class="mobile-category-sheet" id="mobileCategorySheet" role="dialog" aria-modal="true" aria-labelledby="mobileCategoryTitle"><div class="mobile-category-handle" aria-hidden="true"></div><div class="mobile-category-head"><div><strong id="mobileCategoryTitle">Menu</strong><span>Navigate YAQIXIN.</span></div><button class="mobile-category-close" type="button" data-close-category>Close</button></div><nav class="mobile-nav-main" aria-label="Mobile navigation"><a class="mobile-nav-row" href="index.html">Home</a><details class="mobile-nav-group"><summary>Products</summary><div class="mobile-nav-sub"><a href="all-products.html">All Products</a><details class="mobile-nav-subgroup"><summary>Plain Cotton Fabric</summary><div class="mobile-nav-depth"><a href="plain-cotton-fabric.html">View all plain cotton</a><a href="canvas-fabric.html">Canvas Fabric</a><a href="poplin-fabric.html">Poplin Fabric</a><a href="twill-fabric.html">Twill Fabric</a></div></details><details class="mobile-nav-subgroup"><summary>Tulle Mesh Fabric</summary><div class="mobile-nav-depth"><a href="tulle-mesh-fabric.html">View all tulle mesh</a><a href="plain-tulle-fabric.html">Plain Tulle Fabric</a><a href="stretch-knit-mesh-fabric.html">Stretch Knit Mesh Fabric</a><a href="ydm008-high-stretch-knit-fishnet-mesh-fabric.html">YDM008 Stretch Fishnet Mesh</a><a href="holiday-tulle-fabric.html">Holiday Tulle Fabric</a><a href="glitter-tulle-fabric.html">Glitter Tulle Fabric</a><a href="sgt001-glitter-mesh-tulle-fabric.html">SGT001 Glitter Mesh Tulle</a><a href="rainbow-tulle-fabric.html">Rainbow Tulle Fabric</a><a href="print-mesh-fabric.html">Print Mesh Fabric</a><a href="3d-tulle-mesh-fabric.html">3D Tulle Mesh Fabric</a><a href="yx807-3d-embroidery-flowers-rose-knitted-mesh-tulle-fabric.html">YX807 3D Rose Tulle</a><a href="tds004-3d-butterfly-embroidery-mesh-tulle-fabric.html">TDS004 Butterfly Tulle</a><a href="yx2284-3d-flower-embroidery-pearl-sequin-tulle-fabric.html">YX2284 Pearl Sequin Tulle</a><a href="dx54-1-3d-flower-embroidery-sequin-tulle-mesh-fabric.html">DX54-1 3D Flower Tulle</a><a href="flocked-mesh-fabric.html">Flocked Mesh Fabric</a><a href="lst009-custom-florals-flocked-mesh-fabric.html">LST009 Flocked Mesh</a></div></details><details class="mobile-nav-subgroup"><summary>Organza Fabric</summary><div class="mobile-nav-depth"><a href="organza-fabric.html">View all organza</a><a href="yx309-100-polyester-sheer-organza-fabric.html">YX309 Sheer Organza</a><a href="yx467-sheer-shimmer-organza-fabric.html">YX467 Shimmer Organza</a><a href="yx1389-crepe-organza-fabric.html">YX1389 Crepe Organza</a><a href="yx581-2-liquid-organza-fabric.html">YX581-2 Liquid Organza</a><a href="yx1386-1-water-glossy-transparent-liquid-organza-fabric.html">YX1386-1 Glossy Liquid Organza</a></div></details><details class="mobile-nav-subgroup"><summary>Pleated Fabric</summary><div class="mobile-nav-depth"><a href="pleated-fabric.html">View all pleated fabric</a><a href="yzt001-ivory-pleated-mesh-tulle-fabric.html">YZT001 Pleated Mesh Tulle</a><a href="yx198-7mm-pleated-polyester-satin-fabric.html">YX198 Pleated Satin</a><a href="yx936-1cm-pleated-white-polyester-satin-fabric.html">YX936 Pleated White Satin</a><a href="yx796-accordion-pleated-chiffon-fabric.html">YX796 Pleated Chiffon</a></div></details><details class="mobile-nav-subgroup"><summary>Lace Fabric</summary><div class="mobile-nav-depth"><a href="lace-fabric.html">View all lace</a><a href="eyelash-lace-fabric.html">Eyelash Lace Fabric</a><a href="glitter-lace-fabric.html">Glitter Lace Fabric</a><a href="3d-beads-lace-fabric.html">3D Beads Lace Fabric</a><a href="yx224-1-3d-pearls-beads-lace-fabric.html">YX224-1 3D Pearls Lace</a><a href="zst001-2-pearls-3d-tulle-mesh-lace-fabric.html">ZST001-2 3D Tulle Lace</a><a href="water-soluble-lace-fabric.html">Water Soluble Lace Fabric</a><a href="lace-trim.html">Lace Trim</a></div></details><details class="mobile-nav-subgroup"><summary>Satin Fabric</summary><div class="mobile-nav-depth"><a href="satin-fabric.html">View all satin</a><a href="mikado-satin-fabric.html">Mikado Satin Fabric</a><a href="stretch-satin-fabric.html">Stretch Satin Fabric</a><a href="yx36-shiny-stretch-satin-fabric.html">YX36 Shiny Stretch Satin</a><a href="yx30-stretch-charmeuse-satin-fabric.html">YX30 Stretch Satin</a><a href="yx1060-high-elastic-apricot-stretch-satin-fabric.html">YX1060 High Elastic Satin</a><a href="yx135-thickened-white-satin-fabric.html">YX135 Thickened White Satin</a><a href="yxq24032301-black-liquid-polyester-satin-fabric.html">Liquid Satin</a><a href="yx617-soft-glossy-polyester-satin-fabric.html">Glossy Satin</a><a href="yx247-pink-matte-satin-fabric.html">Matte Satin</a><a href="yx693-2-white-matte-satin-fabric.html">YX693-2 White Matte Satin</a></div></details><a href="yx277-460gsm-cotton-denim-fabric.html">Denim Fabric</a></div></details><a class="mobile-nav-row" href="custom-capability.html">Customize</a></nav></section></div>
+  <script>
+    (function(){
+      var mobileCategoriesBtn=document.getElementById('mobileCategoriesBtn');
+      var mobileCategoryLayer=document.getElementById('mobileCategoryLayer');
+      if(mobileCategoriesBtn&&mobileCategoryLayer){
+        var categoryCloseTimer;
+        var setCategorySheetOpen=function(open){
+          window.clearTimeout(categoryCloseTimer);
+          if(open){
+            mobileCategoryLayer.hidden=false;
+            document.body.classList.add('mobile-category-open');
+            window.requestAnimationFrame(function(){mobileCategoryLayer.classList.add('is-open')});
+          }else{
+            mobileCategoryLayer.classList.remove('is-open');
+            document.body.classList.remove('mobile-category-open');
+            categoryCloseTimer=window.setTimeout(function(){mobileCategoryLayer.hidden=true},220);
+          }
+          mobileCategoriesBtn.setAttribute('aria-expanded',open?'true':'false');
+        };
+        mobileCategoriesBtn.addEventListener('click',function(){setCategorySheetOpen(!mobileCategoryLayer.classList.contains('is-open'))});
+        mobileCategoryLayer.querySelectorAll('[data-close-category]').forEach(function(el){el.addEventListener('click',function(){setCategorySheetOpen(false)})});
+        mobileCategoryLayer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setCategorySheetOpen(false)})});
+        document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mobileCategoryLayer.classList.contains('is-open')){setCategorySheetOpen(false)}});
+      }
+
+      var siteSearch=document.getElementById('site-search');
+      if(siteSearch&&!siteSearch.getAttribute('data-custom-search-ready')){
+        siteSearch.setAttribute('data-custom-search-ready','true');
+        siteSearch.addEventListener('submit',function(e){
+          e.preventDefault();
+          var input=document.getElementById('site-search-input');
+          var query=input?input.value.trim().toLowerCase():'';
+          if(!query){return}
+          var links=[].slice.call(document.querySelectorAll('#menu a,.mobile-nav-main a'));
+          var best=links.find(function(link){return (link.textContent||'').toLowerCase().indexOf(query)>-1})||links.find(function(link){return (link.getAttribute('href')||'').toLowerCase().indexOf(query.replace(/\s+/g,'-'))>-1});
+          window.location.href=best&&best.getAttribute('href')?best.getAttribute('href'):'all-products.html';
+        });
+      }
+    })();
+  </script>
+  <script src="yaqixin-assets/yaqixin-site-polish.js"></script>
+  <script src="yaqixin-assets/yaqixin-mobile-menu-sync.js"></script>
+</body>
+</html>
+
+
+

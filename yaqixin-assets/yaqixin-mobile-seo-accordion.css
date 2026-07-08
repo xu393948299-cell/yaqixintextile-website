@@ -1,0 +1,168 @@
+.buyer-accordion{
+  display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(280px,.88fr);
+  gap:22px;
+  margin-top:28px;
+}
+
+.buyer-detail-list{
+  display:grid;
+  gap:12px;
+}
+
+.buyer-detail,
+.buyer-note{
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 14px 38px rgba(16,21,31,.05);
+}
+
+.buyer-detail{
+  overflow:hidden;
+}
+
+.buyer-detail summary,
+.faq summary{
+  position:relative;
+  list-style:none;
+  cursor:pointer;
+  color:var(--navy);
+  font-weight:900;
+  line-height:1.25;
+}
+
+.buyer-detail summary::-webkit-details-marker,
+.faq summary::-webkit-details-marker{
+  display:none;
+}
+
+.buyer-detail summary{
+  padding:20px 54px 20px 22px;
+  font-size:18px;
+}
+
+.buyer-detail summary::after,
+.faq summary::after{
+  content:"+";
+  position:absolute;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--copper);
+  font-size:24px;
+  line-height:1;
+}
+
+.buyer-detail[open] summary::after,
+.faq[open] summary::after{
+  content:"-";
+}
+
+.buyer-detail div{
+  padding:0 22px 20px;
+}
+
+.buyer-detail p,
+.buyer-note p{
+  margin:0;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.72;
+}
+
+.buyer-note{
+  align-self:start;
+  padding:24px;
+}
+
+.buyer-note h3{
+  margin:0 0 12px;
+  color:var(--navy);
+  font-size:20px;
+  line-height:1.25;
+}
+
+.buyer-note p + p{
+  margin-top:12px;
+}
+
+.buyer-note strong{
+  color:var(--navy);
+}
+
+.faq-grid{
+  align-items:start;
+}
+
+.faq{
+  padding:0;
+  overflow:hidden;
+}
+
+.faq summary{
+  padding:18px 52px 18px 20px;
+  font-size:17px;
+}
+
+.faq p{
+  margin:0;
+  padding:0 20px 20px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.65;
+}
+
+@media(max-width:900px){
+  .buyer-accordion{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:640px){
+  .buyer-accordion{
+    gap:12px;
+    margin-top:22px;
+  }
+
+  .buyer-detail,
+  .buyer-note{
+    box-shadow:none;
+  }
+
+  .buyer-detail summary{
+    padding:17px 48px 17px 18px;
+    font-size:16px;
+  }
+
+  .buyer-detail div{
+    padding:0 18px 18px;
+  }
+
+  .buyer-detail p,
+  .buyer-note p{
+    font-size:14px;
+    line-height:1.66;
+  }
+
+  .buyer-note{
+    padding:20px;
+  }
+
+  .buyer-note h3{
+    font-size:18px;
+  }
+
+  .faq-grid{
+    gap:10px;
+  }
+
+  .faq summary{
+    padding:16px 48px 16px 18px;
+    font-size:16px;
+  }
+
+  .faq p{
+    padding:0 18px 18px;
+  }
+}
