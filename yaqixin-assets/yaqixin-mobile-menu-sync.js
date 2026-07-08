@@ -42,7 +42,7 @@
   ].join('');
 
   function inquiryHref(){
-    return document.getElementById('inquiry')?'#inquiry':'GG-optimized-v9-denim-seo.html#inquiry';
+    return document.getElementById('inquiry')?'#inquiry':'index.html#inquiry';
   }
 
   function injectStyle(){
