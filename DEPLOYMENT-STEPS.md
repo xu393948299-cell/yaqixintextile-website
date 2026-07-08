@@ -4,7 +4,7 @@ Primary domain: `www.yaqixintextile.com`
 
 ## Current Release Package
 
-- Publish folder: `C:\Users\W\Desktop\项目\yaqixin-www-release`
+- Publish folder: this repository root
 - Homepage: `index.html`
 - Sitemap: `https://www.yaqixintextile.com/sitemap.xml`
 - Robots: `https://www.yaqixintextile.com/robots.txt`
