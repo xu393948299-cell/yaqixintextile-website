@@ -147,7 +147,7 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
 @media(max-width:820px){.profile-points{display:none!important}}
   
 </style>
-  <link rel="stylesheet" href="yaqixin-assets/yaqixin-product-menu.css">
+  <link rel="stylesheet" href="yaqixin-assets/yaqixin-product-menu.css" media="(min-width: 901px)">
   <style>
     .nav{grid-template-columns:auto minmax(0,1fr) minmax(240px,360px);gap:34px;padding:0 38px}
     .brand{gap:0;min-width:160px;display:inline-flex;align-items:center}
@@ -2187,7 +2187,7 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
         var featuredTabs=[].slice.call(collections.querySelectorAll('[data-feature-tab]'));
         if(featuredRail&&featuredTabs.length){
           var featuredCards=[].slice.call(featuredRail.querySelectorAll('.pebble-product-card'));
-          var setFeaturedGroup=function(group){
+          var setFeaturedGroup=function(group,resetRail){
             featuredTabs.forEach(function(tab){
               var active=tab.getAttribute('data-feature-tab')===group;
               tab.classList.toggle('is-active',active);
@@ -2202,14 +2202,14 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
                 card.classList.add('is-visible');
               }
             });
-            if(featuredRail.scrollTo){featuredRail.scrollTo({left:0,behavior:'smooth'})}else{featuredRail.scrollLeft=0}
+            if(resetRail){if(featuredRail.scrollTo){featuredRail.scrollTo({left:0,behavior:'smooth'})}else{featuredRail.scrollLeft=0}}
           };
           featuredTabs.forEach(function(tab){
             tab.addEventListener('click',function(){
-              setFeaturedGroup(tab.getAttribute('data-feature-tab')||'best');
+              setFeaturedGroup(tab.getAttribute('data-feature-tab')||'best',true);
             });
           });
-          setFeaturedGroup('best');
+          setFeaturedGroup('best',false);
         }
         var rail=collections.querySelector('.catalog-grid');
         if(rail&&!collections.querySelector('.category-footer')){
@@ -2369,6 +2369,7 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
   <script>
     (function(){
       function initCategoryFooterControls(){
+        if(window.matchMedia('(max-width:900px)').matches){return}
         var collections=document.getElementById('collections');
         if(!collections){return}
         var rail=collections.querySelector('.catalog-grid');
@@ -2416,7 +2417,6 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
       }
     })();
   </script>
-  <script src="yaqixin-assets/yaqixin-mobile-menu-sync.js"></script>
   <script>
     (function(){
       function addCustomizeNav(){
