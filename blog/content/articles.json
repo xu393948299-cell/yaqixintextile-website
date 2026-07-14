@@ -1,0 +1,28 @@
+{
+  "articles": [
+    {
+      "slug": "how-to-source-wholesale-fabric-from-china",
+      "title": "How to Source Wholesale Fabric from China: A Practical Guide for Apparel Buyers",
+      "excerpt": "A practical framework for turning an apparel idea into a usable fabric brief, comparing samples, and asking suppliers the questions that make a wholesale quote meaningful.",
+      "coverImage": "/yaqixin-assets/blog/wholesale-fabric-sourcing-editorial-cover.webp",
+      "coverAlt": "Editorial image of hands comparing fabric swatches beside rolls of lace, mesh, satin, and cotton",
+      "coverCaption": "Editorial image illustrating fabric selection for a sourcing brief.",
+      "publishedAt": "2026-07-14",
+      "updatedAt": "2026-07-14",
+      "author": "YAQIXIN Editorial Team",
+      "readingTime": "8 min read",
+      "seoTitle": "How to Source Wholesale Fabric from China | YAQIXIN",
+      "metaDescription": "A practical wholesale fabric sourcing guide for apparel buyers: build a fabric brief, compare samples, check packaging, and prepare for international orders.",
+      "contentFile": "how-to-source-wholesale-fabric-from-china.html",
+      "toc": [
+        { "id": "start-with-end-use", "label": "Start with the end use" },
+        { "id": "build-a-fabric-brief", "label": "Build a usable fabric brief" },
+        { "id": "match-the-category", "label": "Match the fabric category" },
+        { "id": "review-samples", "label": "Review samples before bulk production" },
+        { "id": "make-the-quote-comparable", "label": "Make supplier quotes comparable" },
+        { "id": "prepare-for-export", "label": "Prepare for the destination market" },
+        { "id": "faq", "label": "Buyer questions" }
+      ]
+    }
+  ]
+}
