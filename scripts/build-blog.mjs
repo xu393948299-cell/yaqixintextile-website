@@ -40,6 +40,10 @@ function formattedDate(value) {
   return new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${value}T00:00:00Z`));
 }
 
+function localAssetPath(assetPath, localRoot) {
+  return assetPath.startsWith("/") ? `${localRoot}${assetPath.slice(1)}` : assetPath;
+}
+
 function header(active) {
   return `<div class="announcement">Wholesale fabric sourcing · Stock + custom programs · Export-ready order support</div>
   <nav class="site-nav" aria-label="Primary navigation">
@@ -58,7 +62,33 @@ function footer() {
   return `<footer class="footer"><div class="footer-inner"><div><strong>YAQIXIN TEXTILES</strong><p>Guangzhou wholesale fabric manufacturer for global apparel sourcing.</p></div><div><p>WhatsApp: +86 18125117673 / +86 13632259091<br>Email for quotation documents: 378080571@qq.com</p></div></div></footer>`;
 }
 
-function commonHead({ title, description, canonicalPath, image, type = "website", publishedAt, updatedAt, author }) {
+function localPreviewScript(localRoot) {
+  return `<script>
+  (function () {
+    if (location.protocol !== "file:") return;
+    var localRoot = "${localRoot}";
+    var toLocalPath = function (value) {
+      var match = value.match(/^([^?#]*)(.*)$/);
+      var pathname = match[1];
+      var suffix = match[2];
+      if (pathname === "/") return localRoot + "index.html" + suffix;
+      if (pathname === "/blog") return localRoot + "blog/index.html" + suffix;
+      if (pathname.indexOf("/blog/") === 0 && !/\\.[a-z0-9]+$/i.test(pathname)) {
+        return localRoot + pathname.slice(1) + "/index.html" + suffix;
+      }
+      return localRoot + pathname.slice(1) + suffix;
+    };
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll('[href^="/"], [src^="/"]').forEach(function (element) {
+        var attribute = element.hasAttribute("href") ? "href" : "src";
+        element.setAttribute(attribute, toLocalPath(element.getAttribute(attribute)));
+      });
+    });
+  })();
+  </script>`;
+}
+
+function commonHead({ title, description, canonicalPath, image, type = "website", publishedAt, updatedAt, author, stylesHref, faviconHref, localRoot }) {
   const canonical = `${baseUrl}${canonicalPath}`;
   const imageUrl = `${baseUrl}${image}`;
   const articleMeta = type === "article" ? `
@@ -81,12 +111,14 @@ function commonHead({ title, description, canonicalPath, image, type = "website"
   <meta name="twitter:title" content="${escapeHtml(title)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${imageUrl}">
-  <link rel="stylesheet" href="/blog/styles.css">
-  <link rel="icon" href="/yaqixin-assets/favicon.png" type="image/png">${articleMeta}`;
+  <link rel="stylesheet" href="${stylesHref}">
+  <link rel="icon" href="${faviconHref}" type="image/png">
+  ${localPreviewScript(localRoot)}${articleMeta}`;
 }
 
 function buildIndex(articles) {
   const primary = articles[0];
+  const primaryCover = localAssetPath(primary.coverImage, "../");
   const listSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -104,11 +136,11 @@ function buildIndex(articles) {
       })),
     },
   };
-  const card = `<article class="article-card"><a class="article-card-image" href="/blog/${primary.slug}" aria-label="Read ${escapeHtml(primary.title)}"><img src="${primary.coverImage}" alt="${escapeHtml(primary.coverAlt)}" width="1672" height="941" fetchpriority="high"></a><div class="article-card-body"><span class="eyebrow">Sourcing guide</span><h2><a href="/blog/${primary.slug}">${escapeHtml(primary.title)}</a></h2><p>${escapeHtml(primary.excerpt)}</p><div class="article-meta"><time datetime="${primary.publishedAt}">${formattedDate(primary.publishedAt)}</time><span>${escapeHtml(primary.readingTime)}</span></div><a class="btn" href="/blog/${primary.slug}">Read Article</a></div></article>`;
+  const card = `<article class="article-card"><a class="article-card-image" href="/blog/${primary.slug}" aria-label="Read ${escapeHtml(primary.title)}"><img src="${primaryCover}" alt="${escapeHtml(primary.coverAlt)}" width="1672" height="941" fetchpriority="high"></a><div class="article-card-body"><span class="eyebrow">Sourcing guide</span><h2><a href="/blog/${primary.slug}">${escapeHtml(primary.title)}</a></h2><p>${escapeHtml(primary.excerpt)}</p><div class="article-meta"><time datetime="${primary.publishedAt}">${formattedDate(primary.publishedAt)}</time><span>${escapeHtml(primary.readingTime)}</span></div><a class="btn" href="/blog/${primary.slug}">Read Article</a></div></article>`;
   const output = `<!doctype html>
 <html lang="en">
 <head>
-  ${commonHead({ title: "Fabric Sourcing Blog | YAQIXIN", description: "Practical fabric sourcing guidance for apparel buyers, importers, wholesalers, and product teams.", canonicalPath: "/blog", image: primary.coverImage })}
+  ${commonHead({ title: "Fabric Sourcing Blog | YAQIXIN", description: "Practical fabric sourcing guidance for apparel buyers, importers, wholesalers, and product teams.", canonicalPath: "/blog", image: primary.coverImage, stylesHref: "styles.css", faviconHref: "../yaqixin-assets/favicon.png", localRoot: "../" })}
   <script type="application/ld+json">${jsonForScript(listSchema)}</script>
 </head>
 <body>
@@ -127,7 +159,9 @@ function buildArticle(article) {
   const contentPath = path.join(contentRoot, article.contentFile);
   if (!fs.existsSync(contentPath)) throw new Error(`Missing article content file: ${article.contentFile}`);
   const content = fs.readFileSync(contentPath, "utf8").trim();
+  const contentWithLocalAssets = content.replace(/src="\/([^"\n]+)"/g, 'src="../../$1"');
   const articlePath = `/blog/${article.slug}`;
+  const articleCover = localAssetPath(article.coverImage, "../../");
   const breadcrumbs = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -155,13 +189,13 @@ function buildArticle(article) {
   const output = `<!doctype html>
 <html lang="en">
 <head>
-  ${commonHead({ title: article.seoTitle, description: article.metaDescription, canonicalPath: articlePath, image: article.coverImage, type: "article", publishedAt: article.publishedAt, updatedAt: article.updatedAt, author: article.author })}
+  ${commonHead({ title: article.seoTitle, description: article.metaDescription, canonicalPath: articlePath, image: article.coverImage, type: "article", publishedAt: article.publishedAt, updatedAt: article.updatedAt, author: article.author, stylesHref: "../styles.css", faviconHref: "../../yaqixin-assets/favicon.png", localRoot: "../../" })}
   <script type="application/ld+json">${jsonForScript(articleSchema)}</script>
   <script type="application/ld+json">${jsonForScript(breadcrumbs)}</script>
 </head>
 <body>
   ${header("blog")}
-  <main class="article-page"><div class="site-shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog">Blog</a><span aria-hidden="true">/</span><span aria-current="page">Wholesale Fabric Sourcing Guide</span></nav><header class="article-intro"><span class="eyebrow">Sourcing guide</span><h1>${escapeHtml(article.title)}</h1><div class="article-meta"><time datetime="${article.publishedAt}">Published ${formattedDate(article.publishedAt)}</time><span>Updated ${formattedDate(article.updatedAt)}</span><span>${escapeHtml(article.readingTime)}</span><span>By ${escapeHtml(article.author)}</span></div><p class="dek">${escapeHtml(article.excerpt)}</p></header><figure class="article-cover"><img src="${article.coverImage}" width="1672" height="941" fetchpriority="high" alt="${escapeHtml(article.coverAlt)}"><figcaption>${escapeHtml(coverCaption)}</figcaption></figure><div class="article-layout"><aside class="article-toc" aria-label="Article contents"><strong>In this guide</strong>${toc}</aside><article class="article-body">${content}<section class="article-cta" aria-labelledby="article-cta-title"><h2 id="article-cta-title">Ready to discuss a fabric brief?</h2><p>Share your intended application, a reference image or swatch, quantity, and market. We can help you compare a stock or custom fabric route before you place a bulk order.</p><a class="btn" href="/custom-capability.html">Start a fabric inquiry</a></section><a class="back-to-blog" href="/blog">Back to Blog</a></article></div></div></main>
+  <main class="article-page"><div class="site-shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog">Blog</a><span aria-hidden="true">/</span><span aria-current="page">Wholesale Fabric Sourcing Guide</span></nav><header class="article-intro"><span class="eyebrow">Sourcing guide</span><h1>${escapeHtml(article.title)}</h1><div class="article-meta"><time datetime="${article.publishedAt}">Published ${formattedDate(article.publishedAt)}</time><span>Updated ${formattedDate(article.updatedAt)}</span><span>${escapeHtml(article.readingTime)}</span><span>By ${escapeHtml(article.author)}</span></div><p class="dek">${escapeHtml(article.excerpt)}</p></header><figure class="article-cover"><img src="${articleCover}" width="1672" height="941" fetchpriority="high" alt="${escapeHtml(article.coverAlt)}"><figcaption>${escapeHtml(coverCaption)}</figcaption></figure><div class="article-layout"><aside class="article-toc" aria-label="Article contents"><strong>In this guide</strong>${toc}</aside><article class="article-body">${contentWithLocalAssets}<section class="article-cta" aria-labelledby="article-cta-title"><h2 id="article-cta-title">Ready to discuss a fabric brief?</h2><p>Share your intended application, a reference image or swatch, quantity, and market. We can help you compare a stock or custom fabric route before you place a bulk order.</p><a class="btn" href="/custom-capability.html">Start a fabric inquiry</a></section><a class="back-to-blog" href="/blog">Back to Blog</a></article></div></div></main>
   ${footer()}
 </body>
 </html>`;
