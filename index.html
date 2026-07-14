@@ -7,11 +7,7 @@
   <meta name="description" content="Source cotton, tulle, lace, satin, organza and pleated fabrics from Guangzhou. Ask YAQIXIN about stock, custom colors, samples, MOQ and export packing.">
     <link rel="canonical" href="https://www.yaqixintextile.com/">
   <link rel="alternate" hreflang="en" href="https://www.yaqixintextile.com/">
-  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/?lang=es">
-  <link rel="alternate" hreflang="fr" href="https://www.yaqixintextile.com/?lang=fr">
-  <link rel="alternate" hreflang="ru" href="https://www.yaqixintextile.com/?lang=ru">
-  <link rel="alternate" hreflang="ja" href="https://www.yaqixintextile.com/?lang=ja">
-  <link rel="alternate" hreflang="ko" href="https://www.yaqixintextile.com/?lang=ko">
+  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es/">
   <link rel="alternate" hreflang="x-default" href="https://www.yaqixintextile.com/">
   <script type="application/ld+json">
   {
@@ -1646,6 +1642,10 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
     }
   }
 </style>
+  <style>
+    /* Spanish is the only published alternate language. Keep non-published locales out of the UI. */
+    .language-option[data-lang-option="fr"],.language-option[data-lang-option="ru"],.language-option[data-lang-option="ja"],.language-option[data-lang-option="ko"]{display:none!important}
+  </style>
 </head>
 <body>
   <div class="announcement"><span class="ann-desktop">Wholesale fabric sourcing <i>&bull;</i> Stock + custom programs <i>&bull;</i> 7-day design completion and export support</span><span class="ann-mobile">Wholesale Fabric / Custom / 7-Day Design</span></div>
@@ -2120,8 +2120,11 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
         document.addEventListener("click",function(e){if(!switcher.contains(e.target)){switcher.classList.remove("is-open");languageTrigger.setAttribute("aria-expanded","false")}});
         document.addEventListener("keydown",function(e){if(e.key==="Escape"){switcher.classList.remove("is-open");languageTrigger.setAttribute("aria-expanded","false")}});
       }
-      each("[data-lang-option]",function(el){el.addEventListener("click",function(){var code=el.getAttribute("data-lang-option");applyLanguage(code,true);if(switcher){switcher.classList.remove("is-open")}if(languageTrigger){languageTrigger.setAttribute("aria-expanded","false")}})});
-      var initialLanguage=getRequestedLanguage()||getStoredLanguage()||"en";
+      each("[data-lang-option]",function(el){el.addEventListener("click",function(){var code=el.getAttribute("data-lang-option");if(code==="es"){window.location.href="/es/";return}applyLanguage("en",false);if(switcher){switcher.classList.remove("is-open")}if(languageTrigger){languageTrigger.setAttribute("aria-expanded","false")}})});
+      var requestedLanguage=getRequestedLanguage();
+      if(requestedLanguage){window.location.replace(requestedLanguage==="es"?"/es/":"/");return}
+      try{window.localStorage.removeItem("yaqixin-language")}catch(e){}
+      var initialLanguage="en";
       applyLanguage(languageCopy[initialLanguage]?initialLanguage:"en",false);
       var siteSearch=document.getElementById('site-search');
       if(siteSearch){siteSearch.addEventListener('submit',function(e){e.preventDefault();var input=document.getElementById('site-search-input');var query=input?input.value.trim().toLowerCase():'';if(!query){return}var links=[].slice.call(document.querySelectorAll('#menu a,.catalog-card'));var best=links.find(function(link){return (link.textContent||'').toLowerCase().indexOf(query)>-1})||links.find(function(link){return (link.getAttribute('href')||'').toLowerCase().indexOf(query.replace(/\s+/g,'-'))>-1});if(best&&best.getAttribute('href')){window.location.href=best.getAttribute('href')}else{window.location.href='index.html#collections'}})}
