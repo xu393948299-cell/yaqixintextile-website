@@ -29,6 +29,7 @@ replaceRequired(
 );
 replaceRequired('    <link rel="canonical" href="https://www.yaqixintextile.com/">', '    <link rel="canonical" href="https://www.yaqixintextile.com/es">');
 replaceRequired('<link rel="alternate" hreflang="en" href="https://www.yaqixintextile.com/">\n  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es">\n  <link rel="alternate" hreflang="x-default" href="https://www.yaqixintextile.com/">', '<link rel="alternate" hreflang="en" href="https://www.yaqixintextile.com/">\n  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es">\n  <link rel="alternate" hreflang="x-default" href="https://www.yaqixintextile.com/">\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Proveedor Mayorista de Telas en Guangzhou | YAQIXIN","url":"https://www.yaqixintextile.com/es","inLanguage":"es"}</script>');
+html = html.replaceAll('"inLanguage": "en"', '"inLanguage": "es"');
 
 const translations = new Map([
   ["Wholesale fabric sourcing | Stock + custom programs | 7-day design completion and export support", "Abastecimiento mayorista de telas | Stock y programas a medida | Diseño en 7 días y soporte de exportación"],
