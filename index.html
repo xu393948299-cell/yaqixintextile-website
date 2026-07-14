@@ -2484,6 +2484,13 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
           return summary&&summary.textContent.trim().toLowerCase()==='about us';
         })[0];
         if(aboutGroup){mobileNav.replaceChild(customizeRow,aboutGroup)}else{mobileNav.appendChild(customizeRow)}
+
+        var productsGroup=Array.prototype.slice.call(mobileNav.querySelectorAll('.mobile-nav-group')).filter(function(group){
+          var summary=group.querySelector(':scope > summary');
+          return summary&&summary.textContent.trim().toLowerCase()==='products';
+        })[0];
+        var blogRow=mobileNav.querySelector('a[data-local-href="blog/index.html"]');
+        if(productsGroup&&blogRow){mobileNav.insertBefore(blogRow,productsGroup.nextSibling)}
       }
 
       function applyLocalPreviewPaths(){
