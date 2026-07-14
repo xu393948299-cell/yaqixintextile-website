@@ -111,7 +111,8 @@ function commonHead({ title, description, canonicalPath, image, type = "website"
   <meta name="twitter:title" content="${escapeHtml(title)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${imageUrl}">
-  <link rel="stylesheet" href="${stylesHref}">
+  <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${stylesHref}" : "/blog/styles.css") + '">');</script>
+  <noscript><link rel="stylesheet" href="/blog/styles.css"></noscript>
   <link rel="icon" href="${faviconHref}" type="image/png">
   ${localPreviewScript(localRoot)}${articleMeta}`;
 }
