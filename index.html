@@ -7,7 +7,7 @@
   <meta name="description" content="Source cotton, tulle, lace, satin, organza and pleated fabrics from Guangzhou. Ask YAQIXIN about stock, custom colors, samples, MOQ and export packing.">
     <link rel="canonical" href="https://www.yaqixintextile.com/">
   <link rel="alternate" hreflang="en" href="https://www.yaqixintextile.com/">
-  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es/">
+  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es">
   <link rel="alternate" hreflang="x-default" href="https://www.yaqixintextile.com/">
   <script type="application/ld+json">
   {
@@ -2120,9 +2120,9 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
         document.addEventListener("click",function(e){if(!switcher.contains(e.target)){switcher.classList.remove("is-open");languageTrigger.setAttribute("aria-expanded","false")}});
         document.addEventListener("keydown",function(e){if(e.key==="Escape"){switcher.classList.remove("is-open");languageTrigger.setAttribute("aria-expanded","false")}});
       }
-      each("[data-lang-option]",function(el){el.addEventListener("click",function(){var code=el.getAttribute("data-lang-option");if(code==="es"){window.location.href="/es/";return}applyLanguage("en",false);if(switcher){switcher.classList.remove("is-open")}if(languageTrigger){languageTrigger.setAttribute("aria-expanded","false")}})});
+      each("[data-lang-option]",function(el){el.addEventListener("click",function(){var code=el.getAttribute("data-lang-option");if(code==="es"){window.location.href="/es";return}applyLanguage("en",false);if(switcher){switcher.classList.remove("is-open")}if(languageTrigger){languageTrigger.setAttribute("aria-expanded","false")}})});
       var requestedLanguage=getRequestedLanguage();
-      if(requestedLanguage){window.location.replace(requestedLanguage==="es"?"/es/":"/");return}
+      if(requestedLanguage){window.location.replace(requestedLanguage==="es"?"/es":"/");return}
       try{window.localStorage.removeItem("yaqixin-language")}catch(e){}
       var initialLanguage="en";
       applyLanguage(languageCopy[initialLanguage]?initialLanguage:"en",false);
