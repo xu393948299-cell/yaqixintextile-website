@@ -1,0 +1,124 @@
+/* YAQIXIN_MOBILE_PRICE_CARD_V1 */
+.mobile-price-card {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .has-mobile-price-card .price-panel {
+    display: none !important;
+  }
+
+  .mobile-price-card {
+    display: block;
+    margin-top: 18px;
+    border: 1px solid var(--line, #e7ded7);
+    border-radius: 14px;
+    background: #fff;
+    padding: 16px;
+    box-shadow: 0 12px 30px rgba(16, 21, 31, .06);
+  }
+
+  .mobile-price-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--muted, #5e6d88);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .mobile-price-heading strong {
+    color: var(--copper, #9f5727);
+    font-size: 11px;
+    letter-spacing: .06em;
+  }
+
+  .mobile-price-tiers {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(132px, 1fr);
+    margin-top: 14px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: thin;
+  }
+
+  .mobile-price-card[data-tier-count="2"] .mobile-price-tiers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-columns: auto;
+    overflow-x: hidden;
+  }
+
+  .mobile-price-card[data-tier-count="3"] .mobile-price-tiers {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-columns: auto;
+    overflow-x: hidden;
+  }
+
+  .mobile-price-tier {
+    min-width: 0;
+    padding: 2px 12px;
+    scroll-snap-align: start;
+  }
+
+  .mobile-price-tier:first-child {
+    padding-left: 0;
+  }
+
+  .mobile-price-tier + .mobile-price-tier {
+    border-left: 1px solid var(--line, #e7ded7);
+  }
+
+  .mobile-price-tier b {
+    display: block;
+    color: var(--navy, #0b1d35);
+    font-size: clamp(20px, 6.8vw, 28px);
+    line-height: 1.05;
+    letter-spacing: -.04em;
+    white-space: nowrap;
+  }
+
+  .mobile-price-tier small {
+    display: block;
+    margin-top: 8px;
+    color: var(--muted, #5e6d88);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.35;
+  }
+
+  .mobile-price-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 13px;
+    border-top: 1px solid var(--line, #e7ded7);
+    color: var(--ink, #10151f);
+    font-size: 13px;
+    font-weight: 850;
+  }
+
+  .mobile-price-footer a {
+    color: var(--copper, #9f5727);
+    font-weight: 900;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .mobile-price-footer a:hover,
+  .mobile-price-footer a:focus-visible {
+    text-decoration: underline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-price-tiers {
+    scroll-behavior: auto;
+  }
+}
