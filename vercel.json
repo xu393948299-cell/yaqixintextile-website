@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/GG-optimized-v9-denim-seo.html",
       "destination": "/",
       "permanent": true
