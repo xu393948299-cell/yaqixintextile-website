@@ -18,12 +18,19 @@ const files = await collectHtml(root);
 let changed = 0;
 for (const file of files) {
   let html = await readFile(file, 'utf8');
-  if (html.includes('yaqixin-lead-system.js')) continue;
   const depth = relative(root, file).split(/[\\/]/).length - 1;
   const prefix = depth > 0 ? '../'.repeat(depth) : '';
-  const tag = `  <script src="${prefix}yaqixin-assets/yaqixin-lead-system.js" defer></script>\n`;
+  const analyticsTag = `  <script src="${prefix}yaqixin-assets/yaqixin-analytics.js" defer></script>\n`;
+  const leadTag = `  <script src="${prefix}yaqixin-assets/yaqixin-lead-system.js" defer></script>\n`;
+  if (html.includes('yaqixin-lead-system.js') && !html.includes('yaqixin-analytics.js')) {
+    html = html.replace(leadTag.trim(), `${analyticsTag.trim()}\n${leadTag.trim()}`);
+    await writeFile(file, html, 'utf8');
+    changed += 1;
+    continue;
+  }
+  if (html.includes('yaqixin-lead-system.js')) continue;
   if (!html.includes('</body>')) continue;
-  html = html.replace('</body>', `${tag}</body>`);
+  html = html.replace('</body>', `${analyticsTag}${leadTag}</body>`);
   await writeFile(file, html, 'utf8');
   changed += 1;
 }
