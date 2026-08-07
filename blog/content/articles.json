@@ -26,11 +26,11 @@
         { "id": "faq", "label": "Buyer questions" }
       ],
       "relatedLinks": [
-        { "label": "Browse all Tulle Mesh Fabric", "url": "/tulle-mesh-fabric.html" },
-        { "label": "Compare Plain Tulle Fabric", "url": "/plain-tulle-fabric.html" },
-        { "label": "Explore Glitter Tulle Fabric", "url": "/glitter-tulle-fabric.html" },
-        { "label": "View 3D Tulle Mesh Fabric", "url": "/3d-tulle-mesh-fabric.html" },
-        { "label": "Discuss a custom fabric brief", "url": "/custom-capability.html" }
+        { "label": "Browse all Tulle Mesh Fabric", "url": "/tulle-mesh-fabric" },
+        { "label": "Compare Plain Tulle Fabric", "url": "/plain-tulle-fabric" },
+        { "label": "Explore Glitter Tulle Fabric", "url": "/glitter-tulle-fabric" },
+        { "label": "View 3D Tulle Mesh Fabric", "url": "/3d-tulle-mesh-fabric" },
+        { "label": "Discuss a custom fabric brief", "url": "/custom-capability" }
       ]
     },
     {

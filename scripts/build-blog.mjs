@@ -75,6 +75,9 @@ function validateArticle(article, index, seenSlugs) {
   }
   const content = fs.readFileSync(contentPath, "utf8");
   if (/<h1(?:\s|>)/i.test(content)) throw new Error(`${article.slug}: content fragment must not contain an h1.`);
+  if (/href=(['"])\/[^'\"]+\.html(?:[?#][^'\"]*)?\1/i.test(content)) {
+    throw new Error(`${article.slug}: internal links must use Clean URLs without .html.`);
+  }
   const headingIds = new Set([...content.matchAll(/<h2\s+id="([^"]+)"/gi)].map((match) => match[1]));
   const tocIds = new Set();
   for (const item of article.toc) {
@@ -88,6 +91,9 @@ function validateArticle(article, index, seenSlugs) {
     for (const link of article.relatedLinks) {
       if (!link.label || !link.url || (!link.url.startsWith("/") && !link.url.startsWith("https://"))) {
         throw new Error(`${article.slug}: relatedLinks must contain label and site-safe URL.`);
+      }
+      if (link.url.startsWith("/") && /\.html(?:[?#]|$)/i.test(link.url)) {
+        throw new Error(`${article.slug}: relatedLinks must use Clean URLs without .html.`);
       }
     }
   }

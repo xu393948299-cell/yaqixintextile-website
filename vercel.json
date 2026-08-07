@@ -24,6 +24,16 @@
       "permanent": true
     },
     {
+      "source": "/blog/content/how-to-source-wholesale-fabric-from-china",
+      "destination": "/blog/how-to-source-wholesale-fabric-from-china",
+      "permanent": true
+    },
+    {
+      "source": "/blog/content/how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear",
+      "destination": "/blog/how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear",
+      "permanent": true
+    },
+    {
       "source": "/blog/:slug/index",
       "destination": "/blog/:slug",
       "permanent": true
@@ -41,6 +51,19 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/blog/content/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
         },
         {
           "key": "X-Content-Type-Options",
