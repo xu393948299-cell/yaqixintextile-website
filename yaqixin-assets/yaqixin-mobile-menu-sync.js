@@ -4,45 +4,45 @@
   var BUTTON_ID='mobileCategoriesBtn';
 
   var productsHtml=[
-    '<a href="all-products.html">All Products</a>',
+    '<a href="/all-products">All Products</a>',
     '<details class="mobile-nav-subgroup"><summary>Plain Cotton Fabric</summary><div class="mobile-nav-depth">',
-      '<a href="plain-cotton-fabric.html">View all plain cotton</a>',
-      '<a href="canvas-fabric.html">Canvas Fabric</a>',
-      '<a href="poplin-fabric.html">Poplin Fabric</a>',
-      '<a href="twill-fabric.html">Twill Fabric</a>',
+      '<a href="/plain-cotton-fabric">View all plain cotton</a>',
+      '<a href="/canvas-fabric">Canvas Fabric</a>',
+      '<a href="/poplin-fabric">Poplin Fabric</a>',
+      '<a href="/twill-fabric">Twill Fabric</a>',
     '</div></details>',
     '<details class="mobile-nav-subgroup"><summary>Tulle Mesh Fabric</summary><div class="mobile-nav-depth">',
-      '<a href="tulle-mesh-fabric.html">View all tulle mesh</a>',
-      '<a href="plain-tulle-fabric.html">Plain Tulle Fabric</a>',
-      '<a href="stretch-knit-mesh-fabric.html">Stretch Knit Mesh Fabric</a>',
-      '<a href="holiday-tulle-fabric.html">Holiday Tulle Fabric</a>',
-      '<a href="glitter-tulle-fabric.html">Glitter Tulle Fabric</a>',
-      '<a href="rainbow-tulle-fabric.html">Rainbow Tulle Fabric</a>',
-      '<a href="print-mesh-fabric.html">Print Mesh Fabric</a>',
-      '<a href="3d-tulle-mesh-fabric.html">3D Tulle Mesh Fabric</a>',
-      '<a href="flocked-mesh-fabric.html">Flocked Mesh Fabric</a>',
-      '<a href="sequin-fabric.html">Sequin Fabric</a>',
+      '<a href="/tulle-mesh-fabric">View all tulle mesh</a>',
+      '<a href="/plain-tulle-fabric">Plain Tulle Fabric</a>',
+      '<a href="/stretch-knit-mesh-fabric">Stretch Knit Mesh Fabric</a>',
+      '<a href="/holiday-tulle-fabric">Holiday Tulle Fabric</a>',
+      '<a href="/glitter-tulle-fabric">Glitter Tulle Fabric</a>',
+      '<a href="/rainbow-tulle-fabric">Rainbow Tulle Fabric</a>',
+      '<a href="/print-mesh-fabric">Print Mesh Fabric</a>',
+      '<a href="/3d-tulle-mesh-fabric">3D Tulle Mesh Fabric</a>',
+      '<a href="/flocked-mesh-fabric">Flocked Mesh Fabric</a>',
+      '<a href="/sequin-fabric">Sequin Fabric</a>',
     '</div></details>',
-    '<a href="organza-fabric.html">Organza Fabric</a>',
-    '<a href="pleated-fabric.html">Pleated Fabric</a>',
+    '<a href="/organza-fabric">Organza Fabric</a>',
+    '<a href="/pleated-fabric">Pleated Fabric</a>',
     '<details class="mobile-nav-subgroup"><summary>Lace Fabric</summary><div class="mobile-nav-depth">',
-      '<a href="lace-fabric.html">View all lace</a>',
-      '<a href="eyelash-lace-fabric.html">Eyelash Lace Fabric</a>',
-      '<a href="glitter-lace-fabric.html">Glitter Lace Fabric</a>',
-      '<a href="3d-beads-lace-fabric.html">3D Beads Lace Fabric</a>',
-      '<a href="water-soluble-lace-fabric.html">Water Soluble Lace Fabric</a>',
-      '<a href="lace-trim.html">Lace Trim</a>',
+      '<a href="/lace-fabric">View all lace</a>',
+      '<a href="/eyelash-lace-fabric">Eyelash Lace Fabric</a>',
+      '<a href="/glitter-lace-fabric">Glitter Lace Fabric</a>',
+      '<a href="/3d-beads-lace-fabric">3D Beads Lace Fabric</a>',
+      '<a href="/water-soluble-lace-fabric">Water Soluble Lace Fabric</a>',
+      '<a href="/lace-trim">Lace Trim</a>',
     '</div></details>',
     '<details class="mobile-nav-subgroup"><summary>Satin Fabric</summary><div class="mobile-nav-depth">',
-      '<a href="satin-fabric.html">View all satin</a>',
-      '<a href="mikado-satin-fabric.html">Mikado Satin Fabric</a>',
-      '<a href="stretch-satin-fabric.html">Stretch Satin Fabric</a>',
+      '<a href="/satin-fabric">View all satin</a>',
+      '<a href="/mikado-satin-fabric">Mikado Satin Fabric</a>',
+      '<a href="/stretch-satin-fabric">Stretch Satin Fabric</a>',
     '</div></details>',
-    '<a href="yx277-460gsm-cotton-denim-fabric.html">Denim Fabric</a>'
+    '<a href="/yx277-460gsm-cotton-denim-fabric">Denim Fabric</a>'
   ].join('');
 
   function inquiryHref(){
-    return document.getElementById('inquiry')?'#inquiry':'index.html#inquiry';
+    return document.getElementById('inquiry')?'#inquiry':'/#inquiry';
   }
 
   function injectStyle(){
@@ -117,7 +117,7 @@
       document.body.appendChild(layer);
     }
     layer.hidden=true;
-    layer.innerHTML='<div class="mobile-category-backdrop" data-close-category></div><section class="mobile-category-sheet" id="mobileCategorySheet" role="dialog" aria-modal="true" aria-labelledby="mobileCategoryTitle"><div class="mobile-category-handle" aria-hidden="true"></div><div class="mobile-category-head"><div><strong id="mobileCategoryTitle">Menu</strong><span>Navigate YAQIXIN.</span></div><button class="mobile-category-close" type="button" data-close-category>Close</button></div><nav class="mobile-nav-main" aria-label="Mobile navigation"><a class="mobile-nav-row" href="index.html#top">Home</a><details class="mobile-nav-group"><summary>Products</summary><div class="mobile-nav-sub">'+productsHtml+'</div></details><a class="mobile-nav-row" href="blog/index.html">Blog</a><a class="mobile-nav-row" href="custom-capability.html">Customize</a></nav></section>';
+    layer.innerHTML='<div class="mobile-category-backdrop" data-close-category></div><section class="mobile-category-sheet" id="mobileCategorySheet" role="dialog" aria-modal="true" aria-labelledby="mobileCategoryTitle"><div class="mobile-category-handle" aria-hidden="true"></div><div class="mobile-category-head"><div><strong id="mobileCategoryTitle">Menu</strong><span>Navigate YAQIXIN.</span></div><button class="mobile-category-close" type="button" data-close-category>Close</button></div><nav class="mobile-nav-main" aria-label="Mobile navigation"><a class="mobile-nav-row" href="/#top">Home</a><details class="mobile-nav-group"><summary>Products</summary><div class="mobile-nav-sub">'+productsHtml+'</div></details><a class="mobile-nav-row" href="/blog">Blog</a><a class="mobile-nav-row" href="/custom-capability">Customize</a></nav></section>';
     layer.setAttribute('data-product-menu-synced','true');
     return layer;
   }

@@ -1,20 +1,36 @@
 {
-  "cleanUrls": false,
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/index.html",
+      "source": "/index",
       "destination": "/",
       "permanent": true
     },
     {
-      "source": "/GG-optimized-v9-denim-seo.html",
+      "source": "/GG-optimized-v9-denim-seo",
       "destination": "/",
       "permanent": true
     },
     {
-      "source": "/about-us.html",
-      "destination": "/custom-capability.html",
+      "source": "/about-us",
+      "destination": "/custom-capability",
+      "permanent": true
+    },
+    {
+      "source": "/blog/index",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug/index",
+      "destination": "/blog/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/es/index",
+      "destination": "/es",
       "permanent": true
     }
   ],

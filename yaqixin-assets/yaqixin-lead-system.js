@@ -80,7 +80,7 @@
     var note = document.createElement('p');
     note.setAttribute('data-lead-privacy', '');
     note.style.cssText = 'margin:10px 0 0;color:#727b87;font-size:11px;line-height:1.5';
-    note.innerHTML = 'By submitting, you allow YAQIXIN to use your details for this quotation request. <a href="/privacy-policy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a>';
+    note.innerHTML = 'By submitting, you allow YAQIXIN to use your details for this quotation request. <a href="/privacy-policy" style="color:inherit;text-decoration:underline">Privacy Policy</a>';
     form.appendChild(note);
   }
 

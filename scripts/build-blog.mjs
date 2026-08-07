@@ -118,9 +118,9 @@ function header(active) {
     <a class="brand" href="/" aria-label="YAQIXIN home">YAQIXIN</a>
     <div class="menu">
       <a href="/">Home</a>
-      <a href="/all-products.html">Products</a>
+      <a href="/all-products">Products</a>
       <a href="/blog"${active === "blog" ? ' aria-current="page"' : ""}>Blog</a>
-      <a href="/custom-capability.html"${active === "customize" ? ' aria-current="page"' : ""}>Customize</a>
+      <a href="/custom-capability"${active === "customize" ? ' aria-current="page"' : ""}>Customize</a>
     </div>
     <a class="nav-inquiry" href="/#inquiry">Inquiry</a>
   </nav>`;
@@ -285,7 +285,7 @@ function buildArticle(article) {
 </head>
 <body>
   ${header("blog")}
-  <main class="article-page"><div class="site-shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog">Blog</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(article.title)}</span></nav><header class="article-intro"><span class="eyebrow">${escapeHtml(article.category || "Sourcing guide")}</span><h1>${escapeHtml(article.title)}</h1><div class="article-meta"><time datetime="${article.publishedAt}">Published ${formattedDate(article.publishedAt)}</time><span>Updated ${formattedDate(article.updatedAt)}</span><span>${escapeHtml(article.readingTime)}</span><span>By ${escapeHtml(article.author)}</span></div><p class="dek">${escapeHtml(article.excerpt)}</p></header><figure class="article-cover"><img src="${articleCover}" width="1672" height="941" fetchpriority="high" alt="${escapeHtml(article.coverAlt)}"><figcaption>${escapeHtml(coverCaption)}</figcaption></figure><div class="article-layout"><aside class="article-toc" aria-label="Article contents"><strong>In this guide</strong>${toc}</aside><article class="article-body">${contentWithLocalAssets}<section class="article-cta" aria-labelledby="article-cta-title"><h2 id="article-cta-title">Ready to discuss a fabric brief?</h2><p>Share your intended application, a reference image or swatch, quantity, and market. We can help you compare a stock or custom fabric route before you place a bulk order.</p><a class="btn" href="/custom-capability.html">Start a fabric inquiry</a></section>${related}<a class="back-to-blog" href="/blog">Back to Blog</a></article></div></div></main>
+  <main class="article-page"><div class="site-shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog">Blog</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(article.title)}</span></nav><header class="article-intro"><span class="eyebrow">${escapeHtml(article.category || "Sourcing guide")}</span><h1>${escapeHtml(article.title)}</h1><div class="article-meta"><time datetime="${article.publishedAt}">Published ${formattedDate(article.publishedAt)}</time><span>Updated ${formattedDate(article.updatedAt)}</span><span>${escapeHtml(article.readingTime)}</span><span>By ${escapeHtml(article.author)}</span></div><p class="dek">${escapeHtml(article.excerpt)}</p></header><figure class="article-cover"><img src="${articleCover}" width="1672" height="941" fetchpriority="high" alt="${escapeHtml(article.coverAlt)}"><figcaption>${escapeHtml(coverCaption)}</figcaption></figure><div class="article-layout"><aside class="article-toc" aria-label="Article contents"><strong>In this guide</strong>${toc}</aside><article class="article-body">${contentWithLocalAssets}<section class="article-cta" aria-labelledby="article-cta-title"><h2 id="article-cta-title">Ready to discuss a fabric brief?</h2><p>Share your intended application, a reference image or swatch, quantity, and market. We can help you compare a stock or custom fabric route before you place a bulk order.</p><a class="btn" href="/custom-capability">Start a fabric inquiry</a></section>${related}<a class="back-to-blog" href="/blog">Back to Blog</a></article></div></div></main>
   ${footer("../../")}
 </body>
 </html>`;
