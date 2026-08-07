@@ -6,6 +6,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..");
 const blogRoot = path.join(root, "blog");
 const contentRoot = path.join(blogRoot, "content");
+const sitemapPath = path.join(root, "sitemap.xml");
 const baseUrl = "https://www.yaqixintextile.com";
 const publisher = {
   "@type": "Organization",
@@ -27,21 +28,88 @@ function jsonForScript(value) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
+function localAssetPath(assetPath, localRoot) {
+  return assetPath.startsWith("/") ? `${localRoot}${assetPath.slice(1)}` : assetPath;
+}
+
+function assetFilePath(assetPath) {
+  if (typeof assetPath !== "string" || !assetPath.startsWith("/")) {
+    throw new Error(`Asset paths must start with /: ${assetPath}`);
+  }
+  const resolved = path.resolve(root, assetPath.slice(1));
+  if (resolved !== path.resolve(root) && !resolved.startsWith(`${path.resolve(root)}${path.sep}`)) {
+    throw new Error(`Asset path escapes project root: ${assetPath}`);
+  }
+  return resolved;
+}
+
+function assertDate(value, field, slug) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(new Date(`${value}T00:00:00Z`).getTime())) {
+    throw new Error(`${slug}: ${field} must use YYYY-MM-DD.`);
+  }
+}
+
+function validateArticle(article, index, seenSlugs) {
+  const required = ["slug", "title", "excerpt", "coverImage", "coverAlt", "publishedAt", "updatedAt", "author", "readingTime", "seoTitle", "metaDescription", "contentFile", "toc"];
+  for (const field of required) {
+    if (article[field] === undefined || article[field] === null || article[field] === "") {
+      throw new Error(`Article ${index + 1} is missing ${field}.`);
+    }
+  }
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug)) {
+    throw new Error(`${article.slug}: slug must be lowercase words separated by hyphens.`);
+  }
+  if (seenSlugs.has(article.slug)) throw new Error(`Duplicate article slug: ${article.slug}`);
+  seenSlugs.add(article.slug);
+  if (!Array.isArray(article.toc) || article.toc.length === 0) throw new Error(`${article.slug}: toc must contain at least one item.`);
+  assertDate(article.publishedAt, "publishedAt", article.slug);
+  assertDate(article.updatedAt, "updatedAt", article.slug);
+  if (article.updatedAt < article.publishedAt) throw new Error(`${article.slug}: updatedAt cannot be before publishedAt.`);
+  if (article.seoTitle.length > 65) console.warn(`Warning: ${article.slug} SEO title is ${article.seoTitle.length} characters.`);
+  if (article.metaDescription.length > 165) console.warn(`Warning: ${article.slug} meta description is ${article.metaDescription.length} characters.`);
+  const coverPath = assetFilePath(article.coverImage);
+  if (!fs.existsSync(coverPath)) throw new Error(`${article.slug}: coverImage does not exist: ${article.coverImage}`);
+  const contentPath = path.join(contentRoot, article.contentFile);
+  if (!article.contentFile.endsWith(".html") || article.contentFile.includes("..") || !fs.existsSync(contentPath)) {
+    throw new Error(`${article.slug}: missing or unsafe contentFile ${article.contentFile}.`);
+  }
+  const content = fs.readFileSync(contentPath, "utf8");
+  if (/<h1(?:\s|>)/i.test(content)) throw new Error(`${article.slug}: content fragment must not contain an h1.`);
+  const headingIds = new Set([...content.matchAll(/<h2\s+id="([^"]+)"/gi)].map((match) => match[1]));
+  const tocIds = new Set();
+  for (const item of article.toc) {
+    if (!item.id || !item.label || tocIds.has(item.id) || !headingIds.has(item.id)) {
+      throw new Error(`${article.slug}: toc item does not match a unique h2 id: ${item.id}`);
+    }
+    tocIds.add(item.id);
+  }
+  for (const match of content.matchAll(/src="\/([^"\n]+)"/g)) assetFilePath(`/${match[1]}`);
+  if (Array.isArray(article.relatedLinks)) {
+    for (const link of article.relatedLinks) {
+      if (!link.label || !link.url || (!link.url.startsWith("/") && !link.url.startsWith("https://"))) {
+        throw new Error(`${article.slug}: relatedLinks must contain label and site-safe URL.`);
+      }
+    }
+  }
+}
+
 function readArticles() {
   const filePath = path.join(contentRoot, "articles.json");
   const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
   if (!Array.isArray(data.articles) || data.articles.length === 0) {
     throw new Error("blog/content/articles.json must contain at least one article.");
   }
-  return data.articles;
+  const seenSlugs = new Set();
+  data.articles.forEach((article, index) => validateArticle(article, index, seenSlugs));
+  return [...data.articles].sort((left, right) => `${right.updatedAt}-${right.publishedAt}`.localeCompare(`${left.updatedAt}-${left.publishedAt}`));
 }
 
 function formattedDate(value) {
   return new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${value}T00:00:00Z`));
 }
 
-function localAssetPath(assetPath, localRoot) {
-  return assetPath.startsWith("/") ? `${localRoot}${assetPath.slice(1)}` : assetPath;
+function latestArticleDate(articles) {
+  return articles.reduce((latest, article) => (article.updatedAt > latest ? article.updatedAt : latest), articles[0].updatedAt);
 }
 
 function header(active) {
@@ -58,8 +126,14 @@ function header(active) {
   </nav>`;
 }
 
-function footer() {
-  return `<footer class="footer"><div class="footer-inner"><div><strong>YAQIXIN TEXTILES</strong><p>Guangzhou wholesale fabric manufacturer for global apparel sourcing.</p></div><div><p>WhatsApp: +86 18125117673 / +86 13632259091<br>Email for quotation documents: 378080571@qq.com</p></div></div></footer>`;
+function runtimeScripts(localRoot) {
+  return `  <script src="${localRoot}yaqixin-assets/yaqixin-analytics.js" defer></script>
+  <script src="${localRoot}yaqixin-assets/yaqixin-lead-system.js" defer></script>`;
+}
+
+function footer(localRoot) {
+  return `<footer class="footer"><div class="footer-inner"><div><strong>YAQIXIN TEXTILES</strong><p>Guangzhou wholesale fabric manufacturer for global apparel sourcing.</p></div><div><p>WhatsApp: +86 18125117673 / +86 13632259091<br>Email for quotation documents: 378080571@qq.com</p></div></div></footer>
+${runtimeScripts(localRoot)}`;
 }
 
 function localPreviewScript(localRoot) {
@@ -91,6 +165,7 @@ function localPreviewScript(localRoot) {
 function commonHead({ title, description, canonicalPath, image, type = "website", publishedAt, updatedAt, author, stylesHref, faviconHref, localRoot }) {
   const canonical = `${baseUrl}${canonicalPath}`;
   const imageUrl = `${baseUrl}${image}`;
+  const cardsStylesHref = stylesHref.replace(/styles\.css$/, "cards.css");
   const articleMeta = type === "article" ? `
   <meta property="article:published_time" content="${publishedAt}T00:00:00+00:00">
   <meta property="article:modified_time" content="${updatedAt}T00:00:00+00:00">
@@ -112,14 +187,20 @@ function commonHead({ title, description, canonicalPath, image, type = "website"
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${imageUrl}">
   <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${stylesHref}" : "/blog/styles.css") + '">');</script>
-  <noscript><link rel="stylesheet" href="/blog/styles.css"></noscript>
+  <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${cardsStylesHref}" : "/blog/cards.css") + '">');</script>
+  <noscript><link rel="stylesheet" href="/blog/styles.css"><link rel="stylesheet" href="/blog/cards.css"></noscript>
   <link rel="icon" href="${faviconHref}" type="image/png">
   ${localPreviewScript(localRoot)}${articleMeta}`;
 }
 
+function articleCard(article, localRoot, featured = false) {
+  const cover = localAssetPath(article.coverImage, localRoot);
+  const category = article.category || "Sourcing guide";
+  return `<article class="article-card${featured ? " article-card-featured" : ""}"><a class="article-card-image" href="/blog/${article.slug}" aria-label="Read ${escapeHtml(article.title)}"><img src="${cover}" alt="${escapeHtml(article.coverAlt)}" width="1672" height="941"${featured ? " fetchpriority=\"high\"" : " loading=\"lazy\""}></a><div class="article-card-body"><span class="eyebrow">${escapeHtml(category)}</span><h2><a href="/blog/${article.slug}">${escapeHtml(article.title)}</a></h2><p>${escapeHtml(article.excerpt)}</p><div class="article-meta"><time datetime="${article.publishedAt}">${formattedDate(article.publishedAt)}</time><span>${escapeHtml(article.readingTime)}</span></div><a class="btn" href="/blog/${article.slug}">Read Article</a></div></article>`;
+}
+
 function buildIndex(articles) {
   const primary = articles[0];
-  const primaryCover = localAssetPath(primary.coverImage, "../");
   const listSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -137,7 +218,7 @@ function buildIndex(articles) {
       })),
     },
   };
-  const card = `<article class="article-card"><a class="article-card-image" href="/blog/${primary.slug}" aria-label="Read ${escapeHtml(primary.title)}"><img src="${primaryCover}" alt="${escapeHtml(primary.coverAlt)}" width="1672" height="941" fetchpriority="high"></a><div class="article-card-body"><span class="eyebrow">Sourcing guide</span><h2><a href="/blog/${primary.slug}">${escapeHtml(primary.title)}</a></h2><p>${escapeHtml(primary.excerpt)}</p><div class="article-meta"><time datetime="${primary.publishedAt}">${formattedDate(primary.publishedAt)}</time><span>${escapeHtml(primary.readingTime)}</span></div><a class="btn" href="/blog/${primary.slug}">Read Article</a></div></article>`;
+  const cards = articles.map((article, index) => articleCard(article, "../", index === 0)).join("\n");
   const output = `<!doctype html>
 <html lang="en">
 <head>
@@ -148,17 +229,22 @@ function buildIndex(articles) {
   ${header("blog")}
   <main>
     <section class="page-hero"><div class="site-shell page-hero-grid"><div><span class="eyebrow">YAQIXIN Journal</span><h1>Practical fabric sourcing notes for apparel buyers.</h1><p>Clear, useful guidance for teams comparing fabrics, developing samples, and preparing wholesale orders. We publish only when a topic helps a buyer make a better next decision.</p></div><aside class="page-hero-note"><strong>Built for real sourcing conversations.</strong><br>Use these articles to shape a more useful brief, then confirm the sample, specification, and commercial terms for your own order.</aside></div></section>
-    <section class="blog-list"><div class="site-shell">${card}</div></section>
+    <section class="blog-list"><div class="site-shell"><div class="article-grid">${cards}</div></div></section>
   </main>
-  ${footer()}
+  ${footer("../")}
 </body>
 </html>`;
   fs.writeFileSync(path.join(blogRoot, "index.html"), `${output}\n`, "utf8");
 }
 
+function relatedLinksMarkup(article) {
+  if (!Array.isArray(article.relatedLinks) || article.relatedLinks.length === 0) return "";
+  const links = article.relatedLinks.map((link) => `<li><a href="${escapeHtml(link.url)}">${escapeHtml(link.label)}</a></li>`).join("");
+  return `<section class="related-links" aria-labelledby="related-links-title"><h2 id="related-links-title">Related sourcing pages</h2><ul>${links}</ul></section>`;
+}
+
 function buildArticle(article) {
   const contentPath = path.join(contentRoot, article.contentFile);
-  if (!fs.existsSync(contentPath)) throw new Error(`Missing article content file: ${article.contentFile}`);
   const content = fs.readFileSync(contentPath, "utf8").trim();
   const contentWithLocalAssets = content.replace(/src="\/([^"\n]+)"/g, 'src="../../$1"');
   const articlePath = `/blog/${article.slug}`;
@@ -182,11 +268,14 @@ function buildArticle(article) {
     dateModified: article.updatedAt,
     author: { "@type": "Organization", name: article.author },
     publisher,
+    articleSection: article.category || "Sourcing guide",
+    ...(article.primaryKeyword ? { keywords: article.primaryKeyword } : {}),
     mainEntityOfPage: { "@type": "WebPage", "@id": `${baseUrl}${articlePath}` },
     inLanguage: "en",
   };
   const coverCaption = article.coverCaption || article.coverAlt;
   const toc = article.toc.map((item) => `<a href="#${escapeHtml(item.id)}">${escapeHtml(item.label)}</a>`).join("\n");
+  const related = relatedLinksMarkup(article);
   const output = `<!doctype html>
 <html lang="en">
 <head>
@@ -196,8 +285,8 @@ function buildArticle(article) {
 </head>
 <body>
   ${header("blog")}
-  <main class="article-page"><div class="site-shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog">Blog</a><span aria-hidden="true">/</span><span aria-current="page">Wholesale Fabric Sourcing Guide</span></nav><header class="article-intro"><span class="eyebrow">Sourcing guide</span><h1>${escapeHtml(article.title)}</h1><div class="article-meta"><time datetime="${article.publishedAt}">Published ${formattedDate(article.publishedAt)}</time><span>Updated ${formattedDate(article.updatedAt)}</span><span>${escapeHtml(article.readingTime)}</span><span>By ${escapeHtml(article.author)}</span></div><p class="dek">${escapeHtml(article.excerpt)}</p></header><figure class="article-cover"><img src="${articleCover}" width="1672" height="941" fetchpriority="high" alt="${escapeHtml(article.coverAlt)}"><figcaption>${escapeHtml(coverCaption)}</figcaption></figure><div class="article-layout"><aside class="article-toc" aria-label="Article contents"><strong>In this guide</strong>${toc}</aside><article class="article-body">${contentWithLocalAssets}<section class="article-cta" aria-labelledby="article-cta-title"><h2 id="article-cta-title">Ready to discuss a fabric brief?</h2><p>Share your intended application, a reference image or swatch, quantity, and market. We can help you compare a stock or custom fabric route before you place a bulk order.</p><a class="btn" href="/custom-capability.html">Start a fabric inquiry</a></section><a class="back-to-blog" href="/blog">Back to Blog</a></article></div></div></main>
-  ${footer()}
+  <main class="article-page"><div class="site-shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog">Blog</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(article.title)}</span></nav><header class="article-intro"><span class="eyebrow">${escapeHtml(article.category || "Sourcing guide")}</span><h1>${escapeHtml(article.title)}</h1><div class="article-meta"><time datetime="${article.publishedAt}">Published ${formattedDate(article.publishedAt)}</time><span>Updated ${formattedDate(article.updatedAt)}</span><span>${escapeHtml(article.readingTime)}</span><span>By ${escapeHtml(article.author)}</span></div><p class="dek">${escapeHtml(article.excerpt)}</p></header><figure class="article-cover"><img src="${articleCover}" width="1672" height="941" fetchpriority="high" alt="${escapeHtml(article.coverAlt)}"><figcaption>${escapeHtml(coverCaption)}</figcaption></figure><div class="article-layout"><aside class="article-toc" aria-label="Article contents"><strong>In this guide</strong>${toc}</aside><article class="article-body">${contentWithLocalAssets}<section class="article-cta" aria-labelledby="article-cta-title"><h2 id="article-cta-title">Ready to discuss a fabric brief?</h2><p>Share your intended application, a reference image or swatch, quantity, and market. We can help you compare a stock or custom fabric route before you place a bulk order.</p><a class="btn" href="/custom-capability.html">Start a fabric inquiry</a></section>${related}<a class="back-to-blog" href="/blog">Back to Blog</a></article></div></div></main>
+  ${footer("../../")}
 </body>
 </html>`;
   const outputDirectory = path.join(blogRoot, article.slug);
@@ -205,7 +294,36 @@ function buildArticle(article) {
   fs.writeFileSync(path.join(outputDirectory, "index.html"), `${output}\n`, "utf8");
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function syncSitemap(articles) {
+  let sitemap = fs.readFileSync(sitemapPath, "utf8");
+  const eol = sitemap.includes("\r\n") ? "\r\n" : "\n";
+  const updates = [
+    { url: `${baseUrl}/blog`, lastmod: latestArticleDate(articles) },
+    ...articles.map((article) => ({ url: `${baseUrl}/blog/${article.slug}`, lastmod: article.updatedAt })),
+  ];
+  for (const update of updates) {
+    const urlPattern = escapeRegExp(update.url);
+    const entryPattern = new RegExp(`(<url>\\s*<loc>${urlPattern}</loc>\\s*<lastmod>)[^<]+(</lastmod>)`, "m");
+    if (entryPattern.test(sitemap)) {
+      sitemap = sitemap.replace(entryPattern, `$1${update.lastmod}$2`);
+    } else {
+      const entry = `  <url>${eol}    <loc>${update.url}</loc>${eol}    <lastmod>${update.lastmod}</lastmod>${eol}  </url>${eol}`;
+      if (!sitemap.includes("</urlset>")) throw new Error("sitemap.xml is missing </urlset>.");
+      sitemap = sitemap.replace("</urlset>", `${entry}</urlset>`);
+    }
+  }
+  for (const update of updates) {
+    if (!sitemap.includes(`<loc>${update.url}</loc>`)) throw new Error(`Sitemap sync failed for ${update.url}`);
+  }
+  fs.writeFileSync(sitemapPath, sitemap, "utf8");
+}
+
 const articles = readArticles();
 buildIndex(articles);
 articles.forEach(buildArticle);
-console.log(`Built /blog and ${articles.length} article route${articles.length === 1 ? "" : "s"}.`);
+syncSitemap(articles);
+console.log(`Built /blog and ${articles.length} article route${articles.length === 1 ? "" : "s"}; synchronized Sitemap and runtime tracking.`);
