@@ -5,6 +5,8 @@
 
   var endpoint = 'https://formsubmit.co/ajax/378080571@qq.com';
   var storageKey = 'yaqixin_attribution_v1';
+  var submitCooldownKey = 'yaqixin_lead_last_submit_v1';
+  var submitCooldownMs = 30000;
   var formSelector = 'form.form-card, form#inquiry-form, form[data-lead-form]';
   var startedForms = new WeakSet();
 
@@ -86,14 +88,69 @@
     form.appendChild(note);
   }
 
+  function addSpamTrap(form) {
+    if (form.querySelector('[data-lead-honeypot]')) return;
+    var trap = document.createElement('input');
+    trap.type = 'text';
+    trap.name = '_honey';
+    trap.setAttribute('data-lead-honeypot', '');
+    trap.setAttribute('aria-hidden', 'true');
+    trap.tabIndex = -1;
+    trap.autocomplete = 'off';
+    trap.style.cssText = 'position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none';
+    form.appendChild(trap);
+  }
+
+  function cooldownRemaining() {
+    var store = safeStorage();
+    if (!store) return 0;
+    var last = Number(store.getItem(submitCooldownKey) || 0);
+    var remaining = submitCooldownMs - (Date.now() - last);
+    return remaining > 0 ? Math.ceil(remaining / 1000) : 0;
+  }
+
+  function markSubmitted() {
+    var store = safeStorage();
+    if (store) {
+      try { store.setItem(submitCooldownKey, String(Date.now())); } catch (error) { /* storage can be unavailable */ }
+    }
+  }
+
+  function setSubmitting(form, isSubmitting) {
+    form.querySelectorAll('button[type="submit"]').forEach(function (button) {
+      button.disabled = isSubmitting;
+      button.setAttribute('aria-disabled', isSubmitting ? 'true' : 'false');
+    });
+  }
+
   function submitLead(form, submitter) {
+    var trap = form.elements._honey;
+    var honeypot = trap && typeof trap.value === 'string' ? trap.value.trim() : '';
+    var contact = valueFor(form, ['contact', 'email', 'whatsapp']);
+    var requirement = valueFor(form, ['message', 'requirement']);
+    if (honeypot) {
+      showStatus(form, 'Your request could not be submitted. Please try again.', 'error');
+      return;
+    }
+    if (contact.length < 4) {
+      showStatus(form, 'Please add an email or WhatsApp number so we can reply.', 'error');
+      return;
+    }
+    if (contact.length > 200 || requirement.length > 4000) {
+      showStatus(form, 'Please shorten the contact or requirement details and try again.', 'error');
+      return;
+    }
+    var seconds = cooldownRemaining();
+    if (seconds) {
+      showStatus(form, 'Please wait ' + seconds + ' seconds before sending another request.', 'error');
+      return;
+    }
     var attribution = getAttribution();
     var selectedWhatsApp = submitter && submitter.getAttribute('data-whatsapp') || '';
-    var contact = valueFor(form, ['contact', 'email', 'whatsapp']);
     var data = {
       _subject: 'New YAQIXIN website inquiry',
       _template: 'table',
-      _captcha: 'false',
+      _honey: honeypot,
       company_or_buyer: valueFor(form, ['company', 'name']),
       contact: contact,
       product_or_page: productName(form),
@@ -101,7 +158,7 @@
       order_route: valueFor(form, ['route']),
       quantity_or_market: valueFor(form, ['quantity']),
       color_or_packing_note: valueFor(form, ['color']),
-      requirement: valueFor(form, ['message', 'requirement']),
+      requirement: requirement,
       selected_whatsapp: selectedWhatsApp ? '+' + selectedWhatsApp : '',
       source_page: window.location.href,
       page_title: document.title,
@@ -116,12 +173,14 @@
     };
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) data.email = contact;
 
-    showStatus(form, 'Saving your quotation request…', 'pending');
+    showStatus(form, 'Saving your quotation request...', 'pending');
 
     if (!navigator.onLine) {
       showStatus(form, 'Your request could not be saved while you are offline. Please send the WhatsApp draft so we can reply.', 'error');
       return;
     }
+    markSubmitted();
+    setSubmitting(form, true);
     fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -140,6 +199,8 @@
       showStatus(form, 'Your quotation request has been saved. You can also send the WhatsApp draft to speed up the reply.', 'success');
     }).catch(function () {
       showStatus(form, 'Your request could not be saved. Please send the WhatsApp draft so we can reply.', 'error');
+    }).finally(function () {
+      setSubmitting(form, false);
     });
   }
 
@@ -150,11 +211,15 @@
     track('form_start', { lead_form_id: form.id || 'quotation-form' });
   }, true);
 
-  document.querySelectorAll(formSelector).forEach(addPrivacyNote);
+  document.querySelectorAll(formSelector).forEach(function (form) {
+    addPrivacyNote(form);
+    addSpamTrap(form);
+  });
 
   document.addEventListener('submit', function (event) {
     var form = event.target;
     if (!isLeadForm(form)) return;
+    event.preventDefault();
     submitLead(form, event.submitter);
   }, true);
 

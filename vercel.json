@@ -2,6 +2,24 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "routes": [
+    {
+      "src": "^/(?:scripts|docs)(?:/.*)?$",
+      "status": 404
+    },
+    {
+      "src": "^/DEPLOYMENT-STEPS\\.md$",
+      "status": 404
+    },
+    {
+      "src": "^/blog/README\\.md$",
+      "status": 404
+    },
+    {
+      "src": "^/blog/content/articles\\.json$",
+      "status": 404
+    }
+  ],
   "redirects": [
     {
       "source": "/index",
