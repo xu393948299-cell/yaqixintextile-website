@@ -63,16 +63,18 @@
     return namedProduct || (heading && heading.textContent.trim()) || document.title.replace(/\s*\|\s*YAQIXIN.*$/i, '').trim();
   }
 
-  function showStatus(form) {
+  function showStatus(form, message, state) {
     var notice = form.querySelector('[data-lead-status]');
     if (!notice) {
       notice = document.createElement('p');
       notice.setAttribute('data-lead-status', '');
       notice.setAttribute('role', 'status');
-      notice.style.cssText = 'margin:12px 0 0;color:#18733b;font-size:12px;font-weight:700;line-height:1.5';
+      notice.style.cssText = 'margin:12px 0 0;font-size:12px;font-weight:700;line-height:1.5';
       form.appendChild(notice);
     }
-    notice.textContent = 'Your quotation request has been recorded. You can also send the WhatsApp draft to speed up the reply.';
+    notice.setAttribute('data-lead-status-state', state || 'info');
+    notice.style.color = state === 'success' ? '#18733b' : state === 'error' ? '#a12c2c' : '#727b87';
+    notice.textContent = message;
   }
 
   function addPrivacyNote(form) {
@@ -114,20 +116,31 @@
     };
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) data.email = contact;
 
-    track('generate_lead', {
-      lead_form_id: form.id || 'quotation-form',
-      page_type: document.body && document.body.dataset && document.body.dataset.pageType || 'website',
-      contact_method: selectedWhatsApp ? 'whatsapp' : 'form'
-    });
-    showStatus(form);
+    showStatus(form, 'Saving your quotation request…', 'pending');
 
-    if (!navigator.onLine) return;
+    if (!navigator.onLine) {
+      showStatus(form, 'Your request could not be saved while you are offline. Please send the WhatsApp draft so we can reply.', 'error');
+      return;
+    }
     fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data),
       keepalive: true
-    }).catch(function () { /* WhatsApp stays available as a buyer-facing fallback. */ });
+    }).then(function (response) {
+      if (!response.ok) throw new Error('Lead endpoint returned HTTP ' + response.status);
+      return response.json().catch(function () { return {}; });
+    }).then(function (result) {
+      if (result && result.success === false) throw new Error('Lead endpoint rejected the request');
+      track('generate_lead', {
+        lead_form_id: form.id || 'quotation-form',
+        page_type: document.body && document.body.dataset && document.body.dataset.pageType || 'website',
+        contact_method: selectedWhatsApp ? 'whatsapp' : 'form'
+      });
+      showStatus(form, 'Your quotation request has been saved. You can also send the WhatsApp draft to speed up the reply.', 'success');
+    }).catch(function () {
+      showStatus(form, 'Your request could not be saved. Please send the WhatsApp draft so we can reply.', 'error');
+    });
   }
 
   document.addEventListener('focusin', function (event) {
