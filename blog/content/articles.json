@@ -1,6 +1,39 @@
 {
   "articles": [
     {
+      "slug": "how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear",
+      "title": "How to Choose Tulle Fabric for Wedding Dresses, Veils and Dancewear",
+      "excerpt": "A buyer-focused guide to selecting plain, sparkle, embroidered and stretch tulle by garment function, sample checks and wholesale sourcing requirements.",
+      "coverImage": "/yaqixin-assets/products/yx1046-soft-white-20d-nylon-plain-tulle-fabric/yx1046-main-soft-white-20d-nylon-plain-tulle-fabric.webp",
+      "coverAlt": "Soft white nylon plain tulle shown in hand with a bridal-style garment reference",
+      "coverCaption": "YAQIXIN YX1046 soft white nylon plain tulle, shown as a current catalog example for a light bridal or veil route.",
+      "publishedAt": "2026-08-07",
+      "updatedAt": "2026-08-07",
+      "author": "YAQIXIN Editorial Team",
+      "category": "Fabric selection guide",
+      "primaryKeyword": "how to choose tulle fabric for wedding dresses",
+      "readingTime": "7 min read",
+      "seoTitle": "How to Choose Tulle for Bridal & Dancewear | YAQIXIN",
+      "metaDescription": "Learn how to choose plain, glitter, embroidered and stretch tulle for bridal layers, veils and dancewear, with practical sample checks for wholesale buyers.",
+      "contentFile": "how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear.html",
+      "toc": [
+        { "id": "start-with-garment-function", "label": "Start with garment function" },
+        { "id": "choose-a-base-for-softness-and-volume", "label": "Choose a base for softness and volume" },
+        { "id": "use-surface-detail-with-a-purpose", "label": "Use surface detail with a purpose" },
+        { "id": "build-for-movement-and-recovery", "label": "Build for movement and recovery" },
+        { "id": "sample-the-specification-not-only-the-look", "label": "Sample the specification, not only the look" },
+        { "id": "map-the-brief-to-a-product-route", "label": "Map the brief to a product route" },
+        { "id": "faq", "label": "Buyer questions" }
+      ],
+      "relatedLinks": [
+        { "label": "Browse all Tulle Mesh Fabric", "url": "/tulle-mesh-fabric.html" },
+        { "label": "Compare Plain Tulle Fabric", "url": "/plain-tulle-fabric.html" },
+        { "label": "Explore Glitter Tulle Fabric", "url": "/glitter-tulle-fabric.html" },
+        { "label": "View 3D Tulle Mesh Fabric", "url": "/3d-tulle-mesh-fabric.html" },
+        { "label": "Discuss a custom fabric brief", "url": "/custom-capability.html" }
+      ]
+    },
+    {
       "slug": "how-to-source-wholesale-fabric-from-china",
       "title": "How to Source Wholesale Fabric from China: A Practical Guide for Apparel Buyers",
       "excerpt": "A practical framework for turning an apparel idea into a usable fabric brief, comparing samples, and asking suppliers the questions that make a wholesale quote meaningful.",
