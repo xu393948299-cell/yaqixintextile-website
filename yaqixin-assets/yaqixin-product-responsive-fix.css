@@ -119,3 +119,22 @@
     white-space: normal;
   }
 }
+
+/* YAQIXIN_PRODUCT_MEDIA_HEIGHT_FIX_V1
+   Product images carry intrinsic HTML width/height attributes for layout hints.
+   Reset the rendered height at the shared media boundary so those attributes
+   cannot create an 800px-tall box on narrow screens. */
+.product-media .main-image-button,
+.product-media .main-product-video,
+.thumb-button {
+  aspect-ratio: 1 / 1;
+}
+
+.product-media .main-image-button img,
+.product-media .main-product-video,
+.thumb-button img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
