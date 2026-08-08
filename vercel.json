@@ -22,6 +22,11 @@
   ],
   "redirects": [
     {
+      "source": "/favicon.ico",
+      "destination": "/yaqixin-assets/favicon.png",
+      "permanent": true
+    },
+    {
       "source": "/index",
       "destination": "/",
       "permanent": true
