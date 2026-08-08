@@ -1,0 +1,145 @@
+/* YAQIXIN_SITE_IMAGE_LAYOUT_FIX_V1
+   Shared image sizing safeguards for homepage, category, product, custom,
+   information and blog pages. HTML width/height attributes are retained as
+   loading hints, but must not override a responsive component's layout box. */
+
+.hero-visual,
+.hero-collection-mosaic,
+.hero-custom-visual,
+.hero-media,
+.product-media,
+.main-shot,
+.side-shot,
+.cert-shot,
+.poster-media,
+.about-collage figure,
+.about-path,
+.service-media,
+.gallery-card,
+.cert-preview,
+.ship-card,
+.article-card-image,
+.article-cover,
+.article-figure,
+.listing-media,
+.category-card,
+.product-card,
+.related-fabric-media,
+.color-sku-card,
+.color-sku-preview {
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Keep the B2B download CTA inside its content column when the copy and
+   button have different intrinsic widths. */
+.download-cta {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.download-cta > a:first-child {
+  min-width: 0;
+  flex: 1 1 320px;
+}
+
+.download-cta > a:last-child {
+  min-width: 0;
+  max-width: 100%;
+  flex: 0 1 360px;
+  white-space: normal;
+  text-align: center;
+}
+
+/* Responsive media that fills a deliberately sized visual frame. */
+.hero-visual img,
+.hero-photo-main img,
+.hero-collection-mosaic img,
+.hero-custom-visual img,
+.main-shot img,
+.side-shot img,
+.cert-shot img,
+.poster-media img,
+.about-collage img,
+.about-path img,
+.service-media img,
+.gallery-card img,
+.ship-card img,
+.category-card img,
+.product-card img {
+  display: block;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Product galleries: every tile owns its square box, including video mode. */
+.product-media .main-image-button,
+.product-media .main-product-video,
+.product-media .thumb-button {
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.product-media .main-image-button img,
+.product-media .thumb-button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.product-media .main-product-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.product-media .main-product-video[style*="display: none"],
+.product-media:not(.is-video) .main-product-video {
+  display: none;
+}
+
+.sku-select-button img,
+.color-preview-button img,
+.color-sku-card img,
+.color-card img,
+.color-sku-preview img,
+.related-fabric-media img,
+.listing-media img,
+.cert-preview img,
+.article-cover img,
+.article-figure img,
+.pebble-primary,
+.pebble-secondary {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .download-cta > a:first-child,
+  .download-cta > a:last-child {
+    flex: 1 1 100%;
+  }
+
+  .category-card img,
+  .product-card img {
+    height: auto;
+  }
+
+  .listing-media img {
+    height: auto;
+  }
+}

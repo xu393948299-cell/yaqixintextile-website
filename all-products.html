@@ -87,6 +87,7 @@
   .mobile-action-bar .cat-label{font-size:12px}
 }
 </style>
+  <link rel="stylesheet" href="yaqixin-assets/yaqixin-site-image-layout-fix.css?v=20260808-site-image-fix">
 </head>
 <body class="all-products-page">
   <div class="topbar">All fabric products / wholesale sourcing / stock and custom programs</div>
@@ -406,7 +407,7 @@
         var title=displayTitle(item);
         return '<article class="listing-card all-card">'+
           '<div class="listing-media">'+
-            '<a class="listing-image-link" href="'+item.href+'"><img src="'+item.img+'" width="'+item.width+'" height="'+item.height+'" alt="'+escapeHtml(title)+'" loading="lazy"></a>'+
+            '<a class="listing-image-link" href="'+item.href+'"><img src="'+item.img+'" width="'+item.width+'" alt="'+escapeHtml(title)+'" loading="lazy"></a>'+
             (item.video?'<button class="all-video-button" type="button" data-video="'+escapeHtml(item.video)+'" data-title="'+escapeHtml(title)+'" aria-label="Play video: '+escapeHtml(title)+'"><span></span></button>':"")+
           '</div>'+
           '<div class="listing-copy">'+
