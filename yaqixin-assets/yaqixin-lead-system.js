@@ -10,6 +10,14 @@
   var formSelector = 'form.form-card, form#inquiry-form, form[data-lead-form]';
   var startedForms = new WeakSet();
 
+  function isSpanish() {
+    return (document.documentElement.lang || '').toLowerCase().indexOf('es') === 0;
+  }
+
+  function localized(english, spanish) {
+    return isSpanish() ? spanish : english;
+  }
+
   function safeStorage() {
     try { return window.sessionStorage; } catch (error) { return null; }
   }
@@ -84,8 +92,33 @@
     var note = document.createElement('p');
     note.setAttribute('data-lead-privacy', '');
     note.style.cssText = 'margin:10px 0 0;color:#727b87;font-size:11px;line-height:1.5';
-    note.innerHTML = 'By submitting, you allow YAQIXIN to use your details for this quotation request. <a href="/privacy-policy" style="color:inherit;text-decoration:underline">Privacy Policy</a>';
+    note.innerHTML = localized(
+      'By submitting, you allow YAQIXIN to use your details for this quotation request. <a href="/privacy-policy" style="color:inherit;text-decoration:underline">Privacy Policy</a>',
+      'Al enviar, permite que YAQIXIN utilice sus datos para esta solicitud de cotización. <a href="/privacy-policy" style="color:inherit;text-decoration:underline">Política de privacidad</a>'
+    );
     form.appendChild(note);
+  }
+
+  function markContactRequirement(form) {
+    var field = form.elements.contact || form.querySelector('input[name="contact"],input[name="email"],input[name="whatsapp"]');
+    if (!field) return;
+    field.setAttribute('aria-required', 'true');
+    var label = field.closest ? field.closest('label') : null;
+    var line = label && label.querySelector('.label-line');
+    if (!line || line.querySelector('[data-contact-required]')) return;
+    var marker = line.querySelector('small, .field-optional');
+    if (marker) {
+      marker.textContent = document.documentElement.lang === 'es' ? 'necesario para responder' : 'required for reply';
+      marker.classList.remove('field-optional');
+      marker.classList.add('field-required');
+      marker.setAttribute('data-contact-required', '');
+      return;
+    }
+    marker = document.createElement('em');
+    marker.className = 'field-required';
+    marker.setAttribute('data-contact-required', '');
+    marker.textContent = document.documentElement.lang === 'es' ? 'Necesario para responder' : 'Required for reply';
+    line.appendChild(marker);
   }
 
   function addSpamTrap(form) {
@@ -129,20 +162,20 @@
     var contact = valueFor(form, ['contact', 'email', 'whatsapp']);
     var requirement = valueFor(form, ['message', 'requirement']);
     if (honeypot) {
-      showStatus(form, 'Your request could not be submitted. Please try again.', 'error');
+      showStatus(form, localized('Your request could not be submitted. Please try again.', 'No se pudo enviar la solicitud. Inténtelo de nuevo.'), 'error');
       return;
     }
     if (contact.length < 4) {
-      showStatus(form, 'Please add an email or WhatsApp number so we can reply.', 'error');
+      showStatus(form, localized('Please add an email or WhatsApp number so we can reply.', 'Añada un email o número de WhatsApp para que podamos responder.'), 'error');
       return;
     }
     if (contact.length > 200 || requirement.length > 4000) {
-      showStatus(form, 'Please shorten the contact or requirement details and try again.', 'error');
+      showStatus(form, localized('Please shorten the contact or requirement details and try again.', 'Acorte los datos de contacto o los requisitos e inténtelo de nuevo.'), 'error');
       return;
     }
     var seconds = cooldownRemaining();
     if (seconds) {
-      showStatus(form, 'Please wait ' + seconds + ' seconds before sending another request.', 'error');
+      showStatus(form, localized('Please wait ' + seconds + ' seconds before sending another request.', 'Espere ' + seconds + ' segundos antes de enviar otra solicitud.'), 'error');
       return;
     }
     var attribution = getAttribution();
@@ -173,10 +206,10 @@
     };
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) data.email = contact;
 
-    showStatus(form, 'Saving your quotation request...', 'pending');
+    showStatus(form, localized('Saving your quotation request...', 'Guardando su solicitud de cotización...'), 'pending');
 
     if (!navigator.onLine) {
-      showStatus(form, 'Your request could not be saved while you are offline. Please send the WhatsApp draft so we can reply.', 'error');
+      showStatus(form, localized('Your request could not be saved while you are offline. Please send the WhatsApp draft so we can reply.', 'No se pudo guardar la solicitud sin conexión. Envíe el borrador de WhatsApp para que podamos responder.'), 'error');
       return;
     }
     markSubmitted();
@@ -196,9 +229,9 @@
         page_type: document.body && document.body.dataset && document.body.dataset.pageType || 'website',
         contact_method: selectedWhatsApp ? 'whatsapp' : 'form'
       });
-      showStatus(form, 'Your quotation request has been saved. You can also send the WhatsApp draft to speed up the reply.', 'success');
+      showStatus(form, localized('Your quotation request has been saved. You can also send the WhatsApp draft to speed up the reply.', 'Su solicitud de cotización se ha guardado. También puede enviar el borrador de WhatsApp para agilizar la respuesta.'), 'success');
     }).catch(function () {
-      showStatus(form, 'Your request could not be saved. Please send the WhatsApp draft so we can reply.', 'error');
+      showStatus(form, localized('Your request could not be saved. Please send the WhatsApp draft so we can reply.', 'No se pudo guardar la solicitud. Envíe el borrador de WhatsApp para que podamos responder.'), 'error');
     }).finally(function () {
       setSubmitting(form, false);
     });
@@ -212,6 +245,7 @@
   }, true);
 
   document.querySelectorAll(formSelector).forEach(function (form) {
+    markContactRequirement(form);
     addPrivacyNote(form);
     addSpamTrap(form);
   });

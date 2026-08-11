@@ -1,4 +1,12 @@
-# Homepage static B2B hero — design QA
+## Current implementation QA — 2026-08-10
+
+### Final result: blocked
+
+The current homepage/product-layout implementation could not receive browser visual sign-off in this run: the permitted in-app browser could not navigate to the local HTTP preview, and Chrome control was unavailable. No new screenshots were generated. Static checks completed instead: HTML tag-stack parsing, inline/external JavaScript parsing, local HTTP asset checks, and homepage module counts.
+
+The hero snapshot and “Passed” result below are historical evidence for an earlier hero-only implementation and do not certify the current source after the homepage restructuring.
+
+# Historical homepage static B2B hero — design QA
 
 ## Visual reference and implementation
 
@@ -17,6 +25,6 @@
 - Content: copy is selectable HTML, exactly three slides are present, and the requested material cards are Tulle, Satin, and Lace. Lace intentionally replaces the reference concept's Denim card.
 - Runtime: no browser console errors were observed on the English or Spanish local homepage.
 
-## Result
+## Historical result
 
 Passed. No P0, P1, or P2 visual or interaction issues remain. The only intentional visual deviation from the selected concept is replacing Denim with Lace at the buyer's request.

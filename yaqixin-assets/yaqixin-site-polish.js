@@ -1,6 +1,8 @@
 ﻿(function(){
   var form=document.getElementById('site-search');
   if(!form){return}
+  var searchInput=document.getElementById('site-search-input');
+  if(searchInput && !searchInput.getAttribute('aria-label')){searchInput.setAttribute('aria-label','Search fabrics')}
   form.addEventListener('submit',function(event){
     event.preventDefault();
     var input=document.getElementById('site-search-input');
@@ -58,7 +60,7 @@
       blood:'/yx956-1-blood-splatter-foil-holiday-tulle-fabric',
       splatter:'/yx956-1-blood-splatter-foil-holiday-tulle-fabric',
       foil:'/yx956-1-blood-splatter-foil-holiday-tulle-fabric',
-            pleated:'/pleated-fabric',
+      pleated:'/pleated-fabric',
       'pleated fabric':'/pleated-fabric',
       yzt001:'/yzt001-ivory-pleated-mesh-tulle-fabric',
       yx198:'/yx198-7mm-pleated-polyester-satin-fabric',
@@ -84,12 +86,9 @@
     })||links.find(function(link){
       return (link.getAttribute('href')||'').toLowerCase().indexOf(query.replace(/\s+/g,'-'))>-1;
     });
-    window.location.href=best&&best.getAttribute('href')?best.getAttribute('href'):'/all-products';
+    window.location.href=best&&best.getAttribute('href')?best.getAttribute('href'):'/all-products?q='+encodeURIComponent(query);
   });
 })();
-
-
-
 
 
 

@@ -19,4 +19,4 @@
 .whatsapp-choice,.contact-buttons{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.whatsapp-choice .btn,.contact-buttons .btn{margin-top:0}.email-muted{color:#667085;font-size:13px;line-height:1.6}.email-muted a{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:640px){.whatsapp-choice .btn,.contact-buttons .btn{width:100%}}
 
-.required,.field-required{display:none!important}
+.required{display:none!important}
