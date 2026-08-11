@@ -6,7 +6,8 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..");
 const instagramUrl = "https://www.instagram.com/zhang.mandyzhang/";
 const stylesheet = '<link rel="stylesheet" href="/yaqixin-assets/yaqixin-instagram.css?v=20260811">';
-const linkMarkup = `<a class="yx-instagram-link" data-social-profile="instagram" href="${instagramUrl}" target="_blank" rel="noopener noreferrer external" aria-label="Follow YAQIXIN on Instagram at zhang.mandyzhang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg><span>@zhang.mandyzhang</span></a>`;
+const instagramMark = '<svg class="yx-instagram-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><radialGradient id="yx-instagram-gradient" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#feda75"></stop><stop offset="25%" stop-color="#fa7e1e"></stop><stop offset="50%" stop-color="#d62976"></stop><stop offset="75%" stop-color="#962fbf"></stop><stop offset="100%" stop-color="#4f5bd5"></stop></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#yx-instagram-gradient)"></rect><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="4.2" fill="none" stroke="#fff" stroke-width="1.8"></rect><circle cx="12" cy="12" r="3.15" fill="none" stroke="#fff" stroke-width="1.8"></circle><circle cx="16.8" cy="7.2" r="1" fill="#fff"></circle></svg>';
+const linkMarkup = `<a class="yx-instagram-link" data-social-profile="instagram" href="${instagramUrl}" target="_blank" rel="noopener noreferrer external" aria-label="Follow YAQIXIN on Instagram at zhang.mandyzhang">${instagramMark}<span>@zhang.mandyzhang</span></a>`;
 
 function htmlFiles(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -31,7 +32,10 @@ for (const filePath of htmlFiles(root)) {
     html = html.replace("</head>", `  ${stylesheet}${eol}</head>`);
   }
 
-  if (!html.includes('data-social-profile="instagram"')) {
+  const existingInstagramLink = /<a class="yx-instagram-link"[^>]*data-social-profile="instagram"[\s\S]*?<\/a>/;
+  if (existingInstagramLink.test(html)) {
+    html = html.replace(existingInstagramLink, linkMarkup);
+  } else {
     const footerStart = html.search(/<footer\b[^>]*class=["'][^"']*\bfooter\b/i);
     const footerEnd = html.indexOf("</footer>", footerStart);
     if (footerStart < 0 || footerEnd < 0) {

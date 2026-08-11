@@ -14,10 +14,11 @@
   transition: color .18s ease, transform .18s ease;
 }
 
-.footer .yx-instagram-link svg {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 20px;
+.footer .yx-instagram-link .yx-instagram-mark {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  filter: drop-shadow(0 3px 8px rgba(214, 41, 118, .24));
 }
 
 .footer .yx-instagram-link:hover {
