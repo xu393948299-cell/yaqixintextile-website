@@ -280,6 +280,17 @@ body.yx-wechat-modal-open {
   line-height: 1.6;
 }
 
+.footer.yx-site-footer .yx-footer-map-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(239, 195, 158, .72);
+  text-underline-offset: 3px;
+}
+
+.footer.yx-site-footer .yx-footer-map-link:hover {
+  color: #efc39e;
+}
+
 .footer.yx-site-footer .yx-social-links {
   gap: 10px;
   margin-top: 2px;
