@@ -5,10 +5,14 @@ import { fileURLToPath } from "node:url";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..");
 const instagramUrl = "https://www.instagram.com/zhang.mandyzhang/";
-const stylesheetHref = "/yaqixin-assets/yaqixin-instagram.css?v=20260811-color";
+const facebookUrl = "https://www.facebook.com/profile.php?id=61554639581256";
+const stylesheetHref = "/yaqixin-assets/yaqixin-instagram.css?v=20260811-facebook";
 const stylesheet = `<link rel="stylesheet" href="${stylesheetHref}">`;
 const instagramMark = '<svg class="yx-instagram-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><radialGradient id="yx-instagram-gradient" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#feda75"></stop><stop offset="25%" stop-color="#fa7e1e"></stop><stop offset="50%" stop-color="#d62976"></stop><stop offset="75%" stop-color="#962fbf"></stop><stop offset="100%" stop-color="#4f5bd5"></stop></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#yx-instagram-gradient)"></rect><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="4.2" fill="none" stroke="#fff" stroke-width="1.8"></rect><circle cx="12" cy="12" r="3.15" fill="none" stroke="#fff" stroke-width="1.8"></circle><circle cx="16.8" cy="7.2" r="1" fill="#fff"></circle></svg>';
-const linkMarkup = `<a class="yx-instagram-link" data-social-profile="instagram" href="${instagramUrl}" target="_blank" rel="noopener noreferrer external" aria-label="Follow YAQIXIN on Instagram at zhang.mandyzhang">${instagramMark}<span>@zhang.mandyzhang</span></a>`;
+const facebookMark = '<svg class="yx-facebook-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="#0866ff"></circle><path fill="#fff" d="M13.55 20v-7.05h2.36l.35-2.75h-2.71V8.45c0-.8.22-1.34 1.37-1.34h1.46V4.65c-.25-.04-1.12-.11-2.13-.11-2.11 0-3.56 1.29-3.56 3.66v2H8.3v2.75h2.39V20h2.86Z"></path></svg>';
+const instagramLinkMarkup = `<a class="yx-social-link yx-instagram-link" data-social-profile="instagram" href="${instagramUrl}" target="_blank" rel="noopener noreferrer external" aria-label="Follow YAQIXIN on Instagram at zhang.mandyzhang">${instagramMark}<span>@zhang.mandyzhang</span></a>`;
+const facebookLinkMarkup = `<a class="yx-social-link yx-facebook-link" data-social-profile="facebook" href="${facebookUrl}" target="_blank" rel="noopener noreferrer external" aria-label="Visit YAQIXIN on Facebook">${facebookMark}<span>YAQIXIN on Facebook</span></a>`;
+const socialLinksMarkup = `<div class="yx-social-links" aria-label="YAQIXIN social media">${instagramLinkMarkup}${facebookLinkMarkup}</div>`;
 
 function htmlFiles(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -35,9 +39,9 @@ for (const filePath of htmlFiles(root)) {
     html = html.replace("</head>", `  ${stylesheet}${eol}</head>`);
   }
 
-  const existingInstagramLink = /<a class="yx-instagram-link"[^>]*data-social-profile="instagram"[\s\S]*?<\/a>/;
+  const existingInstagramLink = /<a class="[^"]*yx-instagram-link[^"]*"[^>]*data-social-profile="instagram"[\s\S]*?<\/a>/;
   if (existingInstagramLink.test(html)) {
-    html = html.replace(existingInstagramLink, linkMarkup);
+    html = html.replace(existingInstagramLink, instagramLinkMarkup);
   } else {
     const footerStart = html.search(/<footer\b[^>]*class=["'][^"']*\bfooter\b/i);
     const footerEnd = html.indexOf("</footer>", footerStart);
@@ -55,7 +59,14 @@ for (const filePath of htmlFiles(root)) {
     }
 
     const insertionPoint = footerStart + closingMatch.index;
-    html = `${html.slice(0, insertionPoint)}${linkMarkup}${html.slice(insertionPoint)}`;
+    html = `${html.slice(0, insertionPoint)}${instagramLinkMarkup}${html.slice(insertionPoint)}`;
+  }
+
+  const existingSocialLinks = /<div class="yx-social-links"[^>]*>[\s\S]*?<\/div>/;
+  if (existingSocialLinks.test(html)) {
+    html = html.replace(existingSocialLinks, socialLinksMarkup);
+  } else {
+    html = html.replace(instagramLinkMarkup, socialLinksMarkup);
   }
 
   if (html !== original) {
@@ -64,4 +75,4 @@ for (const filePath of htmlFiles(root)) {
   }
 }
 
-console.log(`Instagram profile synced across ${updated} of ${matched} footer HTML files.`);
+console.log(`Instagram and Facebook profiles synced across ${updated} of ${matched} footer HTML files.`);

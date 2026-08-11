@@ -12,7 +12,10 @@ const publisher = {
   "@type": "Organization",
   name: "YAQIXIN",
   url: `${baseUrl}/`,
-  sameAs: ["https://www.instagram.com/zhang.mandyzhang/"],
+  sameAs: [
+    "https://www.instagram.com/zhang.mandyzhang/",
+    "https://www.facebook.com/profile.php?id=61554639581256",
+  ],
   logo: {
     "@type": "ImageObject",
     url: `${baseUrl}/yaqixin-assets/logo-yaqixin-header-solid.webp`,
@@ -139,7 +142,7 @@ function runtimeScripts(localRoot) {
 }
 
 function footer(localRoot) {
-  return `<footer class="footer"><div class="footer-inner"><div><strong>YAQIXIN TEXTILES</strong><p>Guangzhou wholesale fabric manufacturer for global apparel sourcing.</p></div><div><p>WhatsApp: +86 18125117673 / +86 13632259091<br>Email for quotation documents: 378080571@qq.com</p><a class="yx-instagram-link" data-social-profile="instagram" href="https://www.instagram.com/zhang.mandyzhang/" target="_blank" rel="noopener noreferrer external" aria-label="Follow YAQIXIN on Instagram at zhang.mandyzhang"><svg class="yx-instagram-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><radialGradient id="yx-instagram-gradient" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#feda75"></stop><stop offset="25%" stop-color="#fa7e1e"></stop><stop offset="50%" stop-color="#d62976"></stop><stop offset="75%" stop-color="#962fbf"></stop><stop offset="100%" stop-color="#4f5bd5"></stop></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#yx-instagram-gradient)"></rect><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="4.2" fill="none" stroke="#fff" stroke-width="1.8"></rect><circle cx="12" cy="12" r="3.15" fill="none" stroke="#fff" stroke-width="1.8"></circle><circle cx="16.8" cy="7.2" r="1" fill="#fff"></circle></svg><span>@zhang.mandyzhang</span></a></div></div></footer>
+  return `<footer class="footer"><div class="footer-inner"><div><strong>YAQIXIN TEXTILES</strong><p>Guangzhou wholesale fabric manufacturer for global apparel sourcing.</p></div><div><p>WhatsApp: +86 18125117673 / +86 13632259091<br>Email for quotation documents: 378080571@qq.com</p><div class="yx-social-links" aria-label="YAQIXIN social media"><a class="yx-social-link yx-instagram-link" data-social-profile="instagram" href="https://www.instagram.com/zhang.mandyzhang/" target="_blank" rel="noopener noreferrer external" aria-label="Follow YAQIXIN on Instagram at zhang.mandyzhang"><svg class="yx-instagram-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><radialGradient id="yx-instagram-gradient" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#feda75"></stop><stop offset="25%" stop-color="#fa7e1e"></stop><stop offset="50%" stop-color="#d62976"></stop><stop offset="75%" stop-color="#962fbf"></stop><stop offset="100%" stop-color="#4f5bd5"></stop></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#yx-instagram-gradient)"></rect><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="4.2" fill="none" stroke="#fff" stroke-width="1.8"></rect><circle cx="12" cy="12" r="3.15" fill="none" stroke="#fff" stroke-width="1.8"></circle><circle cx="16.8" cy="7.2" r="1" fill="#fff"></circle></svg><span>@zhang.mandyzhang</span></a><a class="yx-social-link yx-facebook-link" data-social-profile="facebook" href="https://www.facebook.com/profile.php?id=61554639581256" target="_blank" rel="noopener noreferrer external" aria-label="Visit YAQIXIN on Facebook"><svg class="yx-facebook-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="#0866ff"></circle><path fill="#fff" d="M13.55 20v-7.05h2.36l.35-2.75h-2.71V8.45c0-.8.22-1.34 1.37-1.34h1.46V4.65c-.25-.04-1.12-.11-2.13-.11-2.11 0-3.56 1.29-3.56 3.66v2H8.3v2.75h2.39V20h2.86Z"></path></svg><span>YAQIXIN on Facebook</span></a></div></div></div></footer>
 ${runtimeScripts(localRoot)}`;
 }
 
@@ -196,7 +199,7 @@ function commonHead({ title, description, canonicalPath, image, type = "website"
   <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${stylesHref}" : "/blog/styles.css") + '">');</script>
   <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${cardsStylesHref}" : "/blog/cards.css") + '">');</script>
   <noscript><link rel="stylesheet" href="/blog/styles.css"><link rel="stylesheet" href="/blog/cards.css"></noscript>
-  <link rel="stylesheet" href="/yaqixin-assets/yaqixin-instagram.css?v=20260811-color">
+  <link rel="stylesheet" href="/yaqixin-assets/yaqixin-instagram.css?v=20260811-facebook">
   <link rel="icon" href="${faviconHref}" type="image/png">
   ${localPreviewScript(localRoot)}${articleMeta}`;
 }
