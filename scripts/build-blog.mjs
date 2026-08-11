@@ -196,7 +196,7 @@ function commonHead({ title, description, canonicalPath, image, type = "website"
   <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${stylesHref}" : "/blog/styles.css") + '">');</script>
   <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${cardsStylesHref}" : "/blog/cards.css") + '">');</script>
   <noscript><link rel="stylesheet" href="/blog/styles.css"><link rel="stylesheet" href="/blog/cards.css"></noscript>
-  <link rel="stylesheet" href="/yaqixin-assets/yaqixin-instagram.css?v=20260811">
+  <link rel="stylesheet" href="/yaqixin-assets/yaqixin-instagram.css?v=20260811-color">
   <link rel="icon" href="${faviconHref}" type="image/png">
   ${localPreviewScript(localRoot)}${articleMeta}`;
 }
