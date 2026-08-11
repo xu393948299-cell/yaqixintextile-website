@@ -1,0 +1,40 @@
+.footer .yx-instagram-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  max-width: 100%;
+  min-height: 36px;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: color .18s ease, transform .18s ease;
+}
+
+.footer .yx-instagram-link svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+}
+
+.footer .yx-instagram-link:hover {
+  color: #efc39e;
+  transform: translateY(-1px);
+}
+
+.footer .yx-instagram-link:focus-visible {
+  outline: 2px solid #efc39e;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+@media (max-width: 760px) {
+  .footer .yx-instagram-link {
+    min-height: 44px;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+}

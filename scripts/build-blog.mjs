@@ -12,6 +12,7 @@ const publisher = {
   "@type": "Organization",
   name: "YAQIXIN",
   url: `${baseUrl}/`,
+  sameAs: ["https://www.instagram.com/zhang.mandyzhang/"],
   logo: {
     "@type": "ImageObject",
     url: `${baseUrl}/yaqixin-assets/logo-yaqixin-header-solid.webp`,
@@ -138,7 +139,7 @@ function runtimeScripts(localRoot) {
 }
 
 function footer(localRoot) {
-  return `<footer class="footer"><div class="footer-inner"><div><strong>YAQIXIN TEXTILES</strong><p>Guangzhou wholesale fabric manufacturer for global apparel sourcing.</p></div><div><p>WhatsApp: +86 18125117673 / +86 13632259091<br>Email for quotation documents: 378080571@qq.com</p></div></div></footer>
+  return `<footer class="footer"><div class="footer-inner"><div><strong>YAQIXIN TEXTILES</strong><p>Guangzhou wholesale fabric manufacturer for global apparel sourcing.</p></div><div><p>WhatsApp: +86 18125117673 / +86 13632259091<br>Email for quotation documents: 378080571@qq.com</p><a class="yx-instagram-link" data-social-profile="instagram" href="https://www.instagram.com/zhang.mandyzhang/" target="_blank" rel="noopener noreferrer external" aria-label="Follow YAQIXIN on Instagram at zhang.mandyzhang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg><span>@zhang.mandyzhang</span></a></div></div></footer>
 ${runtimeScripts(localRoot)}`;
 }
 
@@ -195,6 +196,7 @@ function commonHead({ title, description, canonicalPath, image, type = "website"
   <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${stylesHref}" : "/blog/styles.css") + '">');</script>
   <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${cardsStylesHref}" : "/blog/cards.css") + '">');</script>
   <noscript><link rel="stylesheet" href="/blog/styles.css"><link rel="stylesheet" href="/blog/cards.css"></noscript>
+  <link rel="stylesheet" href="/yaqixin-assets/yaqixin-instagram.css?v=20260811">
   <link rel="icon" href="${faviconHref}" type="image/png">
   ${localPreviewScript(localRoot)}${articleMeta}`;
 }
