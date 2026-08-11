@@ -45,6 +45,10 @@
     return document.getElementById('inquiry')?'#inquiry':'/#inquiry';
   }
 
+  function whatsappHref(){
+    return document.body.getAttribute('data-whatsapp-href')||'';
+  }
+
   function injectStyle(){
     if(document.getElementById(STYLE_ID)){return}
     var style=document.createElement('style');
@@ -104,7 +108,9 @@
       bar.setAttribute('aria-label','Mobile quick actions');
       document.body.appendChild(bar);
     }
-    bar.innerHTML='<button class="categories" id="'+BUTTON_ID+'" type="button" aria-label="Menu" aria-controls="mobileCategorySheet" aria-expanded="false"><span class="cat-icon" aria-hidden="true"><span></span></span><span class="cat-label">Menu</span></button><a class="chat" href="'+inquiryHref()+'">WhatsApp</a><a class="quote" href="'+inquiryHref()+'">Get Sample</a>';
+    var chatHref=whatsappHref()||inquiryHref();
+    var chatAttrs=whatsappHref()?' target="_blank" rel="noopener noreferrer"':'';
+    bar.innerHTML='<button class="categories" id="'+BUTTON_ID+'" type="button" aria-label="Menu" aria-controls="mobileCategorySheet" aria-expanded="false"><span class="cat-icon" aria-hidden="true"><span></span></span><span class="cat-label">Menu</span></button><a class="chat" href="'+chatHref+'"'+chatAttrs+'>WhatsApp</a><a class="quote" href="'+inquiryHref()+'">Get Sample</a>';
     return bar;
   }
 
