@@ -73,8 +73,8 @@
       about:'/custom-capability',
       'about us':'/custom-capability',
       custom:'/custom-capability#custom',
-      certification:'/custom-capability#certification',
-      shipment:'/custom-capability#shipment'
+      certification:'/custom-capability',
+      shipment:'/custom-capability'
     };
     if(map[query]){
       window.location.href=map[query];
