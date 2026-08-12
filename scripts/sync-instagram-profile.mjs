@@ -7,7 +7,7 @@ const root = path.resolve(here, "..");
 const instagramUrl = "https://www.instagram.com/zhang.mandyzhang/";
 const facebookUrl = "https://www.facebook.com/profile.php?id=61554639581256";
 const wechatQrUrl = "/yaqixin-assets/wechat-contact-13172537921.webp";
-const stylesheetHref = "/yaqixin-assets/yaqixin-instagram.css?v=20260811-footer";
+const stylesheetHref = "/yaqixin-assets/yaqixin-instagram.css?v=20260812-footer-map";
 const stylesheet = `<link rel="stylesheet" href="${stylesheetHref}">`;
 const wechatScript = '<script src="/yaqixin-assets/yaqixin-wechat-contact.js?v=20260811" defer></script>';
 const instagramMark = '<svg class="yx-instagram-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><radialGradient id="yx-instagram-gradient" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#feda75"></stop><stop offset="25%" stop-color="#fa7e1e"></stop><stop offset="50%" stop-color="#d62976"></stop><stop offset="75%" stop-color="#962fbf"></stop><stop offset="100%" stop-color="#4f5bd5"></stop></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#yx-instagram-gradient)"></rect><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="4.2" fill="none" stroke="#fff" stroke-width="1.8"></rect><circle cx="12" cy="12" r="3.15" fill="none" stroke="#fff" stroke-width="1.8"></circle><circle cx="16.8" cy="7.2" r="1" fill="#fff"></circle></svg>';
@@ -17,9 +17,11 @@ const instagramLinkMarkup = `<a class="yx-social-link yx-instagram-link" data-so
 const facebookLinkMarkup = `<a class="yx-social-link yx-facebook-link" data-social-profile="facebook" href="${facebookUrl}" target="_blank" rel="noopener noreferrer external" aria-label="Visit YAQIXIN on Facebook">${facebookMark}<span>Facebook</span></a>`;
 const wechatLinkMarkup = `<a class="yx-social-link yx-wechat-link" data-social-profile="wechat" data-wechat-trigger href="${wechatQrUrl}" aria-label="Open WeChat QR code for YAQIXIN sales contact 13172537921">${wechatMark}<span>WeChat</span></a>`;
 const socialLinksMarkup = `<div class="yx-social-links" aria-label="YAQIXIN social and messaging contacts">${instagramLinkMarkup}${facebookLinkMarkup}${wechatLinkMarkup}</div>`;
+const showroomMapUrl = "https://maps.app.goo.gl/ZruhKKbar7VxfpneA?g_st=ic";
+const showroomMapLinkMarkup = `<a class="yx-footer-map-link" href="${showroomMapUrl}" target="_blank" rel="noopener noreferrer external" aria-label="Open YAQIXIN showroom in Google Maps">No. 5 Xiaoyang Street, Haizhu District, Guangzhou <span aria-hidden="true">\u2197</span></a>`;
 
 function buildFooterMarkup(tagline) {
-  return `<footer class="footer yx-site-footer"><div class="footer-inner"><div class="yx-footer-brand"><strong>YAQIXIN TEXTILES</strong><span>${tagline}</span></div><div class="yx-footer-contact"><a class="yx-footer-email" href="mailto:378080571@qq.com" aria-label="Email YAQIXIN for quotation support">Email: 378080571@qq.com</a><address>Showroom: No. 5 Xiaoyang Street, Haizhu District, Guangzhou</address>${socialLinksMarkup}</div></div></footer>`;
+  return `<footer class="footer yx-site-footer"><div class="footer-inner"><div class="yx-footer-brand"><strong>YAQIXIN TEXTILES</strong><span>${tagline}</span></div><div class="yx-footer-contact"><a class="yx-footer-email" href="mailto:378080571@qq.com" aria-label="Email YAQIXIN for quotation support">Email: 378080571@qq.com</a><address>Showroom: ${showroomMapLinkMarkup}</address>${socialLinksMarkup}</div></div></footer>`;
 }
 
 const missingFooterProducts = new Set([
@@ -68,7 +70,7 @@ for (const filePath of htmlFiles(root)) {
   // Keep injected asset lines free of CR characters so `git diff --check`
   // remains clean even in legacy files that otherwise use CRLF endings.
   html = html.replace(
-    /(^[ \t]*<link rel="stylesheet" href="\/yaqixin-assets\/yaqixin-instagram\.css\?v=20260811-footer">)\r?\n/m,
+    /(^[ \t]*<link rel="stylesheet" href="\/yaqixin-assets\/yaqixin-instagram\.css\?v=20260812-footer-map">)\r?\n/m,
     "$1\n",
   );
   html = html.replace(
@@ -76,21 +78,24 @@ for (const filePath of htmlFiles(root)) {
     "$1\n",
   );
 
-  const footerMarkup = buildFooterMarkup(tagline);
-  const footerPattern = /<footer\b[^>]*class=["'][^"']*\bfooter\b[^"']*["'][^>]*>[\s\S]*?<\/footer>/i;
-  if (footerPattern.test(html)) {
-    html = html.replace(footerPattern, footerMarkup);
-  } else if (isMissingFooterProduct) {
-    const floatingMarker = html.search(/<a\s+class=["'][^"']*\bwhatsapp\b|<div\s+class=["'][^"']*\bmobile-action-bar\b/i);
-    if (floatingMarker >= 0) {
-      html = `${html.slice(0, floatingMarker)}${footerMarkup}${eol}${html.slice(floatingMarker)}`;
-    } else if (/<\/body>/i.test(html)) {
-      html = html.replace(/<\/body>/i, `${footerMarkup}${eol}</body>`);
+  const hasCurrentFooter = html.includes('class="yx-site-footer"') && html.includes('class="yx-footer-map-link"');
+  if (!hasCurrentFooter) {
+    const footerMarkup = buildFooterMarkup(tagline);
+    const footerPattern = /<footer\b[^>]*class=["'][^"']*\bfooter\b[^"']*["'][^>]*>[\s\S]*?<\/footer>/i;
+    if (footerPattern.test(html)) {
+      html = html.replace(footerPattern, footerMarkup);
+    } else if (isMissingFooterProduct) {
+      const floatingMarker = html.search(/<a\s+class=["'][^"']*\bwhatsapp\b|<div\s+class=["'][^"']*\bmobile-action-bar\b/i);
+      if (floatingMarker >= 0) {
+        html = `${html.slice(0, floatingMarker)}${footerMarkup}${eol}${html.slice(floatingMarker)}`;
+      } else if (/<\/body>/i.test(html)) {
+        html = html.replace(/<\/body>/i, `${footerMarkup}${eol}</body>`);
+      } else {
+        throw new Error(`Unable to insert footer in ${relativePath}`);
+      }
     } else {
-      throw new Error(`Unable to insert footer in ${relativePath}`);
+      throw new Error(`Unable to locate footer in ${relativePath}`);
     }
-  } else {
-    throw new Error(`Unable to locate footer in ${relativePath}`);
   }
 
   html = html.replace(/\s*<style id="homepage-footer-preview">[\s\S]*?<\/style>\s*/i, eol);

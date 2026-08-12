@@ -1,8 +1,8 @@
 ﻿(function(){
   var form=document.getElementById('site-search');
-  if(!form){return}
   var searchInput=document.getElementById('site-search-input');
   if(searchInput && !searchInput.getAttribute('aria-label')){searchInput.setAttribute('aria-label','Search fabrics')}
+  if(!form){return}
   form.addEventListener('submit',function(event){
     event.preventDefault();
     var input=document.getElementById('site-search-input');
@@ -89,7 +89,6 @@
     window.location.href=best&&best.getAttribute('href')?best.getAttribute('href'):'/all-products?q='+encodeURIComponent(query);
   });
 })();
-
 
 
 

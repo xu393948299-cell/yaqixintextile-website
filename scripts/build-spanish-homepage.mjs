@@ -25,7 +25,7 @@ replaceRequired(
 );
 replaceRequired(
   '<meta name="description" content="Source cotton, tulle, lace, satin, organza and pleated fabrics from Guangzhou. Ask YAQIXIN about stock, custom colors, samples, MOQ and export packing.">',
-  '<meta name="description" content="Proveedor mayorista de telas en Guangzhou. YAQIXIN suministra algodón, tul, malla, organza, encaje, satén y tejidos plisados para compradores B2B, muestras y pedidos a medida.">',
+  '<meta name="description" content="Proveedor mayorista de telas en Guangzhou para compradores B2B. Algodón, tul, malla, organza, encaje, satén y plisados con muestras, MOQ y pedidos a medida.">',
 );
 replaceRequired('    <link rel="canonical" href="https://www.yaqixintextile.com/">', '    <link rel="canonical" href="https://www.yaqixintextile.com/es">');
 replaceRequired('<link rel="alternate" hreflang="en" href="https://www.yaqixintextile.com/">\n  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es">\n  <link rel="alternate" hreflang="x-default" href="https://www.yaqixintextile.com/">', '<link rel="alternate" hreflang="en" href="https://www.yaqixintextile.com/">\n  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es">\n  <link rel="alternate" hreflang="x-default" href="https://www.yaqixintextile.com/">\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Proveedor Mayorista de Telas en Guangzhou | YAQIXIN","url":"https://www.yaqixintextile.com/es","inLanguage":"es"}</script>');

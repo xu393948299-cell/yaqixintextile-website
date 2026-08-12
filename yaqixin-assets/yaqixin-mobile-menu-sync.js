@@ -123,6 +123,7 @@
       document.body.appendChild(layer);
     }
     layer.hidden=true;
+    layer.setAttribute('aria-hidden','true');
     layer.innerHTML='<div class="mobile-category-backdrop" data-close-category></div><section class="mobile-category-sheet" id="mobileCategorySheet" role="dialog" aria-modal="true" aria-labelledby="mobileCategoryTitle"><div class="mobile-category-handle" aria-hidden="true"></div><div class="mobile-category-head"><div><strong id="mobileCategoryTitle">Menu</strong><span>Navigate YAQIXIN.</span></div><button class="mobile-category-close" type="button" data-close-category>Close</button></div><nav class="mobile-nav-main" aria-label="Mobile navigation"><a class="mobile-nav-row" href="/#top">Home</a><details class="mobile-nav-group"><summary>Products</summary><div class="mobile-nav-sub">'+productsHtml+'</div></details><a class="mobile-nav-row" href="/blog">Blog</a><a class="mobile-nav-row" href="/custom-capability">Customize</a></nav></section>';
     layer.setAttribute('data-product-menu-synced','true');
     return layer;
@@ -132,16 +133,36 @@
     var btn=document.getElementById(BUTTON_ID);
     if(!btn||!layer){return}
     var closeTimer;
+    var lastFocused=null;
+    function focusableElements(){
+      var sheet=layer.querySelector('#mobileCategorySheet');
+      if(!sheet){return[]}
+      return [].slice.call(sheet.querySelectorAll('a[href],button:not([disabled]),summary,select,textarea,input:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter(function(element){
+        return element.offsetWidth>0 || element.offsetHeight>0 || element===document.activeElement;
+      });
+    }
     function setOpen(open){
       window.clearTimeout(closeTimer);
       if(open){
+        lastFocused=document.activeElement;
         layer.hidden=false;
+        layer.setAttribute('aria-hidden','false');
         document.body.classList.add('mobile-category-open');
-        window.requestAnimationFrame(function(){layer.classList.add('is-open')});
+        window.requestAnimationFrame(function(){
+          layer.classList.add('is-open');
+          var closeButton=layer.querySelector('.mobile-category-close');
+          if(closeButton){closeButton.focus()}
+        });
       }else{
         layer.classList.remove('is-open');
         document.body.classList.remove('mobile-category-open');
-        closeTimer=window.setTimeout(function(){layer.hidden=true},220);
+        layer.setAttribute('aria-hidden','true');
+        closeTimer=window.setTimeout(function(){
+          layer.hidden=true;
+          var restoreTarget=lastFocused||btn;
+          if(restoreTarget && typeof restoreTarget.focus==='function'){restoreTarget.focus()}
+          lastFocused=null;
+        },220);
       }
       btn.setAttribute('aria-expanded',open?'true':'false');
     }
@@ -156,7 +177,25 @@
       link.addEventListener('click',function(){setOpen(false)});
     });
     document.addEventListener('keydown',function(event){
-      if(event.key==='Escape'&&layer.classList.contains('is-open')){setOpen(false)}
+      if(!layer.classList.contains('is-open')){return}
+      if(event.key==='Escape'){
+        event.preventDefault();
+        setOpen(false);
+        return;
+      }
+      if(event.key==='Tab'){
+        var items=focusableElements();
+        if(!items.length){return}
+        var first=items[0];
+        var last=items[items.length-1];
+        if(event.shiftKey && document.activeElement===first){
+          event.preventDefault();
+          last.focus();
+        }else if(!event.shiftKey && document.activeElement===last){
+          event.preventDefault();
+          first.focus();
+        }
+      }
     });
   }
 

@@ -86,15 +86,36 @@
     document.documentElement.classList.add('has-mobile-price-card');
   }
 
+  function restoreDesktopPricePanel() {
+    var pricePanel = document.querySelector('.price-panel');
+    var mobileCard = document.querySelector('.mobile-price-card');
+    if (mobileCard) {
+      mobileCard.remove();
+    }
+    if (pricePanel) {
+      pricePanel.removeAttribute('aria-hidden');
+    }
+    document.documentElement.classList.remove('has-mobile-price-card');
+  }
+
+  function syncResponsiveState(isMobile) {
+    if (isMobile) {
+      createMobilePriceCard();
+    } else {
+      restoreDesktopPricePanel();
+    }
+  }
+
   function initialize() {
-    createMobilePriceCard();
     var query = window.matchMedia('(max-width: 640px)');
+    syncResponsiveState(query.matches);
+    var handleChange = function (event) {
+      syncResponsiveState(event.matches);
+    };
     if (query.addEventListener) {
-      query.addEventListener('change', function (event) {
-        if (event.matches) {
-          createMobilePriceCard();
-        }
-      });
+      query.addEventListener('change', handleChange);
+    } else if (query.addListener) {
+      query.addListener(handleChange);
     }
   }
 
