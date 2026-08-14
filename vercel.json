@@ -32,6 +32,11 @@
       "permanent": true
     },
     {
+      "source": "/about-us.html",
+      "destination": "/custom-capability",
+      "permanent": true
+    },
+    {
       "source": "/about-us",
       "destination": "/custom-capability",
       "permanent": true
@@ -42,13 +47,33 @@
       "permanent": true
     },
     {
+      "source": "/blog/content/how-to-source-wholesale-fabric-from-china.html",
+      "destination": "/blog/how-to-source-wholesale-fabric-from-china",
+      "permanent": true
+    },
+    {
       "source": "/blog/content/how-to-source-wholesale-fabric-from-china",
       "destination": "/blog/how-to-source-wholesale-fabric-from-china",
       "permanent": true
     },
     {
+      "source": "/blog/content/how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear.html",
+      "destination": "/blog/how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear",
+      "permanent": true
+    },
+    {
       "source": "/blog/content/how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear",
       "destination": "/blog/how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear",
+      "permanent": true
+    },
+    {
+      "source": "/blog/content/types-of-satin-fabric-mikado-stretch-matte-liquid-compared.html",
+      "destination": "/blog/types-of-satin-fabric-mikado-stretch-matte-liquid-compared",
+      "permanent": true
+    },
+    {
+      "source": "/blog/content/types-of-satin-fabric-mikado-stretch-matte-liquid-compared",
+      "destination": "/blog/types-of-satin-fabric-mikado-stretch-matte-liquid-compared",
       "permanent": true
     },
     {
