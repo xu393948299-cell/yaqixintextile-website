@@ -4,4 +4,7 @@ docs/
 DEPLOYMENT-STEPS.md
 blog/README.md
 blog/content/articles.json
+# Legacy page fragments redirect to their published destinations and stay out of the public bundle.
+about-us.html
+blog/content/*.html
 design-qa.md
