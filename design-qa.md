@@ -1,6 +1,30 @@
-## Current implementation QA — 2026-08-10
+## Instagram wall QA — 2026-08-14
 
-### Final result: blocked
+### Final result: passed
+
+The English and Spanish homepages now include a six-card Instagram Reel wall using local WebP cover images. The English wall follows the customer showroom section and each card opens its matching public Reel.
+
+### Browser evidence
+
+- Desktop local preview at 1920×873: six cards, three columns at 388px each, all six images loaded at their source dimensions, and no horizontal overflow.
+- Mobile local preview at 390×844: six cards, two columns at 166.5px each, all six images loaded, `clientWidth` and `scrollWidth` both 375px, and the mobile action bar remains usable.
+- The six cards link to individual public Reels; the header CTA links to the public Instagram profile.
+
+### Code and asset checks
+
+- Six source images are stored as WebP under `yaqixin-assets/instagram/`; original JPG references are retained outside the public bundle for traceability.
+- `node --check scripts/sync-instagram-profile.mjs` passed.
+- `git diff --check` passed.
+- Local CSS and all six WebP assets returned HTTP 200 during preview checks.
+- No browser console errors or warnings were observed during the local English homepage checks.
+
+### Result
+
+Passed. No P0, P1, or P2 issues remain for the Instagram wall implementation.
+
+## Historical homepage implementation QA — 2026-08-10
+
+### Historical result: blocked
 
 The current homepage/product-layout implementation could not receive browser visual sign-off in this run: the permitted in-app browser could not navigate to the local HTTP preview, and Chrome control was unavailable. No new screenshots were generated. Static checks completed instead: HTML tag-stack parsing, inline/external JavaScript parsing, local HTTP asset checks, and homepage module counts.
 

@@ -7,7 +7,7 @@ const root = path.resolve(here, "..");
 const instagramUrl = "https://www.instagram.com/zhang.mandyzhang/";
 const facebookUrl = "https://www.facebook.com/profile.php?id=61554639581256";
 const wechatQrUrl = "/yaqixin-assets/wechat-contact-13172537921.webp";
-const stylesheetHref = "/yaqixin-assets/yaqixin-instagram.css?v=20260812-footer-map";
+const stylesheetHref = "/yaqixin-assets/yaqixin-instagram.css?v=20260814-instagram-wall";
 const stylesheet = `<link rel="stylesheet" href="${stylesheetHref}">`;
 const wechatScript = '<script src="/yaqixin-assets/yaqixin-wechat-contact.js?v=20260811" defer></script>';
 const instagramMark = '<svg class="yx-instagram-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><radialGradient id="yx-instagram-gradient" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#feda75"></stop><stop offset="25%" stop-color="#fa7e1e"></stop><stop offset="50%" stop-color="#d62976"></stop><stop offset="75%" stop-color="#962fbf"></stop><stop offset="100%" stop-color="#4f5bd5"></stop></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#yx-instagram-gradient)"></rect><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="4.2" fill="none" stroke="#fff" stroke-width="1.8"></rect><circle cx="12" cy="12" r="3.15" fill="none" stroke="#fff" stroke-width="1.8"></circle><circle cx="16.8" cy="7.2" r="1" fill="#fff"></circle></svg>';
