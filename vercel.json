@@ -4,34 +4,6 @@
   "trailingSlash": false,
   "routes": [
     {
-      "src": "^/about-us(?:\\.html)?$",
-      "headers": {
-        "Location": "/custom-capability"
-      },
-      "status": 308
-    },
-    {
-      "src": "^/blog/content/how-to-source-wholesale-fabric-from-china(?:\\.html)?$",
-      "headers": {
-        "Location": "/blog/how-to-source-wholesale-fabric-from-china"
-      },
-      "status": 308
-    },
-    {
-      "src": "^/blog/content/how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear(?:\\.html)?$",
-      "headers": {
-        "Location": "/blog/how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear"
-      },
-      "status": 308
-    },
-    {
-      "src": "^/blog/content/types-of-satin-fabric-mikado-stretch-matte-liquid-compared(?:\\.html)?$",
-      "headers": {
-        "Location": "/blog/types-of-satin-fabric-mikado-stretch-matte-liquid-compared"
-      },
-      "status": 308
-    },
-    {
       "src": "^/(?:scripts|docs)(?:/.*)?$",
       "status": 404
     },
