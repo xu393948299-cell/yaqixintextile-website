@@ -1,6 +1,41 @@
 {
   "articles": [
     {
+      "slug": "fabric-sample-inspection-checklist-for-apparel-buyers",
+      "title": "Fabric Sample Inspection Checklist for Apparel Buyers",
+      "excerpt": "A practical pre-production checklist for reviewing fabric samples by specification, appearance, construction, handling and approval records before a bulk order.",
+      "coverImage": "/yaqixin-assets/products/yx693-2-white-matte-satin-fabric/yx693-2-main-white-matte-satin-fabric.webp",
+      "coverAlt": "White matte satin fabric sample shown with a formal dress reference",
+      "coverCaption": "YAQIXIN YX693-2 matte satin, used as a current catalog example when reviewing surface, color and drape before a bulk fabric order.",
+      "publishedAt": "2026-08-17",
+      "updatedAt": "2026-08-17",
+      "author": "YAQIXIN Editorial Team",
+      "category": "Sample inspection guide",
+      "primaryKeyword": "fabric sample inspection checklist",
+      "readingTime": "9 min read",
+      "seoTitle": "Fabric Sample Inspection Checklist for Apparel Buyers | YAQIXIN",
+      "metaDescription": "Use this fabric sample inspection checklist to compare construction, weight, width, color, surface, drape and sewing behavior before a bulk apparel order.",
+      "contentFile": "fabric-sample-inspection-checklist-for-apparel-buyers.html",
+      "toc": [
+        { "id": "use-the-sample-as-an-approval-reference", "label": "Use the sample as an approval reference" },
+        { "id": "check-the-listed-specification-first", "label": "Check the listed specification first" },
+        { "id": "review-surface-color-and-appearance", "label": "Review surface, color and appearance" },
+        { "id": "check-drape-transparency-and-construction", "label": "Check drape, transparency and construction" },
+        { "id": "test-a-cut-and-sewn-piece", "label": "Test a cut and sewn piece" },
+        { "id": "record-the-sample-inspection-result", "label": "Record the inspection result" },
+        { "id": "fabric-sample-inspection-checklist", "label": "Fabric sample inspection checklist" },
+        { "id": "turn-findings-into-a-clear-inquiry", "label": "Turn findings into a clear inquiry" },
+        { "id": "faq", "label": "Buyer questions" }
+      ],
+      "relatedLinks": [
+        { "label": "Browse all fabric products", "url": "/all-products" },
+        { "label": "View Satin Fabric", "url": "/satin-fabric" },
+        { "label": "View Tulle Mesh Fabric", "url": "/tulle-mesh-fabric" },
+        { "label": "Request a custom fabric quote", "url": "/custom-capability" },
+        { "label": "Start an inquiry", "url": "/#inquiry" }
+      ]
+    },
+    {
       "slug": "types-of-satin-fabric-mikado-stretch-matte-liquid-compared",
       "title": "Types of Satin Fabric: Mikado, Stretch, Matte and Liquid Satin Compared",
       "excerpt": "A practical comparison of four satin routes by structure, weight, drape, sheen and garment use, with sample checks for wholesale apparel buyers.",
