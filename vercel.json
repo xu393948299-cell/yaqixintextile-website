@@ -37,6 +37,16 @@
       "permanent": true
     },
     {
+      "source": "/certification",
+      "destination": "/custom-capability",
+      "permanent": true
+    },
+    {
+      "source": "/certification.html",
+      "destination": "/custom-capability",
+      "permanent": true
+    },
+    {
       "source": "/blog/index",
       "destination": "/blog",
       "permanent": true
