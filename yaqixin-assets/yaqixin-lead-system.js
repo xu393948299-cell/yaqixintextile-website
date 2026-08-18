@@ -9,6 +9,10 @@
   var submitCooldownMs = 30000;
   var formSelector = 'form.form-card, form#inquiry-form, form[data-lead-form]';
   var startedForms = new WeakSet();
+  var fieldLimit = 200;
+  var messageLimit = 4000;
+  var trackingLimit = 160;
+  var attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'referrer'];
 
   function isSpanish() {
     return (document.documentElement.lang || '').toLowerCase().indexOf('es') === 0;
@@ -22,25 +26,47 @@
     try { return window.sessionStorage; } catch (error) { return null; }
   }
 
+  function textValue(value) {
+    return typeof value === 'string' ? value.trim() : '';
+  }
+
+  function trackingValue(value) {
+    return textValue(value).replace(/[\u0000-\u001F\u007F]/g, ' ').slice(0, trackingLimit);
+  }
+
+  function currentPage() {
+    return window.location.origin + window.location.pathname;
+  }
+
+  function referrerOrigin() {
+    if (!document.referrer) return '';
+    try {
+      var referrer = new URL(document.referrer);
+      return referrer.protocol === 'http:' || referrer.protocol === 'https:' ? referrer.origin : '';
+    } catch (error) {
+      return '';
+    }
+  }
+
   function getAttribution() {
     var params = new URLSearchParams(window.location.search);
     var current = {
-      utm_source: params.get('utm_source') || '',
-      utm_medium: params.get('utm_medium') || '',
-      utm_campaign: params.get('utm_campaign') || '',
-      utm_content: params.get('utm_content') || '',
-      utm_term: params.get('utm_term') || '',
-      gclid: params.get('gclid') || '',
-      referrer: document.referrer || ''
+      utm_source: trackingValue(params.get('utm_source')),
+      utm_medium: trackingValue(params.get('utm_medium')),
+      utm_campaign: trackingValue(params.get('utm_campaign')),
+      utm_content: trackingValue(params.get('utm_content')),
+      utm_term: trackingValue(params.get('utm_term')),
+      gclid: trackingValue(params.get('gclid')),
+      referrer: referrerOrigin()
     };
     var store = safeStorage();
     var saved = {};
     if (store) {
       try { saved = JSON.parse(store.getItem(storageKey) || '{}'); } catch (error) { saved = {}; }
     }
-    var merged = Object.assign({}, saved);
-    Object.keys(current).forEach(function (key) {
-      if (current[key]) merged[key] = current[key];
+    var merged = {};
+    attributionKeys.forEach(function (key) {
+      merged[key] = current[key] || trackingValue(saved[key]);
     });
     if (store) {
       try { store.setItem(storageKey, JSON.stringify(merged)); } catch (error) { /* storage can be unavailable */ }
@@ -62,7 +88,7 @@
   function valueFor(form, names) {
     for (var index = 0; index < names.length; index += 1) {
       var field = form.elements[names[index]];
-      if (field && typeof field.value === 'string' && field.value.trim()) return field.value.trim();
+      if (field && textValue(field.value)) return textValue(field.value);
     }
     return '';
   }
@@ -92,10 +118,15 @@
     var note = document.createElement('p');
     note.setAttribute('data-lead-privacy', '');
     note.style.cssText = 'margin:10px 0 0;color:#727b87;font-size:11px;line-height:1.5';
-    note.innerHTML = localized(
-      'By submitting, you allow YAQIXIN to use your details for this quotation request. <a href="/privacy-policy" style="color:inherit;text-decoration:underline">Privacy Policy</a>',
-      'Al enviar, permite que YAQIXIN utilice sus datos para esta solicitud de cotización. <a href="/privacy-policy" style="color:inherit;text-decoration:underline">Política de privacidad</a>'
-    );
+    note.appendChild(document.createTextNode(localized(
+      'By submitting, you allow YAQIXIN to use your details for this quotation request. ',
+      'Al enviar, permite que YAQIXIN utilice sus datos para esta solicitud de cotización. '
+    )));
+    var link = document.createElement('a');
+    link.href = '/privacy-policy';
+    link.style.cssText = 'color:inherit;text-decoration:underline';
+    link.textContent = localized('Privacy Policy', 'Política de privacidad');
+    note.appendChild(link);
     form.appendChild(note);
   }
 
@@ -160,6 +191,11 @@
     var trap = form.elements._honey;
     var honeypot = trap && typeof trap.value === 'string' ? trap.value.trim() : '';
     var contact = valueFor(form, ['contact', 'email', 'whatsapp']);
+    var company = valueFor(form, ['company', 'name']);
+    var fabricCategory = valueFor(form, ['fabric_category', 'category']);
+    var orderRoute = valueFor(form, ['route']);
+    var quantity = valueFor(form, ['quantity']);
+    var color = valueFor(form, ['color']);
     var requirement = valueFor(form, ['message', 'requirement']);
     if (honeypot) {
       showStatus(form, localized('Your request could not be submitted. Please try again.', 'No se pudo enviar la solicitud. Inténtelo de nuevo.'), 'error');
@@ -169,7 +205,7 @@
       showStatus(form, localized('Please add an email or WhatsApp number so we can reply.', 'Añada un email o número de WhatsApp para que podamos responder.'), 'error');
       return;
     }
-    if (contact.length > 200 || requirement.length > 4000) {
+    if (contact.length > fieldLimit || requirement.length > messageLimit || [company, fabricCategory, orderRoute, quantity, color].some(function (value) { return value.length > fieldLimit; })) {
       showStatus(form, localized('Please shorten the contact or requirement details and try again.', 'Acorte los datos de contacto o los requisitos e inténtelo de nuevo.'), 'error');
       return;
     }
@@ -180,21 +216,22 @@
     }
     var attribution = getAttribution();
     var selectedWhatsApp = submitter && submitter.getAttribute('data-whatsapp') || '';
+    if (!/^\d{7,18}$/.test(selectedWhatsApp)) selectedWhatsApp = '';
     var data = {
       _subject: 'New YAQIXIN website inquiry',
       _template: 'table',
       _honey: honeypot,
-      company_or_buyer: valueFor(form, ['company', 'name']),
+      company_or_buyer: company,
       contact: contact,
-      product_or_page: productName(form),
-      fabric_category: valueFor(form, ['fabric_category', 'category']),
-      order_route: valueFor(form, ['route']),
-      quantity_or_market: valueFor(form, ['quantity']),
-      color_or_packing_note: valueFor(form, ['color']),
+      product_or_page: productName(form).slice(0, fieldLimit),
+      fabric_category: fabricCategory,
+      order_route: orderRoute,
+      quantity_or_market: quantity,
+      color_or_packing_note: color,
       requirement: requirement,
       selected_whatsapp: selectedWhatsApp ? '+' + selectedWhatsApp : '',
-      source_page: window.location.href,
-      page_title: document.title,
+      source_page: currentPage(),
+      page_title: textValue(document.title).slice(0, fieldLimit),
       submitted_at_utc: new Date().toISOString(),
       utm_source: attribution.utm_source || '',
       utm_medium: attribution.utm_medium || '',
