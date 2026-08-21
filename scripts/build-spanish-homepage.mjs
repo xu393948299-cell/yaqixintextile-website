@@ -77,7 +77,35 @@ const featuredProductTranslations = [
 ];
 for (const [english, spanish] of featuredProductTranslations) html = html.replaceAll(english, spanish);
 
+const moqEnglishTranslations = [
+  ["MOQ 10m | Workwear / coats / overalls", "MOQ 10 m | Ropa de trabajo / abrigos / monos"],
+  ["MOQ 10 pieces | Dresses / special occasion", "MOQ 10 piezas | Vestidos / ocasiones especiales"],
+  ["MOQ 10 yards | Bridal / dancewear", "MOQ 10 yardas | Novia / danza"],
+  ["MOQ 10 yards | Wedding dresses", "MOQ 10 yardas | Vestidos de novia"],
+  ["MOQ 10 yards | Glossy drape", "MOQ 10 yardas | Caída brillante"],
+  ["MOQ 10 yards / Dresses / dancewear", "MOQ 10 yardas / Vestidos / danza"],
+  ["MOQ 10 yards / Partywear / costumes", "MOQ 10 yardas / Fiesta / disfraces"],
+  ["MOQ 10 yards / Halloween / kids dresses", "MOQ 10 yardas / Halloween / vestidos infantiles"],
+  ["MOQ 10 yards / Costume / party apparel", "MOQ 10 yardas / Disfraces / prendas de fiesta"],
+  ["MOQ 10 yards / Wedding / evening dresses", "MOQ 10 yardas / Novia / vestidos de noche"],
+  ["MOQ 10 yards / Dresses / shirts", "MOQ 10 yardas / Vestidos / camisas"],
+];
+for (const [english, spanish] of moqEnglishTranslations) html = html.replaceAll(english, spanish);
 for (const [english, spanish] of translations) html = html.replaceAll(english, spanish);
+const moqNormalizationTranslations = [
+  ["MOQ 300 m | Ropa de trabajo / abrigos / monos", "MOQ 10 m | Ropa de trabajo / abrigos / monos"],
+  ["MOQ 500 piezas | Vestidos / ocasiones especiales", "MOQ 10 piezas | Vestidos / ocasiones especiales"],
+  ["MOQ 500 yardas | Novia / danza", "MOQ 10 yardas | Novia / danza"],
+  ["MOQ 500 yardas | Vestidos de novia", "MOQ 10 yardas | Vestidos de novia"],
+  ["MOQ 500 yardas | Caída brillante", "MOQ 10 yardas | Caída brillante"],
+  ["MOQ 500 yardas / Vestidos / danza", "MOQ 10 yardas / Vestidos / danza"],
+  ["MOQ 500 yardas / Fiesta / disfraces", "MOQ 10 yardas / Fiesta / disfraces"],
+  ["MOQ 500 yardas / Halloween / vestidos infantiles", "MOQ 10 yardas / Halloween / vestidos infantiles"],
+  ["MOQ 500 yardas / Disfraces / prendas de fiesta", "MOQ 10 yardas / Disfraces / prendas de fiesta"],
+  ["MOQ 500 yardas / Novia / vestidos de noche", "MOQ 10 yardas / Novia / vestidos de noche"],
+  ["MOQ 5 yardas / Vestidos / camisas", "MOQ 10 yardas / Vestidos / camisas"],
+];
+for (const [oldText, newText] of moqNormalizationTranslations) html = html.replaceAll(oldText, newText);
 html = html.replaceAll('View Todos los productos <span>&rarr;</span>', 'Ver todos los productos <span>&rarr;</span>');
 html = html.replaceAll('All fields are optional. Send only what you know.', 'Add an email or WhatsApp number so we can reply; other details are optional.');
 html = html.replaceAll('languageLabel:"Language"', 'languageLabel:"Idioma"');
