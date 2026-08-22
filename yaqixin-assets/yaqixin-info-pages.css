@@ -128,8 +128,9 @@ h3{margin:0;color:var(--yx-navy);font-size:22px;line-height:1.16}
 .footer-inner{display:flex;justify-content:space-between;gap:28px;align-items:center}
 .footer strong{display:block;color:#fff;letter-spacing:.1em}
 .footer span{display:block;margin-top:6px}
-.whatsapp{position:fixed;right:22px;bottom:22px;z-index:60;width:112px;filter:drop-shadow(0 14px 22px rgba(36,192,98,.25))}
-.whatsapp img{display:block;width:100%;height:auto}
+.whatsapp{position:fixed;right:22px;bottom:22px;z-index:60;background:transparent!important;color:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;width:118px;height:auto;display:block;line-height:0;filter:drop-shadow(0 14px 22px rgba(36,192,98,.25))}
+.whatsapp img{width:100%;height:auto;display:block}
+.whatsapp:hover{transform:translateY(-3px)}
 @media(max-width:1180px){
   .nav{grid-template-columns:auto minmax(0,1fr) auto;gap:18px}
   .menu{justify-content:flex-end}
@@ -160,5 +161,5 @@ h3{margin:0;color:var(--yx-navy);font-size:22px;line-height:1.16}
   .quote-inner{padding:24px 20px}
   .quote-inner .btn{justify-self:start}
   .footer{padding:34px 20px 86px}
-  .whatsapp{width:88px;right:12px;bottom:12px}
+  .whatsapp{width:92px;right:12px!important;bottom:12px!important}
 }
