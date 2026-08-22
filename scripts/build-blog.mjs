@@ -129,10 +129,13 @@ function header(active) {
     <div class="menu">
       <a href="/">Home</a>
       <a href="/all-products">Products</a>
+     <a href="/blog"${active === "blog" ? ' aria-current="page"' : ""}>Blog</a>
+     <a href="/custom-capability"${active === "customize" ? ' aria-current="page"' : ""}>Customize</a>
+      <a href="/custom-capability"${active === "customize" ? ' aria-current="page"' : ""}>Custom Capability</a>
+      <a href="/about-us">About Us</a>
       <a href="/blog"${active === "blog" ? ' aria-current="page"' : ""}>Blog</a>
-      <a href="/custom-capability"${active === "customize" ? ' aria-current="page"' : ""}>Customize</a>
+      <a href="/contact">Contact / Inquiry</a>
     </div>
-    <a class="nav-inquiry" href="/#inquiry">Inquiry</a>
   </nav>`;
 }
 
@@ -147,7 +150,7 @@ function footer(localRoot) {
   const facebookMark = '<svg class="yx-facebook-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="#0866ff"></circle><path fill="#fff" d="M13.55 20v-7.05h2.36l.35-2.75h-2.71V8.45c0-.8.22-1.34 1.37-1.34h1.46V4.65c-.25-.04-1.12-.11-2.13-.11-2.11 0-3.56 1.29-3.56 3.66v2H8.3v2.75h2.39V20h2.86Z"></path></svg>';
   const wechatMark = '<svg class="yx-wechat-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="1" y="1" width="22" height="22" rx="6" fill="#07c160"></rect><circle cx="9.3" cy="10.2" r="4.4" fill="#fff"></circle><circle cx="15.1" cy="14.2" r="4" fill="#fff"></circle><circle cx="8" cy="9.5" r=".55" fill="#07c160"></circle><circle cx="10.7" cy="9.5" r=".55" fill="#07c160"></circle><circle cx="14" cy="13.6" r=".5" fill="#07c160"></circle><circle cx="16.3" cy="13.6" r=".5" fill="#07c160"></circle></svg>';
   const footer = '<footer class="footer yx-site-footer"><div class="footer-inner"><div class="yx-footer-brand"><strong>YAQIXIN TEXTILES</strong><span>Guangzhou wholesale fabric manufacturer for global apparel sourcing.</span></div><div class="yx-footer-contact"><a class="yx-footer-email" href="mailto:378080571@qq.com" aria-label="Email YAQIXIN for quotation support">Email: 378080571@qq.com</a><address>Showroom: <a class="yx-footer-map-link" href="https://maps.app.goo.gl/ZruhKKbar7VxfpneA?g_st=ic" target="_blank" rel="noopener noreferrer external" aria-label="Open YAQIXIN showroom in Google Maps">No. 5 Xiaoyang Street, Haizhu District, Guangzhou <span aria-hidden="true">\u2197</span></a></address><div class="yx-social-links" aria-label="YAQIXIN social and messaging contacts"><a class="yx-social-link yx-instagram-link" data-social-profile="instagram" href="https://www.instagram.com/zhang.mandyzhang/" target="_blank" rel="noopener noreferrer external" aria-label="Follow YAQIXIN on Instagram at zhang.mandyzhang">' + instagramMark + '<span>Instagram</span></a><a class="yx-social-link yx-facebook-link" data-social-profile="facebook" href="https://www.facebook.com/profile.php?id=61554639581256" target="_blank" rel="noopener noreferrer external" aria-label="Visit YAQIXIN on Facebook">' + facebookMark + '<span>Facebook</span></a><a class="yx-social-link yx-wechat-link" data-social-profile="wechat" data-wechat-trigger href="/yaqixin-assets/wechat-contact-13172537921.webp" aria-label="Open WeChat QR code for YAQIXIN sales contact 13172537921">' + wechatMark + '<span>WeChat 13172537921</span></a></div></div></div></footer>';
-  return footer + '\n' + runtimeScripts(localRoot);
+  return footer.replace("manufacturer", "supplier") + '\n' + runtimeScripts(localRoot);
 }
 
 function localPreviewScript(localRoot) {

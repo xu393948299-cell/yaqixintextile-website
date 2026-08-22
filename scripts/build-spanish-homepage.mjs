@@ -8,6 +8,17 @@ const sourcePath = path.join(root, "index.html");
 const outputPath = path.join(root, "es", "index.html");
 
 let html = fs.readFileSync(sourcePath, "utf8");
+const prohibitedSourceClaims = [
+  /Wholesale Fabric Manufacturer/i,
+  /Fabric manufacturer/i,
+  /15\+ years/i,
+  /900,000m\+/i,
+  /Factory-backed sourcing/i,
+  /Real factory & stock capacity/i,
+  /Factory strength/i,
+];
+const matchedProhibitedClaim = prohibitedSourceClaims.find((pattern) => pattern.test(html));
+if (matchedProhibitedClaim) throw new Error(`Spanish build blocked by prohibited source claim: ${matchedProhibitedClaim}`);
 
 function replaceRequired(from, to) {
   if (!html.includes(from)) throw new Error(`Expected source fragment not found: ${from.slice(0, 80)}`);
@@ -20,8 +31,8 @@ replaceRequired(
   '<meta name="viewport" content="width=device-width, initial-scale=1">\n  <base href="/">',
 );
 replaceRequired(
-  '<title>Wholesale Fabric Manufacturer in Guangzhou | YAQIXIN</title>',
-  '<title>Proveedor Mayorista de Telas en Guangzhou | YAQIXIN</title>',
+  '<title>Guangzhou Fabric Supplier &amp; Sourcing Partner | YAQIXIN</title>',
+  '<title>Proveedor de telas y socio de abastecimiento en Guangzhou | YAQIXIN</title>',
 );
 replaceRequired(
   '<meta name="description" content="Source cotton, tulle, lace, satin, organza and pleated fabrics from Guangzhou. Ask YAQIXIN about stock, custom colors, samples, MOQ and export packing.">',
@@ -29,16 +40,22 @@ replaceRequired(
 );
 replaceRequired('    <link rel="canonical" href="https://www.yaqixintextile.com/">', '    <link rel="canonical" href="https://www.yaqixintextile.com/es">');
 replaceRequired('<link rel="alternate" hreflang="en" href="https://www.yaqixintextile.com/">\n  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es">\n  <link rel="alternate" hreflang="x-default" href="https://www.yaqixintextile.com/">', '<link rel="alternate" hreflang="en" href="https://www.yaqixintextile.com/">\n  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es">\n  <link rel="alternate" hreflang="x-default" href="https://www.yaqixintextile.com/">\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Proveedor Mayorista de Telas en Guangzhou | YAQIXIN","url":"https://www.yaqixintextile.com/es","inLanguage":"es"}</script>');
+html = html.replaceAll("Proveedor Mayorista de Telas en Guangzhou | YAQIXIN", "Proveedor de telas y socio de abastecimiento en Guangzhou | YAQIXIN");
 html = html.replaceAll('"inLanguage": "en"', '"inLanguage": "es"');
 replaceRequired(
-  '"@id": "https://www.yaqixintextile.com/#webpage",\n        "url": "https://www.yaqixintextile.com/",\n        "name": "Wholesale Fabric Manufacturer in Guangzhou | YAQIXIN",\n        "description": "Source cotton, tulle, lace, satin, organza and pleated fabrics from Guangzhou. Ask about stock, custom colors, samples, MOQ and export packing.",',
-  '"@id": "https://www.yaqixintextile.com/es#webpage",\n        "url": "https://www.yaqixintextile.com/es",\n        "name": "Proveedor Mayorista de Telas en Guangzhou | YAQIXIN",\n        "description": "Proveedor mayorista de telas en Guangzhou. YAQIXIN suministra algodón, tul, malla, organza, encaje, satén y tejidos plisados para compradores B2B, muestras y pedidos a medida.",',
+ '"@id": "https://www.yaqixintextile.com/#webpage",\n        "url": "https://www.yaqixintextile.com/",\n        "name": "Guangzhou Fabric Supplier & Sourcing Partner | YAQIXIN",\n        "description": "Source cotton, tulle, lace, satin, organza and pleated fabrics from Guangzhou. Ask about stock, custom colors, samples, MOQ and export packing.",',
+  '"@id": "https://www.yaqixintextile.com/es#webpage",\n        "url": "https://www.yaqixintextile.com/es",\n        "name": "Proveedor de telas y socio de abastecimiento en Guangzhou | YAQIXIN",\n        "description": "Proveedor mayorista de telas en Guangzhou. YAQIXIN suministra algodón, tul, malla, organza, encaje, satén y tejidos plisados para compradores B2B, muestras y pedidos a medida.",',
 );
 
 const translations = new Map([
+  ["Wholesale fabric sourcing", "Abastecimiento mayorista de telas"], ["Stock + custom programs", "Stock y programas a medida"], ["buyer brief review and export support", "revisión del brief del comprador y soporte de exportación"], ["Wholesale Fabric / Custom / Brief Review", "Telas mayoristas / Personalización / Revisión del brief"],
+  ["Guangzhou Fabric Supplier &amp; Sourcing Partner | YAQIXIN", "Proveedor de telas y socio de abastecimiento en Guangzhou | YAQIXIN"], ["Guangzhou Fabric Supplier & Sourcing Partner | YAQIXIN", "Proveedor de telas y socio de abastecimiento en Guangzhou | YAQIXIN"], ["Wholesale Fabric Supplier", "Proveedor mayorista de telas"],
+  ["Fabric supplier", "Proveedor de telas"], ["Buyer support", "Apoyo al comprador"], ["Sourcing support", "Apoyo de abastecimiento"], ["Supplier-coordinated sourcing support for stock fabrics and buyer-specific orders.", "Apoyo de abastecimiento coordinado con proveedores para tejidos de stock y pedidos específicos del comprador."], ["Order-based planning", "Planificación por pedido"],
+  ["Guangzhou wholesale fabric supplier for global apparel sourcing.", "Proveedor mayorista de telas en Guangzhou para el abastecimiento internacional de confección."],
+  ["Stock and supply context", "Contexto de stock y suministro"], ["Supply coordination", "Coordinación de suministro"],
   ["Wholesale fabric sourcing | Stock + custom programs | 7-day design completion and export support", "Abastecimiento mayorista de telas | Stock y programas a medida | Diseño en 7 días y soporte de exportación"],
   ["Wholesale Fabric / Custom / 7-Day Design", "Telas mayoristas / Personalización / Diseño en 7 días"],
-  ["Home", "Inicio"], ["Products", "Productos"], ["About Us", "Nosotros"], ["Customize", "Personalizar"], ["Inquiry", "Consulta"],
+  ["Home", "Inicio"], ["Products", "Productos"], ["About Us", "Sobre nosotros"], ["Custom Capability", "Capacidad personalizada"], ["Contact / Inquiry", "Contacto / consulta"], ["Customize", "Personalizar"], ["Inquiry", "Consulta"],
   ["Search fabrics", "Buscar telas"], ["Search products", "Buscar productos"], ["Choose language", "Elegir idioma"], ["English", "Inglés"], ["Espanol", "Español"],
   ["See all categories", "Ver todas las categorías"], ["View all plain cotton", "Ver todo el algodón liso"], ["View all tulle", "Ver todo el tul"], ["View all organza", "Ver toda la organza"], ["View all pleated", "Ver todos los plisados"], ["View all lace", "Ver todos los encajes"], ["View all satin", "Ver todos los satinados"],
   ["Plain Cotton Fabric", "Tejido de algodón liso"], ["Canvas Fabric", "Tejido de loneta"], ["Poplin Fabric", "Tejido popelín"], ["Twill Fabric", "Tejido de sarga"], ["Tulle Mesh Fabric", "Tul y tejido de malla"], ["Plain Tulle Fabric", "Tul liso"], ["Stretch Knit Mesh Fabric", "Malla de punto elástica"], ["Holiday Tulle Fabric", "Tul temático"], ["Glitter Tulle Fabric", "Tul con brillo"], ["Rainbow Tulle Fabric", "Tul arcoíris"], ["Print Mesh Fabric", "Malla estampada"], ["3D Tulle Mesh Fabric", "Tul y malla 3D"], ["Flocked Mesh Fabric", "Malla flocada"], ["Sequin Fabric", "Tejido de lentejuelas"], ["Organza Fabric", "Tejido de organza"], ["Pleated Fabric", "Tejido plisado"], ["Lace Fabric", "Tejido de encaje"], ["Satin Fabric", "Tejido satinado"], ["Denim Fabric", "Tejido denim"],
@@ -92,20 +109,6 @@ const moqEnglishTranslations = [
 ];
 for (const [english, spanish] of moqEnglishTranslations) html = html.replaceAll(english, spanish);
 for (const [english, spanish] of translations) html = html.replaceAll(english, spanish);
-const moqNormalizationTranslations = [
-  ["MOQ 300 m | Ropa de trabajo / abrigos / monos", "MOQ 10 m | Ropa de trabajo / abrigos / monos"],
-  ["MOQ 500 piezas | Vestidos / ocasiones especiales", "MOQ 10 piezas | Vestidos / ocasiones especiales"],
-  ["MOQ 500 yardas | Novia / danza", "MOQ 10 yardas | Novia / danza"],
-  ["MOQ 500 yardas | Vestidos de novia", "MOQ 10 yardas | Vestidos de novia"],
-  ["MOQ 500 yardas | Caída brillante", "MOQ 10 yardas | Caída brillante"],
-  ["MOQ 500 yardas / Vestidos / danza", "MOQ 10 yardas / Vestidos / danza"],
-  ["MOQ 500 yardas / Fiesta / disfraces", "MOQ 10 yardas / Fiesta / disfraces"],
-  ["MOQ 500 yardas / Halloween / vestidos infantiles", "MOQ 10 yardas / Halloween / vestidos infantiles"],
-  ["MOQ 500 yardas / Disfraces / prendas de fiesta", "MOQ 10 yardas / Disfraces / prendas de fiesta"],
-  ["MOQ 500 yardas / Novia / vestidos de noche", "MOQ 10 yardas / Novia / vestidos de noche"],
-  ["MOQ 5 yardas / Vestidos / camisas", "MOQ 10 yardas / Vestidos / camisas"],
-];
-for (const [oldText, newText] of moqNormalizationTranslations) html = html.replaceAll(oldText, newText);
 html = html.replaceAll('View Todos los productos <span>&rarr;</span>', 'Ver todos los productos <span>&rarr;</span>');
 html = html.replaceAll('All fields are optional. Send only what you know.', 'Add an email or WhatsApp number so we can reply; other details are optional.');
 html = html.replaceAll('languageLabel:"Language"', 'languageLabel:"Idioma"');

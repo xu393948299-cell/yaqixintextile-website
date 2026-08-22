@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "legalName": "Guangzhou Yaqixin Textile Co., Ltd.",
+  "brandName": "YAQIXIN TEXTILES",
+  "positioning": "Guangzhou wholesale fabric supplier and sourcing partner.",
+  "url": "https://www.yaqixintextile.com/",
+  "logo": "https://www.yaqixintextile.com/yaqixin-assets/logo-yaqixin-header-solid.webp",
+  "address": {
+    "streetAddress": "No. 5 Xiaoyang Street, Haizhu District",
+    "addressLocality": "Guangzhou",
+    "addressCountry": "CN"
+  },
+  "publicEmail": {
+    "value": "378080571@qq.com",
+    "label": "Email for quotation documents",
+    "status": "active"
+  },
+  "futurePublicEmail": {
+    "value": "sales@yaqixintextile.com",
+    "status": "unverified-google-workspace",
+    "display": false
+  },
+  "telephone": [
+    "+86 18125117673",
+    "+86 13632259091"
+  ],
+  "contactPoint": [
+    {
+      "telephone": "+86 18125117673",
+      "contactType": "sales",
+      "availableLanguage": ["en", "es"]
+    },
+    {
+      "telephone": "+86 13632259091",
+      "contactType": "sales",
+      "availableLanguage": ["en", "es"]
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/zhang.mandyzhang/",
+    "https://www.facebook.com/profile.php?id=61554639581256"
+  ],
+  "foundingDate": null,
+  "verifiedClaims": [
+    "Guangzhou showroom",
+    "ready-stock sourcing",
+    "sampling support",
+    "custom development support",
+    "bulk order coordination"
+  ],
+  "prohibitedClaims": [
+    "factory ownership",
+    "factory-backed sourcing",
+    "900,000m+ monthly supply capability",
+    "15+ years company registration age"
+  ]
+}

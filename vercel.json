@@ -36,11 +36,6 @@
       "permanent": true
     },
     {
-      "source": "/about-us",
-      "destination": "/custom-capability",
-      "permanent": true
-    },
-    {
       "source": "/certification",
       "destination": "/custom-capability",
       "permanent": true
