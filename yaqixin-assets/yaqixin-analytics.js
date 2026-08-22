@@ -14,8 +14,32 @@
     send_page_view: true
   });
 
-  var script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
-  document.head.appendChild(script);
+  var analyticsLoaded = false;
+  function loadAnalyticsScript() {
+    if (analyticsLoaded) return;
+    analyticsLoaded = true;
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+    document.head.appendChild(script);
+  }
+
+  // Keep the GA4 queue and page-view configuration, but move the third-party
+  // download out of the critical rendering path. Lead events queued before
+  // the download are replayed when gtag.js becomes available.
+  function scheduleAnalytics() {
+    window.setTimeout(function () {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(loadAnalyticsScript, { timeout: 4000 });
+      } else {
+        loadAnalyticsScript();
+      }
+    }, 2500);
+  }
+
+  if (document.readyState === 'complete') scheduleAnalytics();
+  else window.addEventListener('load', scheduleAnalytics, { once: true });
+  ['pointerdown', 'keydown', 'touchstart'].forEach(function (eventName) {
+    window.addEventListener(eventName, loadAnalyticsScript, { once: true, passive: true });
+  });
 }());
