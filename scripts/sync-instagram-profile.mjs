@@ -21,7 +21,7 @@ const showroomMapUrl = "https://maps.app.goo.gl/ZruhKKbar7VxfpneA?g_st=ic";
 const showroomMapLinkMarkup = `<a class="yx-footer-map-link" href="${showroomMapUrl}" target="_blank" rel="noopener noreferrer external" aria-label="Open YAQIXIN showroom in Google Maps">No. 5 Xiaoyang Street, Haizhu District, Guangzhou <span aria-hidden="true">\u2197</span></a>`;
 
 function buildFooterMarkup(tagline) {
-  return `<footer class="footer yx-site-footer"><div class="footer-inner"><div class="yx-footer-brand"><strong>YAQIXIN TEXTILES</strong><span>${tagline}</span></div><div class="yx-footer-contact"><a class="yx-footer-email" href="mailto:378080571@qq.com" aria-label="Email YAQIXIN for quotation support">Email: 378080571@qq.com</a><address>Showroom: ${showroomMapLinkMarkup}</address>${socialLinksMarkup}</div></div></footer>`;
+  return `<footer class="footer yx-site-footer"><div class="footer-inner"><div class="yx-footer-brand"><strong>YAQIXIN TEXTILES</strong><span>${tagline}</span></div><div class="yx-footer-contact"><a class="yx-footer-email" href="mailto:sales@yaqixintextile.com" aria-label="Email YAQIXIN for quotation support">Email: sales@yaqixintextile.com</a><address>Showroom: ${showroomMapLinkMarkup}</address>${socialLinksMarkup}</div></div></footer>`;
 }
 
 const missingFooterProducts = new Set([

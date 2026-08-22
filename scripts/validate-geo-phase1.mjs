@@ -273,7 +273,8 @@ for (const pattern of prohibitedPatterns) {
   const offenders = allHtmlFiles.filter((file) => pattern.test(read(file)));
   assert(offenders.length === 0, "Unsupported entity claim " + pattern + " found in " + offenders.join(", "));
 }
-const futureEmailOffenders = allHtmlFiles.filter((file) => read(file).includes(company.futurePublicEmail.value));
+const futureEmail = company.futurePublicEmail && company.futurePublicEmail.value;
+const futureEmailOffenders = futureEmail ? allHtmlFiles.filter((file) => read(file).includes(futureEmail)) : [];
 assert(futureEmailOffenders.length === 0, "Unverified future email is visible in " + futureEmailOffenders.join(", "));
 
 const vercel = readJson("vercel.json");

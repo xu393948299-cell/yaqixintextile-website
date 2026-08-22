@@ -3,7 +3,7 @@
 (function () {
   'use strict';
 
-  var endpoint = 'https://formsubmit.co/ajax/378080571@qq.com';
+  var endpoint = 'https://formsubmit.co/ajax/sales@yaqixintextile.com';
   var storageKey = 'yaqixin_attribution_v1';
   var submitCooldownKey = 'yaqixin_lead_last_submit_v1';
   var submitCooldownMs = 30000;

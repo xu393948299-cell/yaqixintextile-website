@@ -11,13 +11,13 @@
     "addressCountry": "CN"
   },
   "publicEmail": {
-    "value": "378080571@qq.com",
+    "value": "sales@yaqixintextile.com",
     "label": "Email for quotation documents",
     "status": "active"
   },
   "futurePublicEmail": {
-    "value": "sales@yaqixintextile.com",
-    "status": "unverified-google-workspace",
+    "value": null,
+    "status": "none",
     "display": false
   },
   "telephone": [

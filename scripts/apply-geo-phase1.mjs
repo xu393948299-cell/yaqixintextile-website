@@ -119,8 +119,8 @@ function transform(text, relativePath) {
   let output = replaceAll(text, entityPairs);
 
   const activeEmail = company.publicEmail.value;
-  output = output.split('378080571@qq.com').join(activeEmail);
-  if (!company.futurePublicEmail.display) {
+  output = output.split('sales@yaqixintextile.com').join(activeEmail);
+  if (!company.futurePublicEmail.display && company.futurePublicEmail.value) {
     output = output.split(company.futurePublicEmail.value).join(activeEmail);
   }
   output = updateNavigation(output, isSpanish);
