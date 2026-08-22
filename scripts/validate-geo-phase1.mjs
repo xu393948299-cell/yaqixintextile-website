@@ -259,6 +259,7 @@ for (const file of navigationFiles) {
 }
 
 const prohibitedPatterns = [
+  /\bmanufacturer\b/i,
   /Wholesale Fabric Manufacturer/i,
   /Fabric manufacturer/i,
   /Factory-backed sourcing/i,
