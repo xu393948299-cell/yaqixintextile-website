@@ -129,6 +129,7 @@ h3{margin:0;color:var(--yx-navy);font-size:22px;line-height:1.16}
 .footer strong{display:block;color:#fff;letter-spacing:.1em}
 .footer span{display:block;margin-top:6px}
 .whatsapp{position:fixed;right:22px;bottom:22px;z-index:60;width:112px;filter:drop-shadow(0 14px 22px rgba(36,192,98,.25))}
+.whatsapp img{display:block;width:100%;height:auto}
 @media(max-width:1180px){
   .nav{grid-template-columns:auto minmax(0,1fr) auto;gap:18px}
   .menu{justify-content:flex-end}
