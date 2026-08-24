@@ -46,6 +46,11 @@
       "permanent": true
     },
     {
+      "source": "/shipment",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
       "source": "/blog/index",
       "destination": "/blog",
       "permanent": true
