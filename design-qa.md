@@ -1,3 +1,42 @@
+## Product-page desktop WhatsApp parity QA — 2026-08-24
+
+### Visual truth and implementation
+
+- Source visual truth: `C:\Users\W\AppData\Local\Temp\codex-clipboard-126d4edf-6f8d-46c6-acf2-e3cb4ba965f3.png` (homepage WhatsApp target), 1920 x 929 pixels.
+- Browser-rendered implementation: `D:\CodexData\Caches\yaqixin-product-whatsapp-qa\yx1389-desktop-local.png`, 1265 x 712 pixels from a 1280 x 720 CSS-pixel desktop runtime at device scale factor 1.
+- Mobile regression evidence: `D:\CodexData\Caches\yaqixin-product-whatsapp-qa\yx2381-mobile-local.png`, 375 x 812 pixels from a 390 x 844 CSS-pixel mobile runtime at device scale factor 1.
+- State: English product detail pages. YX1389 represents the previously missing desktop control; YX2381 represents a page whose legacy control was normalized.
+- Density normalization: the full pages have different content and viewport sizes, so the fidelity comparison was normalized to the persistent floating component. Both source and implementation use the same 236 x 158 WebP raster rendered at 118 x 79 CSS pixels.
+
+### Full-view and focused comparison evidence
+
+- The source and browser-rendered implementation were opened together in one comparison input. The product content intentionally differs from the homepage; the task-specific full-view target is the fixed lower-right component and its relationship to the viewport edge.
+- Focused comparison confirms the same green WhatsApp artwork and wordmark, transparent background, 118 x 79 rendered size, and 22px right/bottom offsets. The implementation uses the homepage asset directly rather than recreating the mark.
+- YX1389 and YX2381 each render exactly one desktop control; no legacy `.whatsapp-floating` link remains. No visual P0/P1/P2 mismatch was found.
+
+### Required fidelity surfaces
+
+- Fonts and typography: the WhatsApp wordmark is part of the original homepage raster, so its letterforms, weight and antialiasing are identical.
+- Spacing and layout rhythm: the implementation matches the homepage 118px width, natural 79px height, fixed positioning, 22px right/bottom offsets and subtle 3px hover lift.
+- Colors and visual tokens: the original green/white/transparent raster and `rgba(36,192,98,.25)` drop shadow are reused.
+- Image quality and asset fidelity: `/yaqixin-assets/whatsapp-floating-236.webp` is reused at exactly half its 236 x 158 source dimensions; no synthetic icon or replacement asset was introduced.
+- Copy and content: the visible `WhatsApp` wordmark is unchanged. The accessible label identifies YAQIXIN and +86 18125117673.
+
+### Comparison history
+
+- Initial audit P1: 29 of 76 product pages had no floating logo; 47 used heterogeneous legacy markup and routed to `#inquiry`. Fix: all 76 product pages now share one desktop-only component, source asset and direct `https://wa.me/8618125117673` target.
+- Final desktop evidence: YX1389 and YX2381 both render one 118 x 79 fixed component with no console errors or horizontal overflow.
+- Final mobile evidence: the new component computes to `display:none`; the existing mobile action bar remains visible as a grid, and document width is 375/375 with no horizontal overflow.
+
+### Interaction and audit checks
+
+- The desktop anchor has `target="_blank"`, `rel="noopener noreferrer"` and the exact direct WhatsApp URL for +86 18125117673. The external WhatsApp page was not opened during QA, avoiding an unintended third-party handoff; destination correctness was verified from rendered DOM and the 76-page HTTP crawl.
+- The source validator, product catalog validator and Product JSON-LD validator pass for all 76 products.
+- Local HTTP crawl: 76/76 product routes return HTTP 200 with exactly one component, the homepage asset, the shared stylesheet and the correct destination; both shared assets return HTTP 200.
+- Browser errors checked on the representative desktop and mobile pages: none.
+
+final result: passed
+
 ## Blog navigation parity QA — 2026-08-24
 
 ### Visual truth and implementation

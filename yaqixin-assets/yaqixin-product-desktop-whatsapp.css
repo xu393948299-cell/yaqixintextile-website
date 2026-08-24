@@ -1,0 +1,45 @@
+/* Desktop-only product-page WhatsApp entry. Mirrors the homepage floating asset. */
+.yx-product-desktop-whatsapp {
+  display: none;
+}
+
+@media (min-width: 761px) {
+  .yx-product-desktop-whatsapp {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 60;
+    width: 118px;
+    height: auto;
+    display: block;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: transparent;
+    line-height: 0;
+    box-shadow: none;
+    filter: drop-shadow(0 14px 22px rgba(36, 192, 98, 0.25));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .yx-product-desktop-whatsapp img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .yx-product-desktop-whatsapp:hover {
+    transform: translateY(-3px);
+  }
+
+  .yx-product-desktop-whatsapp:focus-visible {
+    outline: 3px solid rgba(36, 192, 98, 0.45);
+    outline-offset: 4px;
+  }
+}
+
+@media (max-width: 760px) {
+  .yx-product-desktop-whatsapp {
+    display: none !important;
+  }
+}
