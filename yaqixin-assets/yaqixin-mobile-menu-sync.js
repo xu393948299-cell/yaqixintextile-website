@@ -54,6 +54,7 @@
     var style=document.createElement('style');
     style.id=STYLE_ID;
     style.textContent=[
+      '.mobile-action-bar,.mobile-category-layer{display:none!important}',
       '@media(max-width:760px){',
       'body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}',
       'body.mobile-category-open{overflow:hidden}',
