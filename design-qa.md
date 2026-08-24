@@ -36,7 +36,6 @@
 - Browser errors checked on the representative desktop and mobile pages: none.
 
 final result: passed
-
 ## Blog navigation parity QA — 2026-08-24
 
 ### Visual truth and implementation
@@ -135,3 +134,54 @@ The hero snapshot and “Passed” result below are historical evidence for an e
 ## Historical result
 
 Passed. No P0, P1, or P2 visual or interaction issues remain. The only intentional visual deviation from the selected concept is replacing Denim with Lace at the buyer's request.
+
+# Homepage Banner Design QA
+
+**Source visual truth**
+
+- `C:\Users\W\Downloads\New Banner.png`
+- Source pixels: 1916 × 821.
+
+**Rendered implementation**
+
+- Screenshot: `D:\CodexData\Caches\yaqixin-banner-new\qa\yaqixin-homepage-banner-new-implementation.png`
+- Full-view comparison: `D:\CodexData\Caches\yaqixin-banner-new\qa\yaqixin-homepage-banner-new-comparison.png`
+- Focused CTA comparison: `D:\CodexData\Caches\yaqixin-banner-new\qa\yaqixin-homepage-banner-new-buttons-comparison.png`
+- Browser viewport: 1916 × 1000 CSS px at device scale factor 1.
+- Rendered banner: 1901 × 814.56 CSS px; implementation capture normalized to 1901 × 815 pixels.
+- Reference normalization: source resized from 1916 × 821 to 1901 × 815 for equal-size comparison.
+- State: desktop default state, with the primary CTA hover state checked separately.
+
+**Findings**
+
+- No actionable P0, P1, or P2 differences remain.
+- Fonts and typography: the supplied image retains its original display typography. The live CTA labels use the site's Inter stack and closely match the baked labels; the slightly stronger live weight is an acceptable affordance for interactive controls.
+- Spacing and layout rhythm: the 1916:821 aspect ratio, full-width crop, CTA positions, and CTA dimensions align with the normalized source.
+- Colors and visual tokens: the live CTA fills and borders visually match the supplied dark brown and warm ivory palette. Hover states intentionally add darkening and shadow.
+- Image quality and asset fidelity: the exact supplied raster is used; the 1916-pixel WebP is paired with a sharpened 3832-pixel high-density derivative. No visible crop, stretch, or compression artifact was found.
+- Copy and content: headline, support copy, feature strip, process strip, and the two CTA labels match the supplied design. Semantic alt text describes the fabric rolls, lace, satin, and swatches without keyword stuffing.
+- Interaction: Explore Fabrics resolves to `/all-products`; Get Free Sample resolves to `/inquiry`. Hover lifts the button by 5px, adds a shadow, darkens/brightens the fill, and moves the arrow 7px.
+- Responsive behavior: at 390 × 844 the desktop hero is `display:none`, its image remains the 1×1 fallback, and the page has no horizontal overflow. This preserves the user's decision to defer the mobile banner.
+- Console: no browser console errors were observed in the tested homepage states.
+
+**Comparison history**
+
+- First pass: no P0/P1/P2 mismatch found. No corrective visual iteration was required.
+
+**Focused evidence**
+
+- The focused comparison covers both CTA rectangles at equal density; no separate micro-crop was needed beyond that button-region comparison.
+
+**Follow-up Polish**
+
+- P3: the live CTA text is marginally bolder than the baked source label, accepted because it improves click affordance and disappears as a difference during interaction.
+
+**Implementation Checklist**
+
+- [x] Use the supplied visual at the original desktop ratio.
+- [x] Add real, keyboard-focusable CTA links.
+- [x] Add visible hover, active, focus, and reduced-motion states.
+- [x] Keep the desktop banner hidden below 601px.
+- [x] Remove the previous 1×, 2×, and source-image records.
+
+final result: passed
