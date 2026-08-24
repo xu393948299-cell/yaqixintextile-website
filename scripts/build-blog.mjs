@@ -123,25 +123,25 @@ function latestArticleDate(articles) {
   return articles.reduce((latest, article) => (article.updatedAt > latest ? article.updatedAt : latest), articles[0].updatedAt);
 }
 
-function header(active) {
-  return `<div class="announcement">Wholesale fabric sourcing · Stock + custom programs · Export-ready order support</div>
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a class="brand" href="/" aria-label="YAQIXIN home">YAQIXIN</a>
-    <div class="menu">
-      <a href="/">Home</a>
-      <a href="/all-products">Products</a>
-     <a href="/blog"${active === "blog" ? ' aria-current="page"' : ""}>Blog</a>
-     <a href="/custom-capability"${active === "customize" ? ' aria-current="page"' : ""}>Customize</a>
-      <a href="/custom-capability"${active === "customize" ? ' aria-current="page"' : ""}>Custom Capability</a>
-      <a href="/about-us">About Us</a>
-      <a href="/blog"${active === "blog" ? ' aria-current="page"' : ""}>Blog</a>
-      <a href="/contact">Inquiry</a>
-    </div>
-  </nav>`;
+function header() {
+  const homepage = fs.readFileSync(path.join(root, "index.html"), "utf8");
+  const announcement = homepage.match(/<div class="announcement">[\s\S]*?<\/div>/i);
+  const navigation = homepage.match(/<nav class="nav">[\s\S]*?<\/nav>/i);
+  if (!announcement || !navigation) {
+    throw new Error("Homepage announcement or navigation could not be found");
+  }
+  const normalizedNavigation = navigation[0]
+    .replaceAll('href="#top"', 'href="/"')
+    .replaceAll('src="yaqixin-assets/', 'src="/yaqixin-assets/')
+    .replaceAll('data-src="yaqixin-assets/', 'data-src="/yaqixin-assets/');
+  return `${announcement[0]}\n  ${normalizedNavigation}`;
 }
 
 function runtimeScripts(localRoot) {
-  return `  <script src="${localRoot}yaqixin-assets/yaqixin-analytics.js" defer></script>
+  return `  <script src="${localRoot}yaqixin-assets/yaqixin-site-polish.js?v=20260812-audit-fixes" defer></script>
+  <script src="${localRoot}yaqixin-assets/yaqixin-mobile-menu-sync.js?v=20260812-audit-fixes" defer></script>
+  <script src="${localRoot}blog/header.js?v=20260824-home-nav-2" defer></script>
+  <script src="${localRoot}yaqixin-assets/yaqixin-analytics.js?v=20260822-defer" defer></script>
   <script src="${localRoot}yaqixin-assets/yaqixin-lead-system.js" defer></script>
   <script src="${localRoot}yaqixin-assets/yaqixin-wechat-contact.js?v=20260811" defer></script>`;
 }
@@ -207,6 +207,8 @@ function commonHead({ title, description, canonicalPath, image, type = "website"
   <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${stylesHref}" : "/blog/styles.css") + '">');</script>
   <script>document.write('<link rel="stylesheet" href="' + (location.protocol === "file:" ? "${cardsStylesHref}" : "/blog/cards.css") + '">');</script>
   <noscript><link rel="stylesheet" href="/blog/styles.css"><link rel="stylesheet" href="/blog/cards.css"></noscript>
+  <link rel="stylesheet" href="${localRoot}yaqixin-assets/yaqixin-product-menu.css">
+  <link rel="stylesheet" href="${localRoot}blog/header.css?v=20260824-home-nav">
    <link rel="stylesheet" href="/yaqixin-assets/yaqixin-instagram.css?v=20260812-footer-map">
   <link rel="icon" href="${faviconHref}" type="image/png">
   ${localPreviewScript(localRoot)}${articleMeta}`;

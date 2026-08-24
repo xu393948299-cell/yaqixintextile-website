@@ -1,3 +1,47 @@
+## Blog navigation parity QA — 2026-08-24
+
+### Visual truth and implementation
+
+- User reference: `C:\Users\W\AppData\Local\Temp\codex-clipboard-df55897b-b6c0-462b-928c-8540a9231a58.png` (homepage navigation target).
+- Normalized source capture: `D:\CodexData\Caches\yaqixin-blog-nav-qa\home-nav-1920.png`.
+- Final implementation capture: `D:\CodexData\Caches\yaqixin-blog-nav-qa\blog-nav-1920-final.png`.
+- Combined comparison: `D:\CodexData\Caches\yaqixin-blog-nav-qa\home-vs-blog-nav-1920.png` (homepage first, Blog second).
+- Desktop viewport: 1920 x 1050 CSS px; device scale factor 1. Source and implementation navigation captures are both 1920 x 84 px.
+- Mobile implementation: `D:\CodexData\Caches\yaqixin-blog-nav-qa\blog-mobile-390-final.png` at a 390 x 844 CSS-pixel viewport and device scale factor 1.
+- State: English, navigation closed for the visual comparison; Products and language menus tested separately in their open states.
+
+### Full-view and focused comparison evidence
+
+- The supplied homepage and Blog screenshots were opened before implementation. The page bodies intentionally differ, so full-page content was not treated as a fidelity target; the task-specific full view is the complete header region from announcement bar through navigation.
+- The normalized combined comparison places the complete homepage and Blog navigation captures in one image. Brand position, menu order, header height, background, search control, language control and lower border align without a visible P0/P1/P2 mismatch.
+- Focused computed-style evidence matches at 1920px: navigation 1920 x 84, gap 34px, padding 0 38px, brand 30px Georgia at weight 700, menu 13px Inter at weight 800 with 22px gap, search 248 x 38, and language trigger 102 x 38.
+
+### Required fidelity surfaces
+
+- Fonts and typography: Blog header now uses the homepage Inter/Segoe UI/Arial stack; the YAQIXIN wordmark uses the same Georgia stack, 30px size and 700 weight.
+- Spacing and layout rhythm: header height, grid tracks, brand alignment, menu gap, search width and language-control spacing match the homepage capture.
+- Colors and visual tokens: announcement navy, warm paper navigation background, ink text, copper interaction color and line color match the homepage header.
+- Image quality and asset fidelity: the existing US/Spain flag assets and wordmark treatment are reused; no replacement or synthetic assets were introduced.
+- Copy and content: exactly one `Home / Products / Custom Capability / About Us / Blog / Inquiry` sequence is present. The duplicate Blog and extra Customize entries are removed.
+
+### Comparison history
+
+- Initial P1: Blog used a separate legacy header, duplicated Blog, added Customize, and omitted the Products dropdown, search and language controls. Fix: the Blog generator now derives its header from the homepage navigation source.
+- Pass 1 P2: inherited Arial typography, a 388px search box and excess Products-button height differed from the homepage. Fix: header typography, grid track, search width, line height and trigger padding were matched to measured homepage values.
+- Mobile pass 1 P2: both desktop and mobile announcement strings were visible. Fix: the responsive visibility rules now show only the compact mobile announcement at 390px.
+- Final desktop and mobile evidence: no actionable P0/P1/P2 findings remain; desktop and mobile show no horizontal overflow or browser error overlay.
+
+### Interaction checks
+
+- Products opens the full product-category panel and updates `aria-expanded`; Escape closes it.
+- Language menu opens with English and Spanish options.
+- Search remains visible and uses the existing site search handler.
+- Mobile quick-action Menu opens the shared sitewide category sheet.
+- Blog listing and a representative article page both render the same header with one Blog link and no horizontal overflow.
+- Browser errors checked: none.
+
+final result: passed
+
 ## Instagram wall QA — 2026-08-14
 
 ### Final result: passed
