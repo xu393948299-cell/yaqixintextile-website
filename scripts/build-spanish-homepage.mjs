@@ -55,7 +55,7 @@ const translations = new Map([
   ["Stock and supply context", "Contexto de stock y suministro"], ["Supply coordination", "Coordinación de suministro"],
   ["Wholesale fabric sourcing | Stock + custom programs | 7-day design completion and export support", "Abastecimiento mayorista de telas | Stock y programas a medida | Diseño en 7 días y soporte de exportación"],
   ["Wholesale Fabric / Custom / 7-Day Design", "Telas mayoristas / Personalización / Diseño en 7 días"],
-  ["Home", "Inicio"], ["Products", "Productos"], ["About Us", "Sobre nosotros"], ["Custom Capability", "Capacidad personalizada"], ["Contact / Inquiry", "Contacto / consulta"], ["Customize", "Personalizar"], ["Inquiry", "Consulta"],
+  ["Home", "Inicio"], ["Products", "Productos"], ["About Us", "Sobre nosotros"], ["Custom Capability", "Capacidad personalizada"], ["Inquiry", "Consulta"], ["Customize", "Personalizar"],
   ["Search fabrics", "Buscar telas"], ["Search products", "Buscar productos"], ["Choose language", "Elegir idioma"], ["English", "Inglés"], ["Espanol", "Español"],
   ["See all categories", "Ver todas las categorías"], ["View all plain cotton", "Ver todo el algodón liso"], ["View all tulle", "Ver todo el tul"], ["View all organza", "Ver toda la organza"], ["View all pleated", "Ver todos los plisados"], ["View all lace", "Ver todos los encajes"], ["View all satin", "Ver todos los satinados"],
   ["Plain Cotton Fabric", "Tejido de algodón liso"], ["Canvas Fabric", "Tejido de loneta"], ["Poplin Fabric", "Tejido popelín"], ["Twill Fabric", "Tejido de sarga"], ["Tulle Mesh Fabric", "Tul y tejido de malla"], ["Plain Tulle Fabric", "Tul liso"], ["Stretch Knit Mesh Fabric", "Malla de punto elástica"], ["Holiday Tulle Fabric", "Tul temático"], ["Glitter Tulle Fabric", "Tul con brillo"], ["Rainbow Tulle Fabric", "Tul arcoíris"], ["Print Mesh Fabric", "Malla estampada"], ["3D Tulle Mesh Fabric", "Tul y malla 3D"], ["Flocked Mesh Fabric", "Malla flocada"], ["Sequin Fabric", "Tejido de lentejuelas"], ["Organza Fabric", "Tejido de organza"], ["Pleated Fabric", "Tejido plisado"], ["Lace Fabric", "Tejido de encaje"], ["Satin Fabric", "Tejido satinado"], ["Denim Fabric", "Tejido denim"],
@@ -109,6 +109,7 @@ const moqEnglishTranslations = [
 ];
 for (const [english, spanish] of moqEnglishTranslations) html = html.replaceAll(english, spanish);
 for (const [english, spanish] of translations) html = html.replaceAll(english, spanish);
+html = html.replaceAll('<a href="/contact">Consulta</a>', '<a href="/contact">Inquiry</a>');
 html = html.replaceAll('View Todos los productos <span>&rarr;</span>', 'Ver todos los productos <span>&rarr;</span>');
 html = html.replaceAll('All fields are optional. Send only what you know.', 'Add an email or WhatsApp number so we can reply; other details are optional.');
 html = html.replaceAll('languageLabel:"Language"', 'languageLabel:"Idioma"');

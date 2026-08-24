@@ -135,7 +135,7 @@ function header(active) {
       <a href="/custom-capability"${active === "customize" ? ' aria-current="page"' : ""}>Custom Capability</a>
       <a href="/about-us">About Us</a>
       <a href="/blog"${active === "blog" ? ' aria-current="page"' : ""}>Blog</a>
-      <a href="/contact">Contact / Inquiry</a>
+      <a href="/contact">Inquiry</a>
     </div>
   </nav>`;
 }

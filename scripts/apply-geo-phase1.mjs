@@ -67,7 +67,7 @@ function updateNavigation(text, isSpanish) {
   const menu = directMenuAnchors(nav);
   if (!menu || menu.anchors.length < 2) return text;
 
-  const contactLabel = isSpanish ? 'Contacto / consulta' : 'Contact / Inquiry';
+  const contactLabel = 'Inquiry';
   const aboutLabel = isSpanish ? 'Sobre nosotros' : 'About Us';
   const customLabel = isSpanish ? 'Capacidad personalizada' : 'Custom Capability';
   const directLinks = menu.productMenu
