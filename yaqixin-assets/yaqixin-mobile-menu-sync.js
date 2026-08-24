@@ -2,6 +2,8 @@
   var STYLE_ID='yaqixin-mobile-menu-unified-style';
   var SHEET_ID='mobileCategoryLayer';
   var BUTTON_ID='mobileCategoriesBtn';
+  var MOBILE_WHATSAPP_HREF='https://wa.me/8618125117673';
+  var MOBILE_SAMPLE_HREF='https://wa.me/8613632259091';
 
   var productsHtml=[
     '<a href="/all-products">All Products</a>',
@@ -40,14 +42,6 @@
     '</div></details>',
     '<a href="/yx277-460gsm-cotton-denim-fabric">Denim Fabric</a>'
   ].join('');
-
-  function inquiryHref(){
-    return document.getElementById('inquiry')?'#inquiry':'/#inquiry';
-  }
-
-  function whatsappHref(){
-    return document.body.getAttribute('data-whatsapp-href')||'';
-  }
 
   function injectStyle(){
     if(document.getElementById(STYLE_ID)){return}
@@ -109,9 +103,7 @@
       bar.setAttribute('aria-label','Mobile quick actions');
       document.body.appendChild(bar);
     }
-    var chatHref=whatsappHref()||inquiryHref();
-    var chatAttrs=whatsappHref()?' target="_blank" rel="noopener noreferrer"':'';
-    bar.innerHTML='<button class="categories" id="'+BUTTON_ID+'" type="button" aria-label="Menu" aria-controls="mobileCategorySheet" aria-expanded="false"><span class="cat-icon" aria-hidden="true"><span></span></span><span class="cat-label">Menu</span></button><a class="chat" href="'+chatHref+'"'+chatAttrs+'>WhatsApp</a><a class="quote" href="'+inquiryHref()+'">Get Sample</a>';
+    bar.innerHTML='<button class="categories" id="'+BUTTON_ID+'" type="button" aria-label="Menu" aria-controls="mobileCategorySheet" aria-expanded="false"><span class="cat-icon" aria-hidden="true"><span></span></span><span class="cat-label">Menu</span></button><a class="chat" href="'+MOBILE_WHATSAPP_HREF+'" target="_blank" rel="noopener noreferrer" aria-label="Contact YAQIXIN on WhatsApp at +86 18125117673">WhatsApp</a><a class="quote" href="'+MOBILE_SAMPLE_HREF+'" target="_blank" rel="noopener noreferrer" aria-label="Contact YAQIXIN for a sample at +86 13632259091">Get Sample</a>';
     return bar;
   }
 

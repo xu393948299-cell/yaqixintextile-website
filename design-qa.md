@@ -36,6 +36,7 @@
 - Browser errors checked on the representative desktop and mobile pages: none.
 
 final result: passed
+
 ## Blog navigation parity QA — 2026-08-24
 
 ### Visual truth and implementation
@@ -183,5 +184,42 @@ Passed. No P0, P1, or P2 visual or interaction issues remain. The only intention
 - [x] Add visible hover, active, focus, and reduced-motion states.
 - [x] Keep the desktop banner hidden below 601px.
 - [x] Remove the previous 1×, 2×, and source-image records.
+
+final result: passed
+
+# Mobile Dual WhatsApp Action Bar — Design QA
+
+## Source visual truth and rendered implementation
+
+- Source visual truth: `C:\Users\W\AppData\Local\Temp\codex-clipboard-5c0d200c-4370-4fd1-9e3d-80013fcba9f2.png`.
+- Source pixels: 1920 × 929. The 440 × 956 Blog viewport shown at 75% was cropped from 330 × 717 pixels and normalized to `D:\CodexData\Caches\yaqixin-mobile-contacts-20260824\qa\reference-blog-440x956.png`.
+- Rendered implementation: `D:\CodexData\Caches\yaqixin-mobile-contacts-20260824\qa\blog-440x956.png` from the local `/blog` route.
+- Implementation capture pixels: 425 × 923 because the in-app browser reserves scrollbar and browser chrome space. It was normalized to 440 × 956 at density 1 in `D:\CodexData\Caches\yaqixin-mobile-contacts-20260824\qa\blog-implementation-normalized-440x956.png`.
+- CSS viewport: 440 × 956; top-of-page Blog state; mobile action bar fixed at the viewport bottom.
+- Full-view comparison evidence: the two normalized 440 × 956 captures were opened together in one comparison input.
+- Focused comparison evidence: `D:\CodexData\Caches\yaqixin-mobile-contacts-20260824\qa\reference-blog-bar-440x116.png` and `D:\CodexData\Caches\yaqixin-mobile-contacts-20260824\qa\implementation-blog-bar-440x116.png` were opened together in one comparison input.
+
+## Findings
+
+- No actionable P0, P1, or P2 differences remain.
+- Fonts and typography: Menu, WhatsApp, and Get Sample retain the reference font stack, 15px button size at 440px, 800/850 weights, centered alignment, and non-wrapping labels.
+- Spacing and layout rhythm: the fixed bar uses the reference 74px menu column, two equal action columns, 10px gaps, 10px/12px padding, 52px controls, 999px radii, top divider, blur, and shadow. The scrollbar-width difference in the browser capture is environmental; the CSS grid expands to the full mobile viewport on a device without a reserved scrollbar.
+- Colors and visual tokens: WhatsApp is white with dark text and a gray-black border; Get Sample uses `#ff6500` for background and border with white text. The former homepage-only `#b94700` override is absent.
+- Image quality and asset fidelity: the task changes no imagery. Existing Blog product imagery, crop, and fixed helper widgets remain unchanged. No replacement or synthetic asset was introduced.
+- Copy and content: visible labels match the reference. The red arrows in the supplied screenshot are reviewer annotations, not page content, and are intentionally absent from the implementation.
+- Interaction and accessibility: WhatsApp resolves to `https://wa.me/8618125117673`; Get Sample resolves to `https://wa.me/8613632259091`. Both use a new tab, `noopener noreferrer`, descriptive labels, and no prefilled message. No browser console errors were observed.
+- Responsive behavior: `D:\CodexData\Caches\yaqixin-mobile-contacts-20260824\qa\render-audit-440x956.json` records 113/113 sitemap routes passing rendered checks at 440 × 956. `D:\CodexData\Caches\yaqixin-mobile-contacts-20260824\qa\breakpoint-audit.json` records 14/14 representative checks passing at 360px and 390px with no horizontal overflow.
+
+## Comparison history
+
+- First pass: no P0/P1/P2 visual mismatch was found after normalizing the supplied reference and the browser capture to the same 440 × 956 frame. No corrective visual iteration was required.
+
+## Implementation checklist
+
+- [x] Preserve the Blog action bar as the sole visual reference.
+- [x] Apply the two fixed WhatsApp destinations to static and dynamically generated mobile bars.
+- [x] Remove mobile action-bar inquiry-anchor routing and prefilled messages.
+- [x] Preserve desktop floating controls, page forms, and inline inquiry actions.
+- [x] Verify all 113 sitemap routes plus 360px and 390px representative breakpoints.
 
 final result: passed
