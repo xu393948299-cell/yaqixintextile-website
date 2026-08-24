@@ -10,6 +10,7 @@ const sitemapPath = path.join(root, "sitemap.xml");
 const baseUrl = "https://www.yaqixintextile.com";
 const publisher = {
   "@type": "Organization",
+  "@id": `${baseUrl}/#organization`,
   name: "YAQIXIN",
   url: `${baseUrl}/`,
   sameAs: [
@@ -261,6 +262,15 @@ function relatedLinksMarkup(article) {
   return `<section class="related-links" aria-labelledby="related-links-title"><h2 id="related-links-title">Related sourcing pages</h2><ul>${links}</ul></section>`;
 }
 
+function articleWordCount(content) {
+  const plainText = content
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&[a-z0-9#]+;/gi, " ");
+  return (plainText.match(/\b[A-Za-z0-9][A-Za-z0-9'-]*\b/g) || []).length;
+}
+
 function buildArticle(article) {
   const contentPath = path.join(contentRoot, article.contentFile);
   const content = fs.readFileSync(contentPath, "utf8").trim();
@@ -284,9 +294,14 @@ function buildArticle(article) {
     image: [`${baseUrl}${article.coverImage}`],
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
-    author: { "@type": "Organization", name: article.author },
+    author: {
+      "@type": "Organization",
+      name: article.author,
+      url: `${baseUrl}/about-us`,
+    },
     publisher,
     articleSection: article.category || "Sourcing guide",
+    wordCount: articleWordCount(content),
     ...(article.primaryKeyword ? { keywords: article.primaryKeyword } : {}),
     mainEntityOfPage: { "@type": "WebPage", "@id": `${baseUrl}${articlePath}` },
     inLanguage: "en",
@@ -303,7 +318,7 @@ function buildArticle(article) {
 </head>
 <body>
   ${header("blog")}
-  <main class="article-page"><div class="site-shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog">Blog</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(article.title)}</span></nav><header class="article-intro"><span class="eyebrow">${escapeHtml(article.category || "Sourcing guide")}</span><h1>${escapeHtml(article.title)}</h1><div class="article-meta"><time datetime="${article.publishedAt}">Published ${formattedDate(article.publishedAt)}</time><span>Updated ${formattedDate(article.updatedAt)}</span><span>${escapeHtml(article.readingTime)}</span><span>By ${escapeHtml(article.author)}</span></div><p class="dek">${escapeHtml(article.excerpt)}</p></header><figure class="article-cover"><img src="${articleCover}" width="1672" height="941" fetchpriority="high" alt="${escapeHtml(article.coverAlt)}"><figcaption>${escapeHtml(coverCaption)}</figcaption></figure><div class="article-layout"><aside class="article-toc" aria-label="Article contents"><strong>In this guide</strong>${toc}</aside><article class="article-body">${contentWithLocalAssets}<section class="article-cta" aria-labelledby="article-cta-title"><h2 id="article-cta-title">Ready to discuss a fabric brief?</h2><p>Share your intended application, a reference image or swatch, quantity, and market. We can help you compare a stock or custom fabric route before you place a bulk order.</p><a class="btn" href="/custom-capability">Start a fabric inquiry</a></section>${related}<a class="back-to-blog" href="/blog">Back to Blog</a></article></div></div></main>
+  <main class="article-page"><div class="site-shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog">Blog</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(article.title)}</span></nav><header class="article-intro"><span class="eyebrow">${escapeHtml(article.category || "Sourcing guide")}</span><h1>${escapeHtml(article.title)}</h1><div class="article-meta"><time datetime="${article.publishedAt}">Published ${formattedDate(article.publishedAt)}</time><span>Updated ${formattedDate(article.updatedAt)}</span><span>${escapeHtml(article.readingTime)}</span><span>By <a class="article-author" href="/about-us">${escapeHtml(article.author)}</a></span></div><p class="dek">${escapeHtml(article.excerpt)}</p></header><figure class="article-cover"><img src="${articleCover}" width="1672" height="941" fetchpriority="high" alt="${escapeHtml(article.coverAlt)}"><figcaption>${escapeHtml(coverCaption)}</figcaption></figure><div class="article-layout"><aside class="article-toc" aria-label="Article contents"><strong>In this guide</strong>${toc}</aside><article class="article-body">${contentWithLocalAssets}<section class="article-cta" aria-labelledby="article-cta-title"><h2 id="article-cta-title">Ready to discuss a fabric brief?</h2><p>Share your intended application, a reference image or swatch, quantity, and market. We can help you compare a stock or custom fabric route before you place a bulk order.</p><a class="btn" href="/custom-capability">Start a fabric inquiry</a></section>${related}<a class="back-to-blog" href="/blog">Back to Blog</a></article></div></div></main>
   ${footer("../../")}
 </body>
 </html>`;

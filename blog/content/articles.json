@@ -1,6 +1,39 @@
 {
   "articles": [
     {
+      "slug": "fabric-gsm-guide-weight-drape-and-sourcing",
+      "title": "Fabric GSM Guide for Apparel Buyers: Weight, Drape and Sourcing",
+      "excerpt": "A practical guide to what fabric GSM means, how weight interacts with construction and width, and how buyers can compare samples, estimate mass and prepare a clearer quote brief.",
+      "coverImage": "/yaqixin-assets/products/yx277-denim/yx277-main-denim-fabric.webp",
+      "coverAlt": "Close view of heavyweight 460gsm cotton denim used as a fabric weight reference",
+      "coverCaption": "YAQIXIN YX277 cotton denim, used as a current 460gsm catalog example. GSM is useful only when read with construction, width, finish and intended garment use.",
+      "publishedAt": "2026-08-24",
+      "updatedAt": "2026-08-24",
+      "author": "YAQIXIN Editorial Team",
+      "category": "Fabric specification guide",
+      "primaryKeyword": "fabric GSM guide",
+      "readingTime": "9 min read",
+      "seoTitle": "Fabric GSM Guide: Weight, Drape & Sourcing | YAQIXIN",
+      "metaDescription": "Learn what fabric GSM means, compare verified tulle, poplin, satin, denim and beaded lace weights, and use width and GSM to plan samples and quotes.",
+      "contentFile": "fabric-gsm-guide-weight-drape-and-sourcing.html",
+      "toc": [
+        { "id": "what-fabric-gsm-means", "label": "What fabric GSM means" },
+        { "id": "read-gsm-with-construction", "label": "Read GSM with construction" },
+        { "id": "compare-current-catalog-examples", "label": "Compare catalog examples" },
+        { "id": "estimate-roll-mass-from-gsm-and-width", "label": "Estimate fabric mass" },
+        { "id": "use-gsm-during-sample-approval", "label": "Use GSM during sample approval" },
+        { "id": "send-a-quote-ready-gsm-brief", "label": "Send a quote-ready brief" },
+        { "id": "faq", "label": "Buyer questions" }
+      ],
+      "relatedLinks": [
+        { "label": "Use the fabric sample inspection checklist", "url": "/blog/fabric-sample-inspection-checklist-for-apparel-buyers" },
+        { "label": "Read the wholesale fabric sourcing guide", "url": "/blog/how-to-source-wholesale-fabric-from-china" },
+        { "label": "Compare satin fabric types", "url": "/blog/types-of-satin-fabric-mikado-stretch-matte-liquid-compared" },
+        { "label": "Browse all fabric products", "url": "/all-products" },
+        { "label": "Start a fabric inquiry", "url": "/#inquiry" }
+      ]
+    },
+    {
       "slug": "fabric-sample-inspection-checklist-for-apparel-buyers",
       "title": "Fabric Sample Inspection Checklist for Apparel Buyers",
       "excerpt": "A practical pre-production checklist for reviewing fabric samples by specification, appearance, construction, handling and approval records before a bulk order.",
@@ -8,7 +41,7 @@
       "coverAlt": "White matte satin fabric sample shown with a formal dress reference",
       "coverCaption": "YAQIXIN YX693-2 matte satin, used as a current catalog example when reviewing surface, color and drape before a bulk fabric order.",
       "publishedAt": "2026-08-17",
-      "updatedAt": "2026-08-17",
+      "updatedAt": "2026-08-24",
       "author": "YAQIXIN Editorial Team",
       "category": "Sample inspection guide",
       "primaryKeyword": "fabric sample inspection checklist",
@@ -28,6 +61,8 @@
         { "id": "faq", "label": "Buyer questions" }
       ],
       "relatedLinks": [
+        { "label": "Understand fabric GSM, weight and width", "url": "/blog/fabric-gsm-guide-weight-drape-and-sourcing" },
+        { "label": "Read the wholesale fabric sourcing guide", "url": "/blog/how-to-source-wholesale-fabric-from-china" },
         { "label": "Browse all fabric products", "url": "/all-products" },
         { "label": "View Satin Fabric", "url": "/satin-fabric" },
         { "label": "View Tulle Mesh Fabric", "url": "/tulle-mesh-fabric" },
@@ -43,7 +78,7 @@
       "coverAlt": "Champagne ivory thickened Mikado satin shown with a structured formal dress reference",
       "coverCaption": "YAQIXIN YX920 thickened Mikado satin, used as a current catalog example of a structured satin route.",
       "publishedAt": "2026-08-11",
-      "updatedAt": "2026-08-21",
+      "updatedAt": "2026-08-24",
       "author": "YAQIXIN Editorial Team",
       "category": "Fabric comparison guide",
       "primaryKeyword": "types of satin fabric",
@@ -62,6 +97,8 @@
         { "id": "faq", "label": "Buyer questions" }
       ],
       "relatedLinks": [
+        { "label": "Understand fabric GSM, weight and width", "url": "/blog/fabric-gsm-guide-weight-drape-and-sourcing" },
+        { "label": "Use the fabric sample inspection checklist", "url": "/blog/fabric-sample-inspection-checklist-for-apparel-buyers" },
         { "label": "Browse all Satin Fabric", "url": "/satin-fabric" },
         { "label": "Compare Mikado Satin Fabric", "url": "/mikado-satin-fabric" },
         { "label": "Explore Stretch Satin Fabric", "url": "/stretch-satin-fabric" },
@@ -77,7 +114,7 @@
       "coverAlt": "Soft white nylon plain tulle shown in hand with a bridal-style garment reference",
       "coverCaption": "YAQIXIN YX1046 soft white nylon plain tulle, shown as a current catalog example for a light bridal or veil route.",
       "publishedAt": "2026-08-07",
-      "updatedAt": "2026-08-21",
+      "updatedAt": "2026-08-24",
       "author": "YAQIXIN Editorial Team",
       "category": "Fabric selection guide",
       "primaryKeyword": "how to choose tulle fabric for wedding dresses",
@@ -95,6 +132,8 @@
         { "id": "faq", "label": "Buyer questions" }
       ],
       "relatedLinks": [
+        { "label": "Understand fabric GSM, weight and width", "url": "/blog/fabric-gsm-guide-weight-drape-and-sourcing" },
+        { "label": "Use the fabric sample inspection checklist", "url": "/blog/fabric-sample-inspection-checklist-for-apparel-buyers" },
         { "label": "Browse all Tulle Mesh Fabric", "url": "/tulle-mesh-fabric" },
         { "label": "Compare Plain Tulle Fabric", "url": "/plain-tulle-fabric" },
         { "label": "Explore Glitter Tulle Fabric", "url": "/glitter-tulle-fabric" },
@@ -110,7 +149,7 @@
       "coverAlt": "Editorial image of hands comparing fabric swatches beside rolls of lace, mesh, satin, and cotton",
       "coverCaption": "Editorial image illustrating fabric selection for a sourcing brief.",
       "publishedAt": "2026-07-14",
-      "updatedAt": "2026-07-14",
+      "updatedAt": "2026-08-24",
       "author": "YAQIXIN Editorial Team",
       "category": "Sourcing guide",
       "primaryKeyword": "how to source wholesale fabric from China",
@@ -126,6 +165,13 @@
         { "id": "make-the-quote-comparable", "label": "Make supplier quotes comparable" },
         { "id": "prepare-for-export", "label": "Prepare for the destination market" },
         { "id": "faq", "label": "Buyer questions" }
+      ],
+      "relatedLinks": [
+        { "label": "Understand fabric GSM, weight and width", "url": "/blog/fabric-gsm-guide-weight-drape-and-sourcing" },
+        { "label": "Use the fabric sample inspection checklist", "url": "/blog/fabric-sample-inspection-checklist-for-apparel-buyers" },
+        { "label": "Browse all fabric products", "url": "/all-products" },
+        { "label": "Discuss a custom fabric brief", "url": "/custom-capability" },
+        { "label": "Start an inquiry", "url": "/#inquiry" }
       ]
     }
   ]
