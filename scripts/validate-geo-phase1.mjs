@@ -233,15 +233,15 @@ function assertOrganization(route) {
   assert(!/\bmanufacturer\b|\bfactory\b/i.test(String(organization.description || "")), file + ": Organization description uses unsupported entity wording");
 }
 
-for (const route of ["/", "/about-us", "/contact"]) assertOrganization(route);
+for (const route of ["/", "/about-us", "/inquiry"]) assertOrganization(route);
 
 const aboutHtml = read("about-us.html");
-const contactHtml = read("contact.html");
+const inquiryHtml = read("inquiry.html");
 assert(canonicalHref(aboutHtml) === origin + "/about-us", "about-us.html: canonical is incorrect");
-assert(canonicalHref(contactHtml) === origin + "/contact", "contact.html: canonical is incorrect");
-assert(contactHtml.includes("<form") && !/\brequired\b/i.test(contactHtml), "contact.html: inquiry fields must stay optional");
-assert((contactHtml.match(/data-whatsapp=/g) || []).length === 2, "contact.html: both WhatsApp contact choices are required");
-assert(contactHtml.includes(company.legalName), "contact.html: legal entity is not visible");
+assert(canonicalHref(inquiryHtml) === origin + "/inquiry", "inquiry.html: canonical is incorrect");
+assert(inquiryHtml.includes("<form") && !/\brequired\b/i.test(inquiryHtml), "inquiry.html: inquiry fields must stay optional");
+assert((inquiryHtml.match(/data-whatsapp=/g) || []).length === 2, "inquiry.html: both WhatsApp contact choices are required");
+assert(inquiryHtml.includes(company.legalName), "inquiry.html: legal entity is not visible");
 assert(aboutHtml.includes(company.legalName), "about-us.html: legal entity is not visible");
 
 const navigationFiles = allHtmlFiles.filter((file) => (
@@ -254,7 +254,7 @@ const navigationFiles = allHtmlFiles.filter((file) => (
 for (const file of navigationFiles) {
   const html = read(file);
   const nav = firstNav(html);
-  assert(nav.includes('href="/contact"'), file + ": primary navigation lacks /contact");
+  assert(nav.includes('href="/inquiry"'), file + ": primary navigation lacks /inquiry");
   assert(!/href=["']\/?#inquiry["']/i.test(nav), file + ": primary navigation still targets #inquiry");
 }
 
@@ -281,6 +281,9 @@ const vercel = readJson("vercel.json");
 const redirects = Array.isArray(vercel.redirects) ? vercel.redirects : [];
 assert(vercel.cleanUrls === true, "vercel.json: cleanUrls must be enabled");
 assert(!redirects.some((redirect) => redirect.source === "/about-us"), "vercel.json: /about-us must not redirect away");
+for (const source of ["/contact", "/contact.html"]) {
+  assert(redirects.some((redirect) => redirect.source === source && redirect.destination === "/inquiry" && redirect.permanent === true), "vercel.json: " + source + " must permanently redirect to /inquiry");
+}
 const robots = read("robots.txt");
 assert(/User-agent:\s*\*/i.test(robots) && /Allow:\s*\//i.test(robots), "robots.txt: crawl allow rule is missing");
 assert(robots.includes(origin + "/sitemap.xml"), "robots.txt: sitemap declaration is missing");
@@ -305,7 +308,7 @@ for (const entry of sitemap) {
   canonicalLocations.add(canonical);
   assert(!/\bnoindex\b/i.test(html), sourceFile + ": sitemap URL must remain indexable");
 }
-for (const route of ["/", "/about-us", "/contact"]) {
+for (const route of ["/", "/about-us", "/inquiry"]) {
   assert(sitemapLocations.has(origin + route), "sitemap.xml: missing " + route);
 }
 

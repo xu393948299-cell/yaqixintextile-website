@@ -26,6 +26,16 @@
   ],
   "redirects": [
     {
+      "source": "/contact",
+      "destination": "/inquiry",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/inquiry",
+      "permanent": true
+    },
+    {
       "source": "/index",
       "destination": "/",
       "permanent": true

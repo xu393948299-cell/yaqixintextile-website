@@ -42,7 +42,7 @@ sitemap = sitemap.replace(/<url>\n\s*<loc>https:\/\/www\.yaqixintextile\.com([^<
   return xmlUrl(route);
 });
 
-for (const route of ["/about-us", "/contact"]) {
+for (const route of ["/about-us", "/inquiry"]) {
   const escapedRoute = route.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   if (new RegExp(`<loc>https://www\\.yaqixintextile\\.com${escapedRoute}</loc>`).test(sitemap)) continue;
   sitemap = sitemap.replace("</urlset>", `${xmlUrl(route)}\n</urlset>`);

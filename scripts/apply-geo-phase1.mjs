@@ -3,7 +3,7 @@
  * Applies deterministic GEO Phase 1 entity and navigation normalization.
  *
  * This is intentionally a source transformer for the static site: public
- * email, safe entity wording and the Contact route are configured centrally
+ * email, safe entity wording and the Inquiry route are configured centrally
  * instead of hand-edited in individual pages.
  */
 import fs from 'node:fs';
@@ -71,8 +71,8 @@ function updateNavigation(text, isSpanish) {
   const aboutLabel = isSpanish ? 'Sobre nosotros' : 'About Us';
   const customLabel = isSpanish ? 'Capacidad personalizada' : 'Custom Capability';
   const directLinks = menu.productMenu
-    ? `<a href="/custom-capability">${customLabel}</a><a href="/about-us">${aboutLabel}</a><a href="/blog">Blog</a><a href="/contact">${contactLabel}</a>`
-    : `<a href="/all-products">Products</a><a href="/custom-capability">${customLabel}</a><a href="/about-us">${aboutLabel}</a><a href="/blog">Blog</a><a href="/contact">${contactLabel}</a>`;
+    ? `<a href="/custom-capability">${customLabel}</a><a href="/about-us">${aboutLabel}</a><a href="/blog">Blog</a><a href="/inquiry">${contactLabel}</a>`
+    : `<a href="/all-products">Products</a><a href="/custom-capability">${customLabel}</a><a href="/about-us">${aboutLabel}</a><a href="/blog">Blog</a><a href="/inquiry">${contactLabel}</a>`;
   const first = menu.anchors[1];
   const last = menu.anchors[menu.anchors.length - 1];
   const rewrittenNav = `${nav.slice(0, first.start)}${directLinks}${nav.slice(last.end)}`;

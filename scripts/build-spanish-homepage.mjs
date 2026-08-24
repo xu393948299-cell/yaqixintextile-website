@@ -109,7 +109,7 @@ const moqEnglishTranslations = [
 ];
 for (const [english, spanish] of moqEnglishTranslations) html = html.replaceAll(english, spanish);
 for (const [english, spanish] of translations) html = html.replaceAll(english, spanish);
-html = html.replaceAll('<a href="/contact">Consulta</a>', '<a href="/contact">Inquiry</a>');
+html = html.replaceAll('<a href="/inquiry">Consulta</a>', '<a href="/inquiry">Inquiry</a>');
 html = html.replaceAll('View Todos los productos <span>&rarr;</span>', 'Ver todos los productos <span>&rarr;</span>');
 html = html.replaceAll('All fields are optional. Send only what you know.', 'Add an email or WhatsApp number so we can reply; other details are optional.');
 html = html.replaceAll('languageLabel:"Language"', 'languageLabel:"Idioma"');
