@@ -1703,19 +1703,15 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
   .hero.seo-hero:before{display:none!important;content:none!important;background:none!important}
   .home-static-banner{position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate;background:#f4eee6}
   .home-static-banner-canvas{position:relative;width:100%;height:100%}
-  .home-static-banner img{display:block;width:100%;height:100%;object-fit:contain}
+  .home-static-banner picture,.home-static-banner img{display:block;width:100%;height:100%}
+  .home-static-banner img{object-fit:contain}
   .home-static-banner-copy{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   .home-static-banner-link{position:absolute;z-index:2;top:61.1%;height:7.2%;border-radius:8px;color:transparent;font-size:0;text-decoration:none}
   .home-static-banner-link:hover{background:rgba(255,255,255,.12)}
   .home-static-banner-link:focus-visible{outline:3px solid #0b1d35;outline-offset:3px;background:rgba(255,255,255,.18)}
   .home-static-banner-link.explore-fabrics{left:2.9%;width:14.4%}
   .home-static-banner-link.get-a-quote{left:18.1%;width:14.5%}
-  @media(max-width:600px){
-    .hero.seo-hero{height:min(100vw,420px)!important;aspect-ratio:auto}
-    .home-static-banner-canvas{width:min(233.252vw,979.66px);max-width:none}
-    .home-static-banner img{object-fit:fill}
-    .home-static-banner-link{top:59.3%;height:11.2%}
-  }
+  @media(max-width:600px){.hero.seo-hero{display:none!important}}
 </style>
   <link rel="stylesheet" href="yaqixin-assets/yaqixin-site-image-layout-fix.css?v=20260808-site-image-fix">
   <style id="homepage-structure-v3">
@@ -1750,11 +1746,14 @@ h1,h2,h3,.brand strong{letter-spacing:0}.nav{box-shadow:0 10px 34px rgba(16,21,3
     <div class="nav-tools"><form class="site-search" id="site-search" role="search" aria-label="Search YAQIXIN products"><input id="site-search-input" name="q" type="search" placeholder="Search fabrics" aria-label="Search fabrics" autocomplete="off"><button type="submit" aria-label="Search products"><span>Search</span></button></form><div class="language-switcher" data-language-switcher><button class="language-trigger" id="languageTrigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="languageMenu" aria-label="Choose language"><span class="language-mark" aria-hidden="true"><img src="yaqixin-assets/flags/us.svg" alt="English flag" aria-hidden="true" width="1235" height="650"></span><span data-language-current>EN</span></button><div class="language-menu" id="languageMenu" role="menu" aria-label="Choose language"><button class="language-option is-active" type="button" role="menuitemradio" aria-checked="true" data-lang-option="en"><span class="language-name"><span class="language-flag" aria-hidden="true"><img src="yaqixin-assets/flags/us.svg" alt="English flag" aria-hidden="true" width="1235" height="650"></span><span>English</span></span><small>EN</small></button><button class="language-option" type="button" role="menuitemradio" aria-checked="false" data-lang-option="es"><span class="language-name"><span class="language-flag" aria-hidden="true"><img data-src="yaqixin-assets/flags/es.svg" alt="Spanish flag" aria-hidden="true" width="750" height="500"></span><span>Espanol</span></span><small>ES</small></button></div></div><button class="mobile-toggle" id="menuBtn" aria-label="Open menu"><span></span></button></div>
   </nav>
   <main>
+    <div class="home-static-banner-copy"><h1>Custom Fabrics &amp; Textile Solutions for Global Apparel Buyers</h1><p>7-day fast delivery, low MOQ, free samples, and custom fabric and packaging solutions for sourcing projects.</p></div>
     <section class="hero seo-hero" id="top" aria-label="YAQIXIN custom fabrics and textile solutions">
       <div class="home-static-banner">
         <div class="home-static-banner-canvas">
-          <img src="yaqixin-assets/yaqixin-homepage-banner.webp?v=20260824" alt="YAQIXIN custom fabrics and textile solutions for global apparel buyers, featuring lace, satin and fabric swatches" fetchpriority="high" decoding="async" width="1915" height="821">
-          <div class="home-static-banner-copy"><h1>Custom Fabrics &amp; Textile Solutions for Global Apparel Buyers</h1><p>7-day fast delivery, low MOQ, free samples, and custom fabric and packaging solutions for sourcing projects.</p></div>
+          <picture>
+            <source media="(min-width:601px)" srcset="yaqixin-assets/yaqixin-homepage-banner.webp?v=20260824 1915w, yaqixin-assets/yaqixin-homepage-banner-2x.webp?v=20260824-sharp 3830w" sizes="100vw">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="YAQIXIN custom fabrics and textile solutions for global apparel buyers, featuring lace, satin and fabric swatches" fetchpriority="high" decoding="async" width="1915" height="821">
+          </picture>
           <a class="home-static-banner-link explore-fabrics" href="/all-products" aria-label="Explore YAQIXIN fabrics"></a>
           <a class="home-static-banner-link get-a-quote" href="/inquiry" aria-label="Get a quote from YAQIXIN"></a>
         </div>
