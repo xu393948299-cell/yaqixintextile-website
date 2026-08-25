@@ -27,19 +27,19 @@ function sourceFileForPathname(pathname) {
   return `${cleanPath}.html`;
 }
 
-function xmlUrl(route) {
-  return `  <url>\n    <loc>https://www.yaqixintextile.com${route}</loc>\n    <lastmod>${releaseDate}</lastmod>\n  </url>`;
+function xmlUrl(route, indent = "  ") {
+  return `${indent}<url>\n    <loc>https://www.yaqixintextile.com${route}</loc>\n    <lastmod>${releaseDate}</lastmod>\n  </url>`;
 }
 
 const newline = fs.readFileSync(sitemapPath, "utf8").includes("\r\n") ? "\r\n" : "\n";
 let sitemap = fs.readFileSync(sitemapPath, "utf8").replace(/\r\n/g, "\n");
 let updated = 0;
 
-sitemap = sitemap.replace(/<url>\n\s*<loc>https:\/\/www\.yaqixintextile\.com([^<]*)<\/loc>\n\s*<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>\n\s*<\/url>/g, (block, route) => {
+sitemap = sitemap.replace(/^([ \t]*)<url>\n\s*<loc>https:\/\/www\.yaqixintextile\.com([^<]*)<\/loc>\n\s*<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>\n\s*<\/url>/gm, (block, indent, route) => {
   const sourceFile = sourceFileForPathname(route);
   if (!changedFiles.has(sourceFile)) return block;
   updated += 1;
-  return xmlUrl(route);
+  return xmlUrl(route, indent);
 });
 
 for (const route of ["/about-us", "/inquiry"]) {
