@@ -151,7 +151,8 @@
   }
 
   function addIntentMessage(field, message) {
-    if (!field || cleanText(field.value).indexOf(message) !== -1) {
+    var normalizedMessage = cleanText(message);
+    if (!field || cleanText(field.value).indexOf(normalizedMessage) !== -1) {
       return;
     }
     field.value = cleanText(field.value)
@@ -199,12 +200,12 @@
         var isSample = link.getAttribute('data-inquiry-intent') === 'sample';
         var messageField = form.querySelector('[name="message"]');
         var intentMessage = isSample
-          ? 'I would like free swatches / a color card for ' + productLabel + '. I understand the samples are free and shipping is paid by the buyer.'
+          ? "Hi, I'd like to request free swatches / a color card for " + productLabel + '. I understand samples are free and shipping is paid by the buyer. Delivery country: '
           : 'Please quote ' + productLabel + ' for a bulk order and include available shipping options to my destination. Destination port / address: ';
         addIntentMessage(messageField, intentMessage);
         window.setTimeout(function () {
           var focusTarget = isSample
-            ? form.querySelector('[name="color"]') || messageField
+            ? form.querySelector('[name="contact"]') || form.querySelector('[name="color"]') || messageField
             : form.querySelector('[name="quantity"]') || messageField;
           if (focusTarget) {
             focusTarget.focus({ preventScroll: true });

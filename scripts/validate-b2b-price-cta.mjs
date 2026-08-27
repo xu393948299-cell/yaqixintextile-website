@@ -8,6 +8,8 @@ const errors = [];
 const tierDistribution = new Map();
 const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
 let jsonLdBlocks = 0;
+const samplePrefillAssetVersion = '20260827-sample-prefill';
+const sitemapLastmod = '2026-08-27';
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -31,7 +33,7 @@ for (const name of files) {
 
   const required = [
     'yaqixin-mobile-price-card.css?v=20260825-b2b-price-cta',
-    'yaqixin-mobile-price-card.js?v=20260825-b2b-price-cta',
+    `yaqixin-mobile-price-card.js?v=${samplePrefillAssetVersion}`,
     'data-b2b-cta-group="true"',
     'data-inquiry-intent="sample">Request Free Swatches / Color Card</a>',
     'data-inquiry-intent="bulk">Get Bulk & Shipping Quote</a>',
@@ -42,7 +44,7 @@ for (const name of files) {
 
   const route = name.replace(/\.html$/, '');
   const sitemapLoc = `https://www.yaqixintextile.com/${route}`;
-  const sitemapPattern = new RegExp(`<loc>${escapeRegExp(sitemapLoc)}<\\/loc>\\s*<lastmod>2026-08-25<\\/lastmod>`);
+  const sitemapPattern = new RegExp(`<loc>${escapeRegExp(sitemapLoc)}<\\/loc>\\s*<lastmod>${sitemapLastmod}<\\/lastmod>`);
   if (!sitemapPattern.test(sitemap)) errors.push(`${name}: sitemap lastmod not refreshed`);
 
   const visibleSource = source
@@ -79,6 +81,10 @@ const stylesheet = await readFile(path.join(root, 'yaqixin-assets', 'yaqixin-mob
 for (const token of [
   'Final price depends on order volume, color customization, packing requirements, and destination port.',
   'Samples are free. Buyer pays shipping.',
+  "Hi, I'd like to request free swatches / a color card for ",
+  'Delivery country: ',
+  'var normalizedMessage = cleanText(message);',
+  "form.querySelector('[name=\"contact\"]')",
   'Request Free Swatches / Color Card',
   'Get Bulk & Shipping Quote',
 ]) {

@@ -4,6 +4,8 @@ import path from 'node:path';
 const root = process.cwd();
 const files = (await readdir(root)).filter((name) => name.endsWith('.html'));
 const productFiles = [];
+const samplePrefillAssetVersion = '20260827-sample-prefill';
+const sitemapLastmod = '2026-08-27';
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -52,7 +54,7 @@ for (const name of files) {
   );
   updated = updated.replace(
     /<script defer src="yaqixin-assets\/yaqixin-mobile-price-card\.js(?:\?[^\"]*)?"><\/script>/,
-    '<script defer src="yaqixin-assets/yaqixin-mobile-price-card.js?v=20260825-b2b-price-cta"></script>',
+    `<script defer src="yaqixin-assets/yaqixin-mobile-price-card.js?v=${samplePrefillAssetVersion}"></script>`,
   );
   updated = updated.replace(
     /<div class="hero-actions"(?: data-b2b-cta-group="true")?>[\s\S]*?<\/div>/,
@@ -62,7 +64,7 @@ for (const name of files) {
 
   const required = [
     'yaqixin-mobile-price-card.css?v=20260825-b2b-price-cta',
-    'yaqixin-mobile-price-card.js?v=20260825-b2b-price-cta',
+    `yaqixin-mobile-price-card.js?v=${samplePrefillAssetVersion}`,
     'data-b2b-cta-group="true"',
     'Request Free Swatches / Color Card',
     'Get Bulk & Shipping Quote',
@@ -87,7 +89,7 @@ for (const name of productFiles) {
   if (!pattern.test(sitemapUpdated)) {
     throw new Error(`${name}: sitemap URL not found`);
   }
-  sitemapUpdated = sitemapUpdated.replace(pattern, `$1${'2026-08-25'}$2`);
+  sitemapUpdated = sitemapUpdated.replace(pattern, `$1${sitemapLastmod}$2`);
 }
 if (sitemapUpdated !== sitemapSource) {
   await writeFile(sitemapPath, sitemapUpdated, 'utf8');
