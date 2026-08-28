@@ -139,7 +139,7 @@ function header() {
 
 function runtimeScripts(localRoot) {
   return `  <script src="${localRoot}yaqixin-assets/yaqixin-site-polish.js?v=20260812-audit-fixes" defer></script>
-  <script src="${localRoot}yaqixin-assets/yaqixin-mobile-menu-sync.js?v=20260812-audit-fixes" defer></script>
+  <script src="${localRoot}yaqixin-assets/yaqixin-mobile-menu-sync.js?v=20260824-mobile-contacts" defer></script>
   <script src="${localRoot}blog/header.js?v=20260824-home-nav-2" defer></script>
   <script src="${localRoot}yaqixin-assets/yaqixin-analytics.js?v=20260822-defer" defer></script>
   <script src="${localRoot}yaqixin-assets/yaqixin-lead-system.js" defer></script>

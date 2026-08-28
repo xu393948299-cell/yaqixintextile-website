@@ -1,6 +1,40 @@
 {
   "articles": [
     {
+      "slug": "tulle-vs-organza-how-to-choose-for-dresses-veils-and-overlays",
+      "title": "Tulle vs Organza: How to Choose for Dresses, Veils and Garment Overlays",
+      "excerpt": "A buyer-focused comparison of tulle and organza by construction, drape, transparency, body, garment placement and sample approval requirements.",
+      "coverImage": "/yaqixin-assets/products/yx309-organza-fabric/yx309-organza-drape-detail-01.webp",
+      "coverAlt": "Lightweight sheer organza draped to show its transparent woven surface and fold definition",
+      "coverCaption": "YAQIXIN YX309 lightweight sheer organza, used as a current 30gsm woven example. Compare it with an open-mesh tulle sample over the same lining and at the intended layer count.",
+      "publishedAt": "2026-08-28",
+      "updatedAt": "2026-08-28",
+      "author": "YAQIXIN Editorial Team",
+      "category": "Fabric comparison guide",
+      "primaryKeyword": "tulle vs organza",
+      "readingTime": "9 min read",
+      "seoTitle": "Tulle vs Organza: Which Sheer Fabric to Choose | YAQIXIN",
+      "metaDescription": "Compare tulle vs organza by construction, drape, transparency, body and garment use, with verified product examples and practical sample checks.",
+      "contentFile": "tulle-vs-organza-how-to-choose-for-dresses-veils-and-overlays.html",
+      "toc": [
+        { "id": "understand-the-construction-first", "label": "Understand the construction" },
+        { "id": "compare-drape-body-and-transparency", "label": "Compare drape and transparency" },
+        { "id": "choose-by-garment-placement", "label": "Choose by garment placement" },
+        { "id": "compare-current-catalog-routes", "label": "Compare catalog routes" },
+        { "id": "approve-the-layered-result", "label": "Approve the layered result" },
+        { "id": "send-a-comparable-inquiry", "label": "Send a comparison brief" },
+        { "id": "faq", "label": "Buyer questions" }
+      ],
+      "relatedLinks": [
+        { "label": "Choose tulle for bridal and dancewear", "url": "/blog/how-to-choose-tulle-fabric-for-wedding-dresses-veils-and-dancewear" },
+        { "label": "Understand fabric GSM, weight and width", "url": "/blog/fabric-gsm-guide-weight-drape-and-sourcing" },
+        { "label": "Use the fabric sample inspection checklist", "url": "/blog/fabric-sample-inspection-checklist-for-apparel-buyers" },
+        { "label": "Browse Tulle Mesh Fabric", "url": "/tulle-mesh-fabric" },
+        { "label": "Browse Organza Fabric", "url": "/organza-fabric" },
+        { "label": "Discuss a custom fabric brief", "url": "/custom-capability" }
+      ]
+    },
+    {
       "slug": "fabric-gsm-guide-weight-drape-and-sourcing",
       "title": "Fabric GSM Guide for Apparel Buyers: Weight, Drape and Sourcing",
       "excerpt": "A practical guide to what fabric GSM means, how weight interacts with construction and width, and how buyers can compare samples, estimate mass and prepare a clearer quote brief.",
@@ -114,7 +148,7 @@
       "coverAlt": "Soft white nylon plain tulle shown in hand with a bridal-style garment reference",
       "coverCaption": "YAQIXIN YX1046 soft white nylon plain tulle, shown as a current catalog example for a light bridal or veil route.",
       "publishedAt": "2026-08-07",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-08-28",
       "author": "YAQIXIN Editorial Team",
       "category": "Fabric selection guide",
       "primaryKeyword": "how to choose tulle fabric for wedding dresses",
@@ -132,6 +166,7 @@
         { "id": "faq", "label": "Buyer questions" }
       ],
       "relatedLinks": [
+        { "label": "Compare tulle and organza for garment use", "url": "/blog/tulle-vs-organza-how-to-choose-for-dresses-veils-and-overlays" },
         { "label": "Understand fabric GSM, weight and width", "url": "/blog/fabric-gsm-guide-weight-drape-and-sourcing" },
         { "label": "Use the fabric sample inspection checklist", "url": "/blog/fabric-sample-inspection-checklist-for-apparel-buyers" },
         { "label": "Browse all Tulle Mesh Fabric", "url": "/tulle-mesh-fabric" },
