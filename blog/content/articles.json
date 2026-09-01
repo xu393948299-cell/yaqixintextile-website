@@ -1,6 +1,43 @@
 {
   "articles": [
     {
+      "slug": "cotton-poplin-vs-twill-vs-canvas-buyer-comparison-guide",
+      "title": "Cotton Poplin vs Twill vs Canvas: A Buyer’s Comparison Guide",
+      "excerpt": "A sourcing comparison of cotton poplin, twill and canvas by construction, body, weight, product use, sample approval and quote requirements.",
+      "coverImage": "/yaqixin-assets/products/a9188-125gsm-cotton-poplin-fabric/a9188-main-125gsm-cotton-poplin-fabric.webp",
+      "coverAlt": "Stacks of cotton poplin in multiple colors used as a starting point for comparing woven cotton fabric routes",
+      "coverCaption": "YAQIXIN A9188 cotton poplin, used as a current 125gsm apparel example. Compare poplin, twill and canvas by finished-product function and exact specification—not cotton content alone.",
+      "publishedAt": "2026-09-01",
+      "updatedAt": "2026-09-01",
+      "author": "YAQIXIN Editorial Team",
+      "category": "Fabric comparison guide",
+      "primaryKeyword": "cotton poplin vs twill vs canvas",
+      "readingTime": "10 min read",
+      "seoTitle": "Cotton Poplin vs Twill vs Canvas: Buyer Guide | YAQIXIN",
+      "metaDescription": "Compare cotton poplin, twill and canvas by body, weight, weave, product use and sample checks, with verified fabric examples for B2B buyers.",
+      "contentFile": "cotton-poplin-vs-twill-vs-canvas-buyer-comparison-guide.html",
+      "toc": [
+        { "id": "start-with-construction-and-end-use", "label": "Start with construction and use" },
+        { "id": "compare-body-drape-and-surface", "label": "Compare body and surface" },
+        { "id": "choose-poplin-for-light-clean-apparel", "label": "Choose cotton poplin" },
+        { "id": "choose-twill-for-trousers-jackets-and-workwear", "label": "Choose cotton twill" },
+        { "id": "choose-canvas-by-required-structure", "label": "Choose cotton canvas" },
+        { "id": "map-the-product-brief-to-a-current-route", "label": "Compare current routes" },
+        { "id": "approve-a-production-relevant-sample", "label": "Approve the sample" },
+        { "id": "send-a-quote-ready-cotton-brief", "label": "Send a quote-ready brief" },
+        { "id": "faq", "label": "Buyer questions" }
+      ],
+      "relatedLinks": [
+        { "label": "Understand fabric GSM, weight and width", "url": "/blog/fabric-gsm-guide-weight-drape-and-sourcing" },
+        { "label": "Use the fabric sample inspection checklist", "url": "/blog/fabric-sample-inspection-checklist-for-apparel-buyers" },
+        { "label": "Read the wholesale fabric sourcing guide", "url": "/blog/how-to-source-wholesale-fabric-from-china" },
+        { "label": "Browse Cotton Poplin Fabric", "url": "/poplin-fabric" },
+        { "label": "Browse Cotton Twill Fabric", "url": "/twill-fabric" },
+        { "label": "Browse Canvas Fabric", "url": "/canvas-fabric" },
+        { "label": "Discuss a custom fabric brief", "url": "/custom-capability" }
+      ]
+    },
+    {
       "slug": "tulle-vs-organza-how-to-choose-for-dresses-veils-and-overlays",
       "title": "Tulle vs Organza: How to Choose for Dresses, Veils and Garment Overlays",
       "excerpt": "A buyer-focused comparison of tulle and organza by construction, drape, transparency, body, garment placement and sample approval requirements.",
@@ -184,7 +221,7 @@
       "coverAlt": "Editorial image of hands comparing fabric swatches beside rolls of lace, mesh, satin, and cotton",
       "coverCaption": "Editorial image illustrating fabric selection for a sourcing brief.",
       "publishedAt": "2026-07-14",
-      "updatedAt": "2026-08-24",
+      "updatedAt": "2026-09-01",
       "author": "YAQIXIN Editorial Team",
       "category": "Sourcing guide",
       "primaryKeyword": "how to source wholesale fabric from China",
@@ -202,6 +239,7 @@
         { "id": "faq", "label": "Buyer questions" }
       ],
       "relatedLinks": [
+        { "label": "Compare cotton poplin, twill and canvas", "url": "/blog/cotton-poplin-vs-twill-vs-canvas-buyer-comparison-guide" },
         { "label": "Understand fabric GSM, weight and width", "url": "/blog/fabric-gsm-guide-weight-drape-and-sourcing" },
         { "label": "Use the fabric sample inspection checklist", "url": "/blog/fabric-sample-inspection-checklist-for-apparel-buyers" },
         { "label": "Browse all fabric products", "url": "/all-products" },
