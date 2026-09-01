@@ -61,7 +61,7 @@
       '.mobile-action-bar .cat-icon:before{top:0!important}.mobile-action-bar .cat-icon span{top:8px!important}.mobile-action-bar .cat-icon:after{bottom:0!important}',
       '.mobile-action-bar .cat-label{font-size:13px!important;font-weight:700!important;line-height:1.05!important}',
       '.mobile-action-bar .chat{border:1.5px solid rgba(32,33,36,.62)!important;background:#fff!important;color:#10151f!important}',
-      '.mobile-action-bar .quote,.mobile-action-bar .sample{border:1px solid #ff6500!important;background:#ff6500!important;color:#fff!important;font-weight:850!important;box-shadow:0 8px 18px rgba(255,101,0,.18)!important}',
+      '.mobile-action-bar .quote,.mobile-action-bar .sample{border:1px solid #9f3f00!important;background:#9f3f00!important;color:#fff!important;font-weight:850!important;box-shadow:0 8px 18px rgba(159,63,0,.18)!important}',
       '.mobile-action-bar a:active,.mobile-action-bar button:active{transform:translateY(1px)!important}',
       '.mobile-category-layer{position:fixed!important;inset:0!important;z-index:130!important;display:block!important;pointer-events:none!important}',
       '.mobile-category-layer[hidden]{display:none!important}',
@@ -100,9 +100,11 @@
     if(!bar){
       bar=document.createElement('div');
       bar.className='mobile-action-bar';
+      bar.setAttribute('role','navigation');
       bar.setAttribute('aria-label','Mobile quick actions');
       document.body.appendChild(bar);
     }
+    if(!bar.hasAttribute('role')){bar.setAttribute('role','navigation')}
     bar.innerHTML='<button class="categories" id="'+BUTTON_ID+'" type="button" aria-label="Menu" aria-controls="mobileCategorySheet" aria-expanded="false"><span class="cat-icon" aria-hidden="true"><span></span></span><span class="cat-label">Menu</span></button><a class="chat" href="'+MOBILE_WHATSAPP_HREF+'" target="_blank" rel="noopener noreferrer" aria-label="Contact YAQIXIN on WhatsApp at +86 18125117673">WhatsApp</a><a class="quote" href="'+MOBILE_SAMPLE_HREF+'" target="_blank" rel="noopener noreferrer" aria-label="Contact YAQIXIN for a sample at +86 13632259091">Get Sample</a>';
     return bar;
   }

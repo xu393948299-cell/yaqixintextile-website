@@ -57,6 +57,17 @@
   background: var(--blog-white);
 }
 
+.article-table-wrap:focus-visible {
+  outline: 3px solid var(--blog-copper-dark);
+  outline-offset: 3px;
+}
+
+.article-meta,
+.article-cover figcaption,
+.article-figure figcaption {
+  color: #4f5966;
+}
+
 .article-table {
   width: 100%;
   min-width: 720px;
