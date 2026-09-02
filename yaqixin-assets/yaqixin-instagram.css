@@ -23,6 +23,7 @@
 
 .footer .yx-social-link .yx-instagram-mark,
 .footer .yx-social-link .yx-facebook-mark,
+.footer .yx-social-link .yx-youtube-mark,
 .footer .yx-social-link .yx-wechat-mark {
   width: 22px;
   height: 22px;
@@ -35,6 +36,10 @@
 
 .footer .yx-social-link .yx-facebook-mark {
   filter: drop-shadow(0 3px 8px rgba(8, 102, 255, .24));
+}
+
+.footer .yx-social-link .yx-youtube-mark {
+  filter: drop-shadow(0 3px 8px rgba(255, 0, 51, .28));
 }
 
 .footer .yx-social-link .yx-wechat-mark {
