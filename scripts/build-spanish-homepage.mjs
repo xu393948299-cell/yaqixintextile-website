@@ -8,6 +8,7 @@ const sourcePath = path.join(root, "index.html");
 const outputPath = path.join(root, "es", "index.html");
 
 let html = fs.readFileSync(sourcePath, "utf8");
+const existingSpanish = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, "utf8") : "";
 const prohibitedSourceClaims = [
   /Wholesale Fabric Manufacturer/i,
   /Fabric manufacturer/i,
@@ -37,6 +38,15 @@ replaceRequired(
 replaceRequired(
   '<meta name="description" content="Source cotton, tulle, lace, satin, organza and pleated fabrics from Guangzhou. Ask YAQIXIN about stock, custom colors, samples, MOQ and export packing.">',
   '<meta name="description" content="Proveedor mayorista de telas en Guangzhou para compradores B2B. Algodón, tul, malla, organza, encaje, satén y plisados con muestras, MOQ y pedidos a medida.">',
+);
+replaceRequired(
+  '<meta property="og:description" content="Source cotton, tulle, lace, satin, organza and pleated fabrics from Guangzhou. Ask YAQIXIN about stock, custom colors, samples, MOQ and export packing.">',
+  '<meta property="og:description" content="Proveedor mayorista de telas en Guangzhou para compradores B2B. Algodón, tul, malla, organza, encaje, satén y plisados con muestras, MOQ y pedidos a medida.">',
+);
+replaceRequired('<meta property="og:url" content="https://www.yaqixintextile.com/">', '<meta property="og:url" content="https://www.yaqixintextile.com/es">');
+replaceRequired(
+  '<meta name="twitter:description" content="Source cotton, tulle, lace, satin, organza and pleated fabrics from Guangzhou. Ask YAQIXIN about stock, custom colors, samples, MOQ and export packing.">',
+  '<meta name="twitter:description" content="Proveedor mayorista de telas en Guangzhou para compradores B2B. Algodón, tul, malla, organza, encaje, satén y plisados con muestras, MOQ y pedidos a medida.">',
 );
 replaceRequired('    <link rel="canonical" href="https://www.yaqixintextile.com/">', '    <link rel="canonical" href="https://www.yaqixintextile.com/es">');
 replaceRequired('<link rel="alternate" hreflang="en" href="https://www.yaqixintextile.com/">\n  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es">\n  <link rel="alternate" hreflang="x-default" href="https://www.yaqixintextile.com/">', '<link rel="alternate" hreflang="en" href="https://www.yaqixintextile.com/">\n  <link rel="alternate" hreflang="es" href="https://www.yaqixintextile.com/es">\n  <link rel="alternate" hreflang="x-default" href="https://www.yaqixintextile.com/">\n  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Proveedor Mayorista de Telas en Guangzhou | YAQIXIN","url":"https://www.yaqixintextile.com/es","inLanguage":"es"}</script>');
@@ -121,6 +131,27 @@ html = html.replaceAll('href="#', 'href="/es#');
 const languageBoot = /each\("\[data-lang-option\]",function\(el\)\{el\.addEventListener\("click",function\(\)\{var code=el\.getAttribute\("data-lang-option"\);.*?var initialLanguage="en";/s;
 if (!languageBoot.test(html)) throw new Error("Spanish language boot block was not found");
 html = html.replace(languageBoot, 'each("[data-lang-option]",function(el){el.addEventListener("click",function(){var code=el.getAttribute("data-lang-option");if(code==="en"){window.location.href="/";return}applyLanguage("es",false);if(switcher){switcher.classList.remove("is-open")}if(languageTrigger){languageTrigger.setAttribute("aria-expanded","false")}})});\n      var initialLanguage="es";');
+
+// Keep the Spanish-only hero/footer surfaces when the English homepage has a
+// different presentation. The localized carousel and routing should not be
+// replaced by an English-only banner during a metadata rebuild.
+if (existingSpanish) {
+  const existingHero = existingSpanish.match(/    <section class="hero seo-hero"[\s\S]*?(?=    <section class="official-intro")/i)?.[0];
+  const generatedHero = html.match(/    <div class="home-static-banner-copy">[\s\S]*?(?=    <section class="official-intro")/i)?.[0];
+  if (existingHero && generatedHero) {
+    html = html.replace(generatedHero, existingHero);
+    const generatedBannerStyle = html.match(/<style id="home-static-banner-styles">[\s\S]*?<\/style>/i)?.[0];
+    if (generatedBannerStyle) html = html.replace(`${generatedBannerStyle}\n`, "");
+  }
+
+  const existingFooter = existingSpanish.match(/  <footer class="footer yx-site-footer">[\s\S]*?<\/footer>/i)?.[0];
+  const generatedFooter = html.match(/  <footer class="footer yx-site-footer">[\s\S]*?<\/footer>/i)?.[0];
+  if (existingFooter && generatedFooter) html = html.replace(generatedFooter, existingFooter);
+
+  const existingWhatsApp = existingSpanish.match(/  <a class="whatsapp"[\s\S]*?<\/a>/i)?.[0];
+  const generatedWhatsApp = html.match(/  <a class="whatsapp"[\s\S]*?<\/a>/i)?.[0];
+  if (existingWhatsApp && generatedWhatsApp) html = html.replace(generatedWhatsApp, existingWhatsApp);
+}
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, `${html.replace(/[ \t]+(?=\r?\n)/g, "").replace(/\s*$/, "")}\n`, "utf8");

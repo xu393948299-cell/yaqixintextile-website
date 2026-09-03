@@ -123,6 +123,9 @@ function transform(text, relativePath) {
   if (!company.futurePublicEmail.display && company.futurePublicEmail.value) {
     output = output.split(company.futurePublicEmail.value).join(activeEmail);
   }
+  if (Array.isArray(company.sameAs) && company.sameAs.length) {
+    output = output.replace(/"sameAs"\s*:\s*\[[\s\S]*?\]/g, `"sameAs":${JSON.stringify(company.sameAs)}`);
+  }
   output = updateNavigation(output, isSpanish);
   return output;
 }

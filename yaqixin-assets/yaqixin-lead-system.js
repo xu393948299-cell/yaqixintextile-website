@@ -7,7 +7,7 @@
   var storageKey = 'yaqixin_attribution_v1';
   var submitCooldownKey = 'yaqixin_lead_last_submit_v1';
   var submitCooldownMs = 30000;
-  var formSelector = 'form.form-card, form#inquiry-form, form[data-lead-form]';
+  var formSelector = 'form.form-card, form.inquiry-form, form#inquiry-form, form[data-lead-form]';
   var startedForms = new WeakSet();
   var fieldLimit = 200;
   var messageLimit = 4000;
@@ -199,20 +199,20 @@
     var requirement = valueFor(form, ['message', 'requirement']);
     if (honeypot) {
       showStatus(form, localized('Your request could not be submitted. Please try again.', 'No se pudo enviar la solicitud. Inténtelo de nuevo.'), 'error');
-      return;
+      return false;
     }
     if (contact.length < 4) {
       showStatus(form, localized('Please add an email or WhatsApp number so we can reply.', 'Añada un email o número de WhatsApp para que podamos responder.'), 'error');
-      return;
+      return false;
     }
     if (contact.length > fieldLimit || requirement.length > messageLimit || [company, fabricCategory, orderRoute, quantity, color].some(function (value) { return value.length > fieldLimit; })) {
       showStatus(form, localized('Please shorten the contact or requirement details and try again.', 'Acorte los datos de contacto o los requisitos e inténtelo de nuevo.'), 'error');
-      return;
+      return false;
     }
     var seconds = cooldownRemaining();
     if (seconds) {
       showStatus(form, localized('Please wait ' + seconds + ' seconds before sending another request.', 'Espere ' + seconds + ' segundos antes de enviar otra solicitud.'), 'error');
-      return;
+      return false;
     }
     var attribution = getAttribution();
     var selectedWhatsApp = submitter && submitter.getAttribute('data-whatsapp') || '';
@@ -247,7 +247,7 @@
 
     if (!navigator.onLine) {
       showStatus(form, localized('Your request could not be saved while you are offline. Please send the WhatsApp draft so we can reply.', 'No se pudo guardar la solicitud sin conexión. Envíe el borrador de WhatsApp para que podamos responder.'), 'error');
-      return;
+      return false;
     }
     markSubmitted();
     setSubmitting(form, true);
@@ -272,6 +272,7 @@
     }).finally(function () {
       setSubmitting(form, false);
     });
+    return true;
   }
 
   document.addEventListener('focusin', function (event) {
@@ -291,7 +292,7 @@
     var form = event.target;
     if (!isLeadForm(form)) return;
     event.preventDefault();
-    submitLead(form, event.submitter);
+    if (submitLead(form, event.submitter) === false) event.stopImmediatePropagation();
   }, true);
 
   document.addEventListener('click', function (event) {

@@ -16,6 +16,7 @@ const publisher = {
   sameAs: [
     "https://www.instagram.com/zhang.mandyzhang/",
     "https://www.facebook.com/profile.php?id=61554639581256",
+    "https://www.youtube.com/@yaqixintextile",
   ],
   logo: {
     "@type": "ImageObject",
@@ -151,6 +152,12 @@ function runtimeScripts(localRoot) {
 }
 
 function footer(localRoot) {
+  // Reuse the homepage footer so Blog routes keep the enterprise contact and
+  // official social profiles in sync with the sitewide source.
+  const homepage = fs.readFileSync(path.join(root, "index.html"), "utf8");
+  const homepageFooter = homepage.match(/<footer class="footer yx-site-footer">[\s\S]*?<\/footer>/i);
+  if (homepageFooter) return `${homepageFooter[0]}\n${runtimeScripts(localRoot)}`;
+
   const instagramMark = '<svg class="yx-instagram-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><defs><radialGradient id="yx-instagram-gradient" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#feda75"></stop><stop offset="25%" stop-color="#fa7e1e"></stop><stop offset="50%" stop-color="#d62976"></stop><stop offset="75%" stop-color="#962fbf"></stop></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#yx-instagram-gradient)"></rect><rect x="5.4" y="5.4" width="13.2" height="13.2" rx="4.2" fill="none" stroke="#fff" stroke-width="1.8"></rect><circle cx="12" cy="12" r="3.15" fill="none" stroke="#fff" stroke-width="1.8"></circle><circle cx="16.8" cy="7.2" r="1" fill="#fff"></circle></svg>';
   const facebookMark = '<svg class="yx-facebook-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="#0866ff"></circle><path fill="#fff" d="M13.55 20v-7.05h2.36l.35-2.75h-2.71V8.45c0-.8.22-1.34 1.37-1.34h1.46V4.65c-.25-.04-1.12-.11-2.13-.11-2.11 0-3.56 1.29-3.56 3.66v2H8.3v2.75h2.39V20h2.86Z"></path></svg>';
   const wechatMark = '<svg class="yx-wechat-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="1" y="1" width="22" height="22" rx="6" fill="#07c160"></rect><circle cx="9.3" cy="10.2" r="4.4" fill="#fff"></circle><circle cx="15.1" cy="14.2" r="4" fill="#fff"></circle><circle cx="8" cy="9.5" r=".55" fill="#07c160"></circle><circle cx="10.7" cy="9.5" r=".55" fill="#07c160"></circle><circle cx="14" cy="13.6" r=".5" fill="#07c160"></circle><circle cx="16.3" cy="13.6" r=".5" fill="#07c160"></circle></svg>';
@@ -213,7 +220,7 @@ function commonHead({ title, description, canonicalPath, image, type = "website"
   <noscript><link rel="stylesheet" href="/blog/styles.css"><link rel="stylesheet" href="/blog/cards.css"></noscript>
   <link rel="stylesheet" href="${localRoot}yaqixin-assets/yaqixin-product-menu.css">
   <link rel="stylesheet" href="${localRoot}blog/header.css?v=20260824-home-nav">
-   <link rel="stylesheet" href="/yaqixin-assets/yaqixin-instagram.css?v=20260812-footer-map">
+   <link rel="stylesheet" href="/yaqixin-assets/yaqixin-instagram.css?v=20260902-youtube">
   <link rel="icon" href="${faviconHref}" type="image/png">
   ${localPreviewScript(localRoot)}${articleMeta}`;
 }
