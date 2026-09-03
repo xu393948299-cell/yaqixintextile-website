@@ -1,12 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { youtubeChannelUrl } from "../data/youtube-content.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..");
 const instagramUrl = "https://www.instagram.com/zhang.mandyzhang/";
 const facebookUrl = "https://www.facebook.com/profile.php?id=61554639581256";
-const youtubeUrl = "https://www.youtube.com/@yaqixintextile";
+const youtubeUrl = youtubeChannelUrl;
 const wechatQrUrl = "/yaqixin-assets/wechat-contact-13172537921.webp";
 const stylesheetHref = "/yaqixin-assets/yaqixin-instagram.css?v=20260902-youtube";
 const stylesheet = `<link rel="stylesheet" href="${stylesheetHref}">`;
@@ -99,6 +100,18 @@ for (const filePath of htmlFiles(root)) {
     } else {
       throw new Error(`Unable to locate footer in ${relativePath}`);
     }
+  }
+
+  // Keep the generated Footer output tied to the shared YouTube configuration
+  // without changing the established icon order or visual markup.
+  const youtubeLinkPattern = /<a\b[^>]*\bclass=["'][^"']*\byx-youtube-link\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i;
+  if (youtubeLinkPattern.test(html)) {
+    html = html.replace(youtubeLinkPattern, youtubeLinkMarkup);
+  } else if (html.includes('class="yx-social-links"')) {
+    html = html.replace(
+      /(<a\b[^>]*\bclass=["'][^"']*\byx-wechat-link\b[^"']*["'][^>]*>)/i,
+      `${youtubeLinkMarkup}$1`,
+    );
   }
 
   html = html.replace(/\s*<style id="homepage-footer-preview">[\s\S]*?<\/style>\s*/i, eol);
