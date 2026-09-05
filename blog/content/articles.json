@@ -1,6 +1,43 @@
 {
   "articles": [
     {
+      "slug": "how-to-verify-chinese-fabric-supplier",
+      "title": "7 Things to Check Before You Wire Money to a Chinese Fabric Supplier",
+      "excerpt": "A field-tested due diligence checklist for apparel buyers sourcing fabric from China: factory checks, sample rounds, certificate verification, payment structure and the red flags that end a conversation.",
+      "coverImage": "/yaqixin-assets/customer-visits/customer-handshake-showroom.webp",
+      "coverAlt": "Buyer and supplier confirming cooperation during a showroom verification visit in Guangzhou",
+      "coverCaption": "Verification happens before the handshake, not after. Seven checks separate a supplier who can deliver 5,000 consistent meters from one who disappears mid-order.",
+      "publishedAt": "2026-09-05",
+      "updatedAt": "2026-09-05",
+      "author": "YAQIXIN Editorial Team",
+      "category": "Supplier verification guide",
+      "primaryKeyword": "verify Chinese fabric supplier",
+      "readingTime": "10 min read",
+      "seoTitle": "How to Verify a Chinese Fabric Supplier: 7 Checks | YAQIXIN",
+      "metaDescription": "A step-by-step due diligence checklist for buying fabric from China: factory checks, sample rounds, certificate verification, payment terms and red flags.",
+      "contentFile": "how-to-verify-chinese-fabric-supplier.html",
+      "toc": [
+        { "id": "why-verification-matters", "label": "Why verification is worth one extra week" },
+        { "id": "look-at-the-factory", "label": "Look at the factory behind the trading company" },
+        { "id": "two-rounds-of-samples", "label": "Order two rounds of samples" },
+        { "id": "verify-the-certificates", "label": "Verify certificates by number" },
+        { "id": "contract-clauses", "label": "Put the inspection and colour clauses in the contract" },
+        { "id": "payment-structure", "label": "Structure payment so you can walk away" },
+        { "id": "third-party-inspection", "label": "Run a third-party inspection" },
+        { "id": "cultural-friction", "label": "Mind the cultural friction" },
+        { "id": "red-flags", "label": "Red flags that end the conversation" },
+        { "id": "what-yaqixin-does-differently", "label": "What YAQIXIN does differently" },
+        { "id": "faq", "label": "Buyer questions" }
+      ],
+      "relatedLinks": [
+        { "label": "Read the wholesale fabric sourcing guide", "url": "/blog/how-to-source-wholesale-fabric-from-china" },
+        { "label": "Use the fabric sample inspection checklist", "url": "/blog/fabric-sample-inspection-checklist-for-apparel-buyers" },
+        { "label": "Understand fabric GSM, weight and width", "url": "/blog/fabric-gsm-guide-weight-drape-and-sourcing" },
+        { "label": "Browse Plain Cotton Fabric", "url": "/plain-cotton-fabric" },
+        { "label": "Start a custom fabric inquiry", "url": "/custom-capability" }
+      ]
+    },
+    {
       "slug": "cotton-poplin-vs-twill-vs-canvas-buyer-comparison-guide",
       "title": "Cotton Poplin vs Twill vs Canvas: A Buyer’s Comparison Guide",
       "excerpt": "A sourcing comparison of cotton poplin, twill and canvas by construction, body, weight, product use, sample approval and quote requirements.",
